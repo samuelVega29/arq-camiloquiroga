@@ -13,7 +13,7 @@ export default function About() {
               <div className="absolute -inset-3 border border-line" aria-hidden="true" />
               <figure className="relative border border-ink/15 bg-paper-2">
                 <img
-                  src="/retrato.svg"
+                  src="retrato.svg"
                   alt="Retrato abstracto tipo plano arquitectónico de Camilo Quiroga"
                   loading="lazy"
                   decoding="async"
