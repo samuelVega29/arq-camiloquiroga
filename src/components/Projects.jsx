@@ -47,26 +47,30 @@ export default function Projects({ onOpenProject }) {
         </Reveal>
 
         <Reveal delay={80}>
-          <div className="mt-10 flex flex-wrap gap-2" role="group" aria-label="Filtrar proyectos por categoría">
+          <nav className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3" role="tablist" aria-label="Filtrar proyectos por categoría">
             {categories.map((category) => {
               const isActive = filter === category
               return (
                 <button
                   key={category}
                   type="button"
+                  role="tab"
+                  aria-selected={isActive}
                   onClick={() => setFilter(category)}
-                  aria-pressed={isActive}
-                  className={`border px-4 py-2 font-mono text-[9px] uppercase tracking-[0.16em] transition-colors ${
-                    isActive
-                      ? 'border-ink bg-ink text-paper'
-                      : 'border-line bg-transparent text-ink-soft hover:border-ink hover:text-ink'
+                  className={`group relative pb-1 font-mono text-[9px] uppercase tracking-[0.18em] transition-colors ${
+                    isActive ? 'text-ink' : 'text-ink-soft hover:text-ink'
                   }`}
                 >
                   {category}
+                  <span
+                    className={`absolute left-0 bottom-0 h-px w-full bg-ink transition-transform duration-300 ease-out origin-left ${
+                      isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                    }`}
+                  />
                 </button>
               )
             })}
-          </div>
+          </nav>
         </Reveal>
 
         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-12">
