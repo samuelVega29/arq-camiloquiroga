@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="600" height="750" role="img" aria-label="Retrato abstracto de Camilo Quiroga">
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#d9d2c5" stroke-width="0.7"/>
+    </pattern>
+    <pattern id="gridLarge" width="120" height="120" patternUnits="userSpaceOnUse">
+      <rect width="120" height="120" fill="url(#grid)"/>
+      <path d="M120 0H0V120" fill="none" stroke="#cfc7b8" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="600" height="750" fill="#efeae1"/>
+  <rect width="600" height="750" fill="url(#gridLarge)" opacity="0.85"/>
+
+  <g fill="none" stroke="#171a1c">
+    <rect x="46" y="46" width="508" height="658" stroke-width="1" stroke-dasharray="5 7" opacity="0.55"/>
+    <circle cx="300" cy="292" r="112" stroke-width="2"/>
+    <path d="M300 180v-38M300 404v38M188 292h-38M412 292h38" stroke-width="1"/>
+    <path d="M158 520c18-72 74-112 142-112s124 40 142 112" stroke-width="2"/>
+    <path d="M140 620c24-58 84-100 160-100s136 42 160 100" stroke-width="1.4" opacity="0.65"/>
+    <path d="M222 292a78 78 0 0 1 156 0" stroke-width="1" opacity="0.7"/>
+    <path d="M54 292h494" stroke-width="0.8" opacity="0.4"/>
+    <path d="M300 52v654" stroke-width="0.8" opacity="0.4"/>
+  </g>
+
+  <g fill="#24545e" opacity="0.12">
+    <rect x="188" y="180" width="224" height="224"/>
+  </g>
+
+  <g fill="none" stroke="#b9603c" stroke-width="1.4">
+    <path d="M188 180h-28v-28M412 180h28v-28M188 404h-28v28M412 404h28v28"/>
+    <circle cx="300" cy="292" r="6"/>
+    <path d="M474 142v98M474 142l-7 16M474 142l7 16"/>
+  </g>
+
+  <g fill="#171a1c" font-family="'Space Mono', monospace" font-size="9" letter-spacing="2" opacity="0.75">
+    <text x="46" y="32">RETRATO / ESTUDIO</text>
+    <text x="554" y="32" text-anchor="end">LÁMINA 01</text>
+    <text x="46" y="728">CQ / 2026</text>
+    <text x="554" y="728" text-anchor="end">ESC. 1:20</text>
+    <text x="300" y="474" text-anchor="middle" font-size="8">EJE / MIRADA</text>
+  </g>
+
+  <g fill="#b9603c" font-family="'Space Mono', monospace" font-size="9" letter-spacing="2">
+    <text x="300" y="548" text-anchor="middle">CAMILO QUIROGA</text>
+  </g>
+</svg>

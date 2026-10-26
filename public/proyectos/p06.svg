@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Biblioteca del Río">
+  <defs>
+    <pattern id="grid-p06" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#d9d2c5" stroke-width="0.7"/>
+    </pattern>
+    <pattern id="gridLarge-p06" width="120" height="120" patternUnits="userSpaceOnUse">
+      <rect width="120" height="120" fill="url(#grid-p06)"/>
+      <path d="M120 0H0V120" fill="none" stroke="#cfc7b8" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="600" fill="#efeae1"/>
+  <rect width="800" height="600" fill="url(#gridLarge-p06)" opacity="0.9"/>
+
+  <g fill="none" stroke="#171a1c">
+    <rect x="40" y="40" width="720" height="520" stroke-width="1" stroke-dasharray="5 7" opacity="0.5"/>
+    <rect x="133.2" y="135.4" width="533.6" height="310" stroke-width="2.2"/>
+    <path d="M368 135.4v310" stroke-width="1.3"/>
+    <path d="M133.2 270h533.6" stroke-width="1.3"/>
+    <path d="M368 270h142.4" stroke-width="1.3"/>
+    <path d="M368 270v119" stroke-width="1.3"/>
+    <path d="M214 270a34 34 0 0 1 34 34" stroke-width="1"/>
+    <path d="M418 390a30 30 0 0 0 30 30" stroke-width="1"/>
+
+    <rect x="194" y="178" width="114" height="74" stroke-width="1"/>
+    <rect x="410" y="178" width="128" height="78" stroke-width="1"/>
+    <rect x="194" y="310" width="116" height="86" stroke-width="1"/>
+    <rect x="408" y="336" width="150" height="64" stroke-width="1"/>
+
+    <circle cx="340" cy="216" r="16" stroke-width="1.2"/>
+    <circle cx="340" cy="216" r="3.5" fill="#171a1c" stroke="none" opacity="0.7"/>
+
+    <path d="M133.2 468h533.6" stroke-width="1"/>
+    <path d="M133.2 461v14M666.8 461v14" stroke-width="1"/>
+    <path d="M300 454v28M480 454v28" stroke-width="0.7" opacity="0.55"/>
+
+    <path d="M105.2 130v310M84 130h16M84 440h16" stroke-width="1"/>
+    <path d="M120 102h560M120 94v16M680 94v16" stroke-width="1"/>
+
+    <path d="M700 470v-46M700 470l-8-18M700 470l8-18" stroke-width="1.3"/>
+    <path d="M686 488h28M700 474v28" stroke-width="0.8" opacity="0.6"/>
+  </g>
+
+  <g fill="#24545e" opacity="0.12">
+    <rect x="412" y="338" width="146" height="62"/>
+  </g>
+
+  <g fill="none" stroke="#24545e" stroke-width="1.4">
+    <path d="M194 178h-26v-26M410 178h26v-26"/>
+    <path d="M150 468h96" stroke-width="2"/>
+    <circle cx="408" cy="310" r="4"/>
+  </g>
+
+  <g fill="#171a1c" font-family="'Space Mono', monospace" font-size="9" letter-spacing="2" opacity="0.75">
+    <text x="40" y="28">PLANTA ARQUITECTÓNICA</text>
+    <text x="760" y="28" text-anchor="end">LÁMINA 06</text>
+    <text x="149.2" y="208">01</text>
+    <text x="636.8" y="208" text-anchor="end">02</text>
+    <text x="149.2" y="350">03</text>
+    <text x="636.8" y="350" text-anchor="end">04</text>
+    <text x="340" y="242" text-anchor="middle" font-size="8">PATIO</text>
+    <text x="133.2" y="494">0</text>
+    <text x="666.8" y="494" text-anchor="end">14.40 m</text>
+    <text x="712" y="562" text-anchor="middle" font-size="8">N</text>
+    <text x="760" y="486" text-anchor="end" font-size="8">N.P. +0.00</text>
+  </g>
+
+  <g font-family="Georgia, serif">
+    <text x="40" y="554" font-size="30" fill="#171a1c">Biblioteca del Río</text>
+  </g>
+  <text x="40" y="578" font-family="'Space Mono', monospace" font-size="9" letter-spacing="2.4" fill="#24545e">CONCURSOS / 2023</text>
+
+  <text x="760" y="112" text-anchor="end" font-family="Georgia, serif" font-size="58" fill="none" stroke="#24545e" stroke-width="1" opacity="0.65">06</text>
+</svg>
