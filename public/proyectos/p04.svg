@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Parque de Borde">
+  <defs>
+    <pattern id="grid-p04" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#d9d2c5" stroke-width="0.7"/>
+    </pattern>
+    <pattern id="gridLarge-p04" width="120" height="120" patternUnits="userSpaceOnUse">
+      <rect width="120" height="120" fill="url(#grid-p04)"/>
+      <path d="M120 0H0V120" fill="none" stroke="#cfc7b8" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="600" fill="#efeae1"/>
+  <rect width="800" height="600" fill="url(#gridLarge-p04)" opacity="0.9"/>
+
+  <g fill="none" stroke="#171a1c">
+    <rect x="40" y="40" width="720" height="520" stroke-width="1" stroke-dasharray="5 7" opacity="0.5"/>
+    <rect x="120" y="135.4" width="560" height="310" stroke-width="2.2"/>
+    <path d="M300 135.4v310" stroke-width="1.3"/>
+    <path d="M120 270h560" stroke-width="1.3"/>
+    <path d="M300 270h160" stroke-width="1.3"/>
+    <path d="M300 270v119" stroke-width="1.3"/>
+    <path d="M262 270a34 34 0 0 1 34 34" stroke-width="1"/>
+    <path d="M350 390a30 30 0 0 0 30 30" stroke-width="1"/>
+
+    <rect x="150" y="178" width="90" height="74" stroke-width="1"/>
+    <rect x="342" y="178" width="128" height="58" stroke-width="1"/>
+    <rect x="150" y="310" width="116" height="70" stroke-width="1"/>
+    <rect x="340" y="336" width="130" height="64" stroke-width="1"/>
+
+    <circle cx="220" cy="216" r="12" stroke-width="1.2"/>
+    <circle cx="220" cy="216" r="3.5" fill="#171a1c" stroke="none" opacity="0.7"/>
+
+    <path d="M120 468h560" stroke-width="1"/>
+    <path d="M120 461v14M680 461v14" stroke-width="1"/>
+    <path d="M300 454v28M480 454v28" stroke-width="0.7" opacity="0.55"/>
+
+    <path d="M92 130v310M84 130h16M84 440h16" stroke-width="1"/>
+    <path d="M120 102h560M120 94v16M680 94v16" stroke-width="1"/>
+
+    <path d="M700 470v-46M700 470l-8-18M700 470l8-18" stroke-width="1.3"/>
+    <path d="M686 488h28M700 474v28" stroke-width="0.8" opacity="0.6"/>
+  </g>
+
+  <g fill="#24545e" opacity="0.12">
+    <rect x="344" y="338" width="126" height="62"/>
+  </g>
+
+  <g fill="none" stroke="#24545e" stroke-width="1.4">
+    <path d="M150 178h-26v-26M342 178h26v-26"/>
+    <path d="M150 468h96" stroke-width="2"/>
+    <circle cx="340" cy="310" r="4"/>
+  </g>
+
+  <g fill="#171a1c" font-family="'Space Mono', monospace" font-size="9" letter-spacing="2" opacity="0.75">
+    <text x="40" y="28">PLANTA ARQUITECTÓNICA</text>
+    <text x="760" y="28" text-anchor="end">LÁMINA 04</text>
+    <text x="136" y="208">01</text>
+    <text x="650" y="208" text-anchor="end">02</text>
+    <text x="136" y="350">03</text>
+    <text x="650" y="350" text-anchor="end">04</text>
+    <text x="220" y="242" text-anchor="middle" font-size="8">PATIO</text>
+    <text x="120" y="494">0</text>
+    <text x="680" y="494" text-anchor="end">19.20 m</text>
+    <text x="712" y="562" text-anchor="middle" font-size="8">N</text>
+    <text x="760" y="486" text-anchor="end" font-size="8">N.P. +0.00</text>
+  </g>
+
+  <g font-family="Georgia, serif">
+    <text x="40" y="554" font-size="30" fill="#171a1c">Parque de Borde</text>
+  </g>
+  <text x="40" y="578" font-family="'Space Mono', monospace" font-size="9" letter-spacing="2.4" fill="#24545e">ESPACIO PÚBLICO / 2024</text>
+
+  <text x="760" y="112" text-anchor="end" font-family="Georgia, serif" font-size="58" fill="none" stroke="#24545e" stroke-width="1" opacity="0.65">04</text>
+</svg>
