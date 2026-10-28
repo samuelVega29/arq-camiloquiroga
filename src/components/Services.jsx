@@ -84,14 +84,14 @@ export default function Services() {
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-xl text-sm leading-relaxed text-ink-soft">
-            Servicios prestados a empresas privadas, entidades p├║blicas y clientes particulares.
+          <p className="max-w-xl text-sm leading-relaxed text-[color:var(--color-fg-soft)]">
+            Servicios prestados a empresas privadas, entidades públicas y clientes particulares.
           </p>
           <a
             href="#contacto"
             className="font-mono text-[10px] uppercase tracking-[0.18em] text-blueprint underline decoration-line underline-offset-4 transition-colors hover:text-copper"
           >
-            Solicitar cotizaci├│n
+            Solicitar cotización
           </a>
         </div>
       </div>

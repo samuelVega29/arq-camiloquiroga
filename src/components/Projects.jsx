@@ -192,26 +192,26 @@ export default function Projects({ onOpenProject }) {
               })}
             </nav>
 
-            <div className="mt-3 flex items-center justify-between gap-4 border-t border-line pt-3">
-              <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-ink-soft" aria-live="polite">
-                {String(filtered.length).padStart(2, '0')}{' '}
-                {filtered.length === 1 ? 'proyecto' : 'proyectos'} / 2023ÔÇö2026
-              </p>
-              {hasFilters ? (
-                <button
-                  type="button"
-                  onClick={resetFilters}
-                  className="inline-flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.16em] text-blueprint underline decoration-line underline-offset-4 transition-colors hover:text-copper"
-                >
-                  <X className="h-3 w-3" aria-hidden="true" />
-                  Limpiar filtros
-                </button>
-              ) : (
-                <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-ink-soft">
-                  ├ìndice de obra
-                </span>
-              )}
-            </div>
+              <div className="mt-3 flex items-center justify-between gap-4 border-t border-[color:var(--color-line)] pt-3">
+                <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]" aria-live="polite">
+                  {String(filtered.length).padStart(2, '0')}{' '}
+                  {filtered.length === 1 ? 'proyecto' : 'proyectos'} / 2023—2026
+                </p>
+                {hasFilters ? (
+                  <button
+                    type="button"
+                    onClick={resetFilters}
+                    className="inline-flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
+                  >
+                    <X className="h-3 w-3" aria-hidden="true" />
+                    Limpiar filtros
+                  </button>
+                ) : (
+                  <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">
+                    Índice de obra
+                  </span>
+                )}
+              </div>
           </div>
         </Reveal>
 
@@ -256,12 +256,12 @@ export default function Projects({ onOpenProject }) {
         ) : (
           <Reveal>
             <div className="mt-10">
-              <div className="hidden grid-cols-12 gap-x-4 border-b border-ink/25 pb-2 sm:grid">
-                <span className="eyebrow col-span-1">N┬║</span>
+              <div className="hidden grid-cols-12 gap-x-4 border-b border-[color:var(--color-line)] pb-2 sm:grid">
+                <span className="eyebrow col-span-1">Nº</span>
                 <span className="eyebrow col-span-4">Proyecto</span>
-                <span className="eyebrow col-span-2">Tipolog├¡a</span>
-                <span className="eyebrow col-span-1">A├▒o</span>
-                <span className="eyebrow col-span-2">├ürea</span>
+                <span className="eyebrow col-span-2">Tipología</span>
+                <span className="eyebrow col-span-1">Año</span>
+                <span className="eyebrow col-span-2">Área</span>
                 <span className="eyebrow col-span-1">Lugar</span>
                 <span className="eyebrow col-span-1 text-right">Ver</span>
               </div>
@@ -269,37 +269,37 @@ export default function Projects({ onOpenProject }) {
               <ul>
                 {filtered.map((project) => (
                   <li key={project.id}>
-                    <button
-                      type="button"
-                      onClick={() => onOpenProject(project)}
-                      className="group grid w-full grid-cols-12 items-center gap-x-4 gap-y-1 border-b border-line py-5 text-left transition-colors hover:bg-paper-2/60"
-                      aria-label={`Ver proyecto ${project.title}`}
-                    >
+                <button
+                  type="button"
+                  onClick={() => onOpenProject(project)}
+                  className="group grid w-full grid-cols-12 items-center gap-x-4 gap-y-1 border-b border-[color:var(--color-line)] py-5 text-left transition-colors hover:bg-white/5"
+                  aria-label={`Ver proyecto ${project.title}`}
+                >
                       <span className="col-span-2 font-mono text-[9px] uppercase tracking-[0.16em] text-copper sm:col-span-1">
                         {project.code}
                       </span>
                       <span className="col-span-10 sm:col-span-4">
-                        <span className="block font-display text-xl leading-tight tracking-[-0.02em] transition-colors group-hover:text-blueprint sm:text-2xl">
+                        <span className="block font-display text-xl leading-tight tracking-[-0.02em] transition-colors group-hover:text-white sm:text-2xl">
                           {project.title}
                         </span>
-                        <span className="mt-1 block text-xs leading-relaxed text-ink-soft sm:line-clamp-1">
+                        <span className="mt-1 block text-xs leading-relaxed text-[color:var(--color-fg-soft)] sm:line-clamp-1">
                           {project.concept}
                         </span>
                       </span>
-                      <span className="col-span-6 col-start-3 font-mono text-[9px] uppercase tracking-[0.14em] text-ink-soft sm:col-span-2 sm:col-start-auto">
+                      <span className="col-span-6 col-start-3 font-mono text-[9px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-2 sm:col-start-auto">
                         {project.category}
                       </span>
-                      <span className="col-span-2 font-mono text-[9px] uppercase tracking-[0.14em] text-ink-soft sm:col-span-1">
+                      <span className="col-span-2 font-mono text-[9px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-1">
                         {project.year}
                       </span>
-                      <span className="col-span-2 font-mono text-[9px] uppercase tracking-[0.14em] text-ink-soft sm:col-span-2">
+                      <span className="col-span-2 font-mono text-[9px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-2">
                         {project.area}
                       </span>
-                      <span className="hidden font-mono text-[9px] uppercase tracking-[0.14em] text-ink-soft sm:col-span-1 sm:block">
+                      <span className="hidden font-mono text-[9px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-1 sm:block">
                         {project.location}
                       </span>
                       <span className="hidden justify-end sm:col-span-1 sm:flex">
-                        <span className="inline-flex h-8 w-8 items-center justify-center border border-line transition-colors group-hover:border-ink group-hover:bg-ink group-hover:text-paper">
+                        <span className="inline-flex h-8 w-8 items-center justify-center border border-[color:var(--color-line)] transition-colors group-hover:border-white group-hover:text-white">
                           <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                         </span>
                       </span>
@@ -311,15 +311,16 @@ export default function Projects({ onOpenProject }) {
           </Reveal>
         )}
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-xl text-sm leading-relaxed text-ink-soft">
-            Cada proyecto se acompa├▒a de planos, im├ígenes y una descripci├│n del proceso.
+        <div className="mt-12 flex flex-col gap-4 border-t border-[color:var(--color-line)] pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-xl text-sm leading-relaxed text-[color:var(--color-fg-soft)]">
+            Cada proyecto se acompaña de planos, imágenes y una descripción del proceso.
           </p>
           <a
             href="#contacto"
-            className="font-mono text-[10px] uppercase tracking-[0.18em] text-blueprint underline decoration-line underline-offset-4 transition-colors hover:text-copper"
+            className="group inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.22em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
           >
             Hablemos de un proyecto
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
           </a>
         </div>
       </div>

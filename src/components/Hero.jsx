@@ -12,25 +12,37 @@ const slides = [
     id: 1,
     type: 'image',
     src: '/proyectos/p01.svg',
-    alt: 'Proyecto arquitect├│nico - espacio minimalista',
+    alt: 'Proyecto arquitectónico - espacio minimalista',
   },
   {
     id: 2,
     type: 'image',
     src: '/proyectos/p02.svg',
-    alt: 'Proyecto arquitect├│nico - fachada y vol├║menes',
+    alt: 'Proyecto arquitectónico - fachada y volúmenes',
   },
   {
     id: 3,
     type: 'image',
     src: '/proyectos/p03.svg',
-    alt: 'Proyecto arquitect├│nico - interior y luz',
+    alt: 'Proyecto arquitectónico - interior y luz',
   },
   {
     id: 4,
     type: 'image',
     src: '/proyectos/p04.svg',
-    alt: 'Proyecto arquitect├│nico - materialidad',
+    alt: 'Proyecto arquitectónico - materialidad',
+  },
+  {
+    id: 5,
+    type: 'image',
+    src: '/proyectos/p05.svg',
+    alt: 'Proyecto arquitectónico - perspectiva',
+  },
+  {
+    id: 6,
+    type: 'image',
+    src: '/proyectos/p06.svg',
+    alt: 'Proyecto arquitectónico - detalle',
   },
 ]
 
