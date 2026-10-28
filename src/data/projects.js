@@ -1,15 +1,10 @@
 export const projects = [
   {
     id: 'casa-patio',
-    code: 'P.01',
     title: 'Casa Patio',
     category: 'Vivienda',
     year: '2026',
     location: 'Colombia',
-    area: '185 m²',
-    status: 'Académico',
-    role: 'Diseño arquitectónico, modelado y visualización',
-    concept: 'Un patio central que funciona como corazón climático y social de la vivienda.',
     description:
       'Una vivienda organizada alrededor de un vacío central que regula la luz, la ventilación y la vida cotidiana.',
     longDescription:
@@ -20,15 +15,10 @@ export const projects = [
   },
   {
     id: 'centro-cultural-la-quebrada',
-    code: 'P.02',
     title: 'Centro Cultural La Quebrada',
     category: 'Cultural',
     year: '2025',
     location: 'Colombia',
-    area: '1.240 m²',
-    status: 'Académico',
-    role: 'Diseño arquitectónico y coordinación BIM',
-    concept: 'Terrazas que negocian la pendiente y abren el equipamiento al barrio.',
     description:
       'Un equipamiento que se adapta a la topografía y conecta la ciudad con el paisaje de la quebrada.',
     longDescription:
@@ -39,15 +29,10 @@ export const projects = [
   },
   {
     id: 'pabellon-de-la-luz',
-    code: 'P.03',
     title: 'Pabellón de la Luz',
     category: 'Espacio público',
     year: '2025',
     location: 'Colombia',
-    area: '120 m²',
-    status: 'Concepto',
-    role: 'Diseño arquitectónico y visualización',
-    concept: 'Un sistema modular de sombra que se adapta y se desmonta según el lugar.',
     description:
       'Una estructura ligera que filtra la luz y ofrece sombra, encuentro y refugio en la plaza.',
     longDescription:
@@ -58,15 +43,10 @@ export const projects = [
   },
   {
     id: 'parque-de-borde',
-    code: 'P.04',
     title: 'Parque de Borde',
     category: 'Espacio público',
     year: '2024',
     location: 'Colombia',
-    area: '2,4 ha',
-    status: 'Académico',
-    role: 'Diseño del paisaje y planimetría',
-    concept: 'Infraestructura verde que media entre el tejido urbano y el río.',
     description:
       'Un paisaje de transición entre la ciudad y el río, construido con recorridos, sombra y vegetación nativa.',
     longDescription:
@@ -77,15 +57,10 @@ export const projects = [
   },
   {
     id: 'vivienda-colectiva-alto',
-    code: 'P.05',
     title: 'Vivienda Colectiva Alto',
     category: 'Vivienda',
     year: '2024',
     location: 'Colombia',
-    area: '3.800 m²',
-    status: 'Académico',
-    role: 'Diseño arquitectónico, BIM y visualización',
-    concept: 'Densidad media organizada alrededor de patios y cubiertas habitables.',
     description:
       'Un edificio de vivienda que equilibra densidad, privacidad y espacios compartidos.',
     longDescription:
@@ -96,15 +71,10 @@ export const projects = [
   },
   {
     id: 'biblioteca-del-rio',
-    code: 'P.06',
     title: 'Biblioteca del Río',
     category: 'Concursos',
     year: '2023',
     location: 'Colombia',
-    area: '2.100 m²',
-    status: 'Concurso',
-    role: 'Diseño arquitectónico y láminas de concurso',
-    concept: 'Una plataforma pública que conecta el parque, la ciudad y el agua.',
     description:
       'Propuesta para un concurso de arquitectura: una biblioteca abierta que mira hacia el río.',
     longDescription:

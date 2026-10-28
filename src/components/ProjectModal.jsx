@@ -1,25 +1,21 @@
 import { useEffect, useRef } from 'react'
-import { ArrowLeft, ArrowRight, ArrowUpRight, X } from 'lucide-react'
-import { projects } from '../data/projects'
+import { ArrowUpRight, X } from 'lucide-react'
 import { whatsappHref } from '../data/socials'
 import WhatsAppIcon from './WhatsAppIcon'
 
-export default function ProjectModal({ project, onClose, onNavigate }) {
+export default function ProjectModal({ project, onClose }) {
   const dialogRef = useRef(null)
-
-  const index = project ? projects.findIndex((item) => item.id === project.id) : -1
-  const previous = index >= 0 ? projects[(index - 1 + projects.length) % projects.length] : null
-  const next = index >= 0 ? projects[(index + 1) % projects.length] : null
 
   useEffect(() => {
     const dialog = dialogRef.current
     if (!dialog) return
 
-    if (project) {
-      if (!dialog.open) dialog.showModal()
+    if (project && !dialog.open) {
+      dialog.showModal()
       document.body.style.overflow = 'hidden'
-      dialog.scrollTop = 0
-    } else if (dialog.open) {
+    }
+
+    if (!project && dialog.open) {
       dialog.close()
     }
 
@@ -43,13 +39,13 @@ export default function ProjectModal({ project, onClose, onNavigate }) {
       {project ? (
         <article>
           <div className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-line bg-paper/95 px-5 py-4 backdrop-blur-sm sm:px-8">
-            <div className="min-w-0">
+            <div>
               <p className="eyebrow">
-                {project.code} · {project.category} / {project.year}
+                {project.category} / {project.year}
               </p>
               <h2
                 id="project-modal-title"
-                className="mt-1 truncate font-display text-xl leading-tight tracking-[-0.02em] sm:text-3xl"
+                className="mt-1 font-display text-xl leading-tight tracking-[-0.02em] sm:text-3xl"
               >
                 {project.title}
               </h2>
@@ -73,13 +69,7 @@ export default function ProjectModal({ project, onClose, onNavigate }) {
           <div className="px-5 py-7 sm:px-8 sm:py-9">
             <div className="grid gap-8 lg:grid-cols-12">
               <div className="lg:col-span-7">
-                <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-copper">
-                  Idea arquitectónica
-                </p>
-                <p className="mt-3 font-display text-xl italic leading-snug text-blueprint sm:text-2xl">
-                  {project.concept}
-                </p>
-                <p className="mt-5 text-base leading-relaxed text-ink-soft sm:text-lg">
+                <p className="text-base leading-relaxed text-ink-soft sm:text-lg">
                   {project.longDescription}
                 </p>
                 <ul className="mt-6 flex flex-wrap gap-2" aria-label="Herramientas del proyecto">
@@ -100,10 +90,6 @@ export default function ProjectModal({ project, onClose, onNavigate }) {
                   <dd className="mt-1 text-sm">{project.year}</dd>
                 </div>
                 <div>
-                  <dt className="eyebrow">Área</dt>
-                  <dd className="mt-1 text-sm">{project.area}</dd>
-                </div>
-                <div>
                   <dt className="eyebrow">Ubicación</dt>
                   <dd className="mt-1 text-sm">{project.location}</dd>
                 </div>
@@ -113,15 +99,7 @@ export default function ProjectModal({ project, onClose, onNavigate }) {
                 </div>
                 <div>
                   <dt className="eyebrow">Estado</dt>
-                  <dd className="mt-1 text-sm">{project.status}</dd>
-                </div>
-                <div>
-                  <dt className="eyebrow">Código</dt>
-                  <dd className="mt-1 text-sm">{project.code}</dd>
-                </div>
-                <div className="col-span-2 border-t border-line pt-4">
-                  <dt className="eyebrow">Rol</dt>
-                  <dd className="mt-1 text-sm leading-relaxed text-ink-soft">{project.role}</dd>
+                  <dd className="mt-1 text-sm">Proyecto académico</dd>
                 </div>
               </dl>
             </div>
@@ -142,48 +120,6 @@ export default function ProjectModal({ project, onClose, onNavigate }) {
               </a>
             </div>
           </div>
-
-          <nav
-            aria-label="Navegación entre proyectos"
-            className="grid grid-cols-2 divide-x divide-line border-t border-line bg-paper-2/60"
-          >
-            <button
-              type="button"
-              onClick={() => onNavigate(previous)}
-              className="group flex items-center gap-3 px-5 py-4 text-left transition-colors hover:bg-paper sm:px-8 sm:py-5"
-            >
-              <ArrowLeft
-                className="h-4 w-4 shrink-0 text-ink-soft transition-transform group-hover:-translate-x-1"
-                aria-hidden="true"
-              />
-              <span className="min-w-0">
-                <span className="block font-mono text-[8px] uppercase tracking-[0.2em] text-ink-soft">
-                  Anterior
-                </span>
-                <span className="mt-1 block truncate font-display text-sm leading-tight sm:text-base">
-                  {previous?.title}
-                </span>
-              </span>
-            </button>
-            <button
-              type="button"
-              onClick={() => onNavigate(next)}
-              className="group flex items-center justify-end gap-3 px-5 py-4 text-right transition-colors hover:bg-paper sm:px-8 sm:py-5"
-            >
-              <span className="min-w-0">
-                <span className="block font-mono text-[8px] uppercase tracking-[0.2em] text-ink-soft">
-                  Siguiente
-                </span>
-                <span className="mt-1 block truncate font-display text-sm leading-tight sm:text-base">
-                  {next?.title}
-                </span>
-              </span>
-              <ArrowRight
-                className="h-4 w-4 shrink-0 text-ink-soft transition-transform group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-            </button>
-          </nav>
         </article>
       ) : null}
     </dialog>

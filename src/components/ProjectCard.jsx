@@ -2,7 +2,7 @@ import { ArrowUpRight } from 'lucide-react'
 
 export default function ProjectCard({ project, index, wide = false, onOpen }) {
   return (
-    <article className="group relative flex h-full flex-col">
+    <article className="group relative">
       <button
         type="button"
         onClick={() => onOpen(project)}
@@ -25,9 +25,9 @@ export default function ProjectCard({ project, index, wide = false, onOpen }) {
           aria-hidden="true"
         />
         <span className="absolute left-4 top-4 border border-ink/20 bg-paper/90 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-soft backdrop-blur-sm">
-          {project.code}
+          P.0{index + 1}
         </span>
-        <span className="absolute right-4 top-4 bg-paper/90 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-soft backdrop-blur-sm">
+        <span className="absolute right-4 top-4 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-soft">
           {project.year}
         </span>
         <span className="absolute bottom-4 right-4 inline-flex items-center gap-2 bg-ink px-3 py-2 font-mono text-[9px] uppercase tracking-[0.16em] text-paper opacity-0 transition-all duration-300 group-hover:opacity-100">
@@ -36,25 +36,22 @@ export default function ProjectCard({ project, index, wide = false, onOpen }) {
         </span>
       </div>
 
-      <div className="mt-5 flex flex-1 flex-col">
+      <div className="mt-5">
         <div className="flex items-center justify-between gap-4 border-b border-line pb-3">
           <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-copper">
             {project.category}
           </span>
           <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-ink-soft">
-            {project.area} · {project.location}
+            {project.location}
           </span>
         </div>
         <h3 className="mt-4 font-display text-2xl leading-tight tracking-[-0.02em] transition-colors group-hover:text-blueprint sm:text-3xl">
           {project.title}
         </h3>
-        <p className="mt-2 font-display text-base italic leading-snug text-blueprint">
-          {project.concept}
+        <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-soft">
+          {project.description}
         </p>
-        <ul className="mt-auto flex flex-wrap gap-2 pt-5" aria-label={`Herramientas de ${project.title}`}>
-          <li className="border border-ink/20 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.12em] text-ink">
-            {project.status}
-          </li>
+        <ul className="mt-4 flex flex-wrap gap-2" aria-label={`Herramientas de ${project.title}`}>
           {project.tools.map((tool) => (
             <li
               key={tool}

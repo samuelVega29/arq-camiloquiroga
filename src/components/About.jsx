@@ -50,35 +50,18 @@ export default function About() {
               ))}
             </div>
 
-            <div className="mt-10 grid gap-10 sm:grid-cols-2">
-              <div>
-                <h3 className="eyebrow border-b border-line pb-3">Formación</h3>
-                <ul className="mt-4 space-y-5">
-                  {profile.education.map((item) => (
-                    <li key={`${item.title}-${item.period}`}>
-                      <p className="text-sm font-medium">{item.title}</p>
-                      <p className="mt-1 text-sm text-ink-soft">{item.place}</p>
-                      <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-copper">
-                        {item.period}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="eyebrow border-b border-line pb-3">Herramientas</h3>
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  {profile.tools.map((tool) => (
-                    <li
-                      key={tool}
-                      className="border border-line px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-ink-soft"
-                    >
-                      {tool}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="mt-10">
+              <h3 className="eyebrow border-b border-line pb-3">Herramientas</h3>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {profile.tools.map((tool) => (
+                  <li
+                    key={tool}
+                    className="border border-line px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-ink-soft"
+                  >
+                    {tool}
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <a

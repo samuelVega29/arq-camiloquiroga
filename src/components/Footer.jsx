@@ -4,7 +4,7 @@ import { socials, whatsappHref } from '../data/socials'
 
 const links = [
   { label: 'Inicio', href: '#inicio' },
-  { label: 'Catálogo', href: '#proyectos' },
+  { label: 'Proyectos', href: '#proyectos' },
   { label: 'Enfoque', href: '#enfoque' },
   { label: 'Sobre mí', href: '#sobre-mi' },
   { label: 'Contacto', href: '#contacto' },
