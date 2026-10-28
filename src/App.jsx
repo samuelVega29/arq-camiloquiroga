@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Projects from './components/Projects'
-import Approach from './components/Approach'
+import Services from './components/Services'
 import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -23,8 +22,7 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <Projects onOpenProject={setActiveProject} />
-        <Approach />
+        <Services />
         <About />
         <Contact />
       </main>

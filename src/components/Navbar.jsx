@@ -5,8 +5,7 @@ import InstagramIcon from './InstagramIcon'
 
 const links = [
   { label: 'Inicio', href: '#inicio' },
-  { label: 'Proyectos', href: '#proyectos' },
-  { label: 'Enfoque', href: '#enfoque' },
+  { label: 'Servicios', href: '#servicios' },
   { label: 'Sobre mí', href: '#sobre-mi' },
   { label: 'Contacto', href: '#contacto' },
 ]
