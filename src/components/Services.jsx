@@ -1,7 +1,7 @@
 ﻿import { useMemo, useState } from 'react'
+import { ArrowUpRight } from 'lucide-react'
 import { services, serviceCategories } from '../data/services'
 import Reveal from './Reveal'
-import SectionHeading from './SectionHeading'
 
 export default function Services() {
   const [filter, setFilter] = useState('Todos')
