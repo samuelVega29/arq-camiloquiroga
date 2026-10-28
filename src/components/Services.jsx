@@ -1,7 +1,7 @@
 ﻿import { useMemo, useState } from 'react'
-import { ArrowUpRight } from 'lucide-react'
 import { services, serviceCategories } from '../data/services'
 import Reveal from './Reveal'
+import SectionHeading from './SectionHeading'
 
 export default function Services() {
   const [filter, setFilter] = useState('Todos')
@@ -12,34 +12,28 @@ export default function Services() {
   }, [filter])
 
   return (
-    <section id="servicios" className="py-24 sm:py-36">
+    <section id="servicios" className="border-t border-line py-20 sm:py-28">
       <div className="section-shell">
         <Reveal>
-          <div className="flex flex-col justify-between gap-10 lg:flex-row lg:items-end">
-            <div>
-              <p className="eyebrow flex items-center gap-3">
-                <span className="h-px w-6 bg-white" aria-hidden="true" />
-                01 / Servicios
-              </p>
-              <h2 className="mt-6 display-title text-[clamp(3rem,9vw,7rem)]">
-                Experiencia <span className="italic">profesional</span>
-              </h2>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-[color:var(--color-fg-soft)] sm:text-lg">
-                Dirección, residencia, interventoría, contratación y formulación de proyectos para sector privado y público.
-              </p>
-            </div>
-            <p className="shrink-0 font-mono text-[9px] uppercase tracking-[0.26em] text-[color:var(--color-fg-muted)]">
+          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+            <SectionHeading
+              index="02"
+              label="Servicios"
+              title={
+                <>
+                  Experiencia <span className="italic text-blueprint">profesional</span>
+                </>
+              }
+              intro="Direcci├│n, residencia, interventor├¡a, contrataci├│n y formulaci├│n de proyectos para sector privado y p├║blico."
+            />
+            <p className="shrink-0 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-soft">
               {String(filtered.length).padStart(2, '0')} servicios
             </p>
           </div>
         </Reveal>
 
         <Reveal delay={80}>
-          <nav
-            className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3"
-            role="tablist"
-            aria-label="Filtrar servicios por tipo"
-          >
+          <nav className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3" role="tablist" aria-label="Filtrar servicios por tipo">
             {serviceCategories.map((category) => {
               const isActive = filter === category
               return (
@@ -50,12 +44,12 @@ export default function Services() {
                   aria-selected={isActive}
                   onClick={() => setFilter(category)}
                   className={`group relative pb-1 font-mono text-[9px] uppercase tracking-[0.18em] transition-colors ${
-                    isActive ? 'text-[color:var(--color-fg)]' : 'text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-fg)]'
+                    isActive ? 'text-ink' : 'text-ink-soft hover:text-ink'
                   }`}
                 >
                   {category}
                   <span
-                    className={`absolute left-0 bottom-0 h-px w-full bg-[color:var(--color-fg)] transition-transform duration-500 ease-out origin-left ${
+                    className={`absolute left-0 bottom-0 h-px w-full bg-ink transition-transform duration-300 ease-out origin-left ${
                       isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                     }`}
                   />
@@ -65,40 +59,39 @@ export default function Services() {
           </nav>
         </Reveal>
 
-        <div className="mt-12 divide-y divide-[color:var(--color-line)] border-t border-[color:var(--color-line)]">
+        <div className="mt-12 divide-y divide-line border-t border-line">
           {filtered.map((service, index) => (
             <Reveal key={service.id} delay={(index % 4) * 50}>
-              <article className="grid gap-6 py-8 sm:grid-cols-12 sm:items-start">
+              <article className="grid gap-4 py-7 sm:grid-cols-12 sm:gap-6">
                 <div className="sm:col-span-5 lg:col-span-4">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-[color:var(--color-fg-muted)]">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-copper">
                     {service.category}
                   </p>
-                  <h3 className="mt-3 text-xl leading-snug tracking-[-0.01em] sm:text-2xl">{service.title}</h3>
+                  <h3 className="mt-2 text-lg leading-snug sm:text-xl">{service.title}</h3>
                 </div>
                 <div className="sm:col-span-4 lg:col-span-4">
-                  <p className="text-sm leading-relaxed text-[color:var(--color-fg-soft)]">{service.description}</p>
+                  <p className="text-sm leading-relaxed text-ink-soft">{service.description}</p>
                 </div>
                 <div className="sm:col-span-3 lg:col-span-4 sm:text-right">
-                  <p className="text-sm text-[color:var(--color-fg)]">{service.client}</p>
-                  {service.location ? <p className="mt-1 text-sm text-[color:var(--color-fg-soft)]">{service.location}</p> : null}
-                  {service.year ? <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">{service.year}</p> : null}
-                  {service.value && service.value !== '-' ? <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">{service.value}</p> : null}
+                  <p className="text-sm text-ink-soft">{service.client}</p>
+                  {service.location ? <p className="mt-1 text-sm text-ink-soft">{service.location}</p> : null}
+                  {service.year ? <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-ink-soft">{service.year}</p> : null}
+                  {service.value && service.value !== 'ÔÇö' ? <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-ink-soft">{service.value}</p> : null}
                 </div>
               </article>
             </Reveal>
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-[color:var(--color-line)] pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-xl text-sm leading-relaxed text-[color:var(--color-fg-soft)]">
-            Servicios prestados a empresas privadas, entidades públicas y clientes particulares.
+        <div className="mt-12 flex flex-col gap-3 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-xl text-sm leading-relaxed text-ink-soft">
+            Servicios prestados a empresas privadas, entidades p├║blicas y clientes particulares.
           </p>
           <a
             href="#contacto"
-            className="group inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.22em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
+            className="font-mono text-[10px] uppercase tracking-[0.18em] text-blueprint underline decoration-line underline-offset-4 transition-colors hover:text-copper"
           >
-            Solicitar cotización
-            <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+            Solicitar cotizaci├│n
           </a>
         </div>
       </div>
