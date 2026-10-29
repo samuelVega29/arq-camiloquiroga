@@ -1,7 +1,19 @@
-﻿import { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { services, serviceCategories } from '../data/services'
 import Reveal from './Reveal'
 import SectionHeading from './SectionHeading'
+import ServiceCard from './ServiceCard'
+
+function getLayout(index, total) {
+  if (total === 1) return 'lg:col-span-12'
+  if (index === 0) return 'lg:col-span-7'
+  if (index === 1) return 'lg:col-span-5'
+  if (total === 3 && index === 2) return 'lg:col-span-12'
+  if (total === 4) return 'lg:col-span-6'
+  if (total === 5 && index === 4) return 'lg:col-span-12'
+  if (total === 6 && index === 5) return 'lg:col-span-12'
+  return 'lg:col-span-6'
+}
 
 export default function Services() {
   const [filter, setFilter] = useState('Todos')
@@ -24,7 +36,7 @@ export default function Services() {
                   Experiencia <span className="italic text-blueprint">profesional</span>
                 </>
               }
-              intro="Direcci├│n, residencia, interventor├¡a, contrataci├│n y formulaci├│n de proyectos para sector privado y p├║blico."
+              intro="Dirección, residencia, interventoría, contratación y formulación de proyectos para sector privado y público."
             />
             <p className="shrink-0 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-soft">
               {String(filtered.length).padStart(2, '0')} servicios
@@ -59,32 +71,23 @@ export default function Services() {
           </nav>
         </Reveal>
 
-        <div className="mt-12 divide-y divide-line border-t border-line">
-          {filtered.map((service, index) => (
-            <Reveal key={service.id} delay={(index % 4) * 50}>
-              <article className="grid gap-4 py-7 sm:grid-cols-12 sm:gap-6">
-                <div className="sm:col-span-5 lg:col-span-4">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-copper">
-                    {service.category}
-                  </p>
-                  <h3 className="mt-2 text-lg leading-snug sm:text-xl">{service.title}</h3>
-                </div>
-                <div className="sm:col-span-4 lg:col-span-4">
-                  <p className="text-sm leading-relaxed text-ink-soft">{service.description}</p>
-                </div>
-                <div className="sm:col-span-3 lg:col-span-4 sm:text-right">
-                  <p className="text-sm text-ink-soft">{service.client}</p>
-                  {service.location ? <p className="mt-1 text-sm text-ink-soft">{service.location}</p> : null}
-                  {service.year ? <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-ink-soft">{service.year}</p> : null}
-                  {service.value && service.value !== 'ÔÇö' ? <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-ink-soft">{service.value}</p> : null}
-                </div>
-              </article>
-            </Reveal>
-          ))}
+        <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-12">
+          {filtered.map((service, index) => {
+            const layout = getLayout(index, filtered.length)
+            return (
+              <Reveal
+                key={service.id}
+                delay={(index % 3) * 70}
+                className={`${layout} ${filtered.length === 1 ? 'md:col-span-2' : ''}`}
+              >
+                <ServiceCard service={service} index={index} wide={layout === 'lg:col-span-12'} />
+              </Reveal>
+            )
+          })}
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-xl text-sm leading-relaxed text-[color:var(--color-fg-soft)]">
+          <p className="max-w-xl text-sm leading-relaxed text-ink-soft">
             Servicios prestados a empresas privadas, entidades públicas y clientes particulares.
           </p>
           <a

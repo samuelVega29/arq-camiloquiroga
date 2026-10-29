@@ -65,14 +65,11 @@ export default function Projects({ onOpenProject }) {
             <div>
               <p className="eyebrow flex items-center gap-3">
                 <span className="h-px w-6 bg-white" aria-hidden="true" />
-                02 / Cat├ílogo
+                Catálogo
               </p>
               <h2 className="mt-6 display-title text-[clamp(3rem,9vw,7rem)]">
-                Obra <span className="italic">seleccionada</span>
+                Proyectos
               </h2>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-[color:var(--color-fg-soft)] sm:text-lg">
-                Un cat├ílogo de proyectos que explora la relaci├│n entre el lugar, la materialidad y la experiencia del espacio.
-              </p>
             </div>
             <p className="shrink-0 font-mono text-[9px] uppercase tracking-[0.26em] text-[color:var(--color-fg-muted)]">
               {String(filtered.length).padStart(2, '0')} proyectos

@@ -12,37 +12,37 @@ const slides = [
     id: 1,
     type: 'image',
     src: '/proyectos/p01.svg',
-    alt: 'Proyecto arquitectónico - espacio minimalista',
+    alt: 'Proyecto arquitectónico',
   },
   {
     id: 2,
     type: 'image',
     src: '/proyectos/p02.svg',
-    alt: 'Proyecto arquitectónico - fachada y volúmenes',
+    alt: 'Proyecto arquitectónico',
   },
   {
     id: 3,
     type: 'image',
     src: '/proyectos/p03.svg',
-    alt: 'Proyecto arquitectónico - interior y luz',
+    alt: 'Proyecto arquitectónico',
   },
   {
     id: 4,
     type: 'image',
     src: '/proyectos/p04.svg',
-    alt: 'Proyecto arquitectónico - materialidad',
+    alt: 'Proyecto arquitectónico',
   },
   {
     id: 5,
     type: 'image',
     src: '/proyectos/p05.svg',
-    alt: 'Proyecto arquitectónico - perspectiva',
+    alt: 'Proyecto arquitectónico',
   },
   {
     id: 6,
     type: 'image',
     src: '/proyectos/p06.svg',
-    alt: 'Proyecto arquitectónico - detalle',
+    alt: 'Proyecto arquitectónico',
   },
 ]
 
@@ -92,26 +92,13 @@ export default function Hero() {
         <div className="flex-1">
           <div className="section-shell flex h-full items-center">
             <div className="max-w-4xl">
-              <p className="eyebrow flex items-center gap-3 animate-fade-in">
-                <span className="h-px w-6 bg-white" aria-hidden="true" />
-                Camilo Quiroga ÔÇö Arquitectura
-              </p>
-
-              <h1 className="mt-8 display-title text-[clamp(4rem,14vw,12rem)] animate-slide-up">
-                <span className="block">Espacio</span>
-                <span className="block italic">Materia & Luz</span>
-              </h1>
-
-              <p className="mt-8 max-w-2xl text-lg leading-relaxed text-[color:var(--color-fg-soft)] sm:text-xl animate-fade-in [animation-delay:200ms]">
-                {profile.intro}
-              </p>
-
-              <div className="mt-12 flex flex-wrap items-center gap-4 animate-fade-in [animation-delay:400ms]">
+              <div className="mt-10 h-20" />
+              <div className="mt-12 flex flex-wrap items-center gap-4 animate-fade-in">
                 <a
                   href="#proyectos"
                   className="group inline-flex items-center gap-3 bg-white px-8 py-4 font-mono text-[9px] uppercase tracking-[0.2em] text-black transition-all duration-500 hover:bg-[color:var(--color-fg-soft)]"
                 >
-                  Ver proyectos
+                  Ver catálogo
                   <ArrowUpRight
                     className="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     aria-hidden="true"
