@@ -40,7 +40,9 @@ export default function Navbar() {
     >
       <nav className="section-shell flex h-20 items-center justify-between gap-6">
         <a href="#inicio" className="group flex items-center gap-3" onClick={() => setOpen(false)}>
-          <img src="/logo-cq.jpeg" alt="Camilo Andrés Quiroga Mesa" className="h-10 w-auto object-contain" />
+          <div className="flex h-10 w-10 items-center justify-center border border-white/40">
+            <span className="font-display text-lg leading-none">CQ</span>
+          </div>
           <div className="hidden sm:block">
             <span className="block text-sm tracking-[-0.01em]">{profile.name}</span>
             <span className="block font-mono text-[8px] uppercase tracking-[0.24em] text-[color:var(--color-fg-muted)]">
