@@ -44,6 +44,12 @@ const slides = [
     src: '/proyectos/p06.svg',
     alt: 'Proyecto arquitectónico',
   },
+  {
+    id: 7,
+    type: 'image',
+    src: '/proyectos/p07.jpg',
+    alt: 'Proyecto arquitectónico',
+  },
 ]
 
 export default function Hero() {
