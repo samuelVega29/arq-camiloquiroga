@@ -1,5 +1,5 @@
-﻿import { useEffect, useState } from 'react'
-import { ArrowDown, ArrowUpRight } from 'lucide-react'
+import { useCallback, useEffect, useState } from 'react'
+import { ArrowDown, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { socials, whatsappHref } from '../data/socials'
 import InstagramIcon from './InstagramIcon'
 import WhatsAppIcon from './WhatsAppIcon'
@@ -58,12 +58,31 @@ export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [scrollY, setScrollY] = useState(0)
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 6000)
-    return () => clearInterval(interval)
+  const goToSlide = useCallback((index) => {
+    setCurrentSlide((index + slides.length) % slides.length)
   }, [])
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length)
+  }, [])
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
+  }, [])
+
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 6000)
+    return () => clearInterval(interval)
+  }, [nextSlide])
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'ArrowRight') nextSlide()
+      if (event.key === 'ArrowLeft') prevSlide()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [nextSlide, prevSlide])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -96,10 +115,9 @@ export default function Hero() {
 
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex-1">
-          <div className="section-shell flex h-full items-center">
+          <div className="section-shell flex h-full items-end pb-20 sm:pb-28">
             <div className="max-w-4xl">
-              <div className="mt-16 h-32" />
-              <div className="mt-12 flex flex-wrap items-center gap-4 animate-fade-in">
+              <div className="flex flex-wrap items-center gap-4 animate-fade-in">
                 <a
                   href="#servicios"
                   className="group inline-flex items-center gap-3 bg-white px-8 py-4 font-mono text-[9px] uppercase tracking-[0.2em] text-black transition-all duration-500 hover:bg-[color:var(--color-fg-soft)]"
@@ -135,20 +153,41 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="section-shell pb-12">
-          <div className="flex items-end justify-between">
-            <div className="flex items-center gap-2">
-              {slides.map((_, index) => (
+        <div className="section-shell pb-10">
+          <div className="flex items-end justify-between gap-6">
+            <div className="flex flex-wrap items-center gap-5">
+              <div className="flex items-center gap-2">
                 <button
-                  key={index}
                   type="button"
-                  onClick={() => setCurrentSlide(index)}
-                  className={`h-px transition-all duration-700 ${
-                    index === currentSlide ? 'w-12 bg-white' : 'w-6 bg-white/30'
-                  }`}
-                  aria-label={`Ir a slide ${index + 1}`}
-                />
-              ))}
+                  onClick={prevSlide}
+                  className="inline-flex h-10 w-10 items-center justify-center border border-white/30 text-white transition-colors hover:border-white hover:bg-white hover:text-black"
+                  aria-label="Slide anterior"
+                >
+                  <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  onClick={nextSlide}
+                  className="inline-flex h-10 w-10 items-center justify-center border border-white/30 text-white transition-colors hover:border-white hover:bg-white hover:text-black"
+                  aria-label="Siguiente slide"
+                >
+                  <ChevronRight className="h-4 w-4" aria-hidden="true" />
+                </button>
+              </div>
+              <div className="flex items-center gap-2">
+                {slides.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => goToSlide(index)}
+                    className={`h-px transition-all duration-700 ${
+                      index === currentSlide ? 'w-12 bg-white' : 'w-6 bg-white/30'
+                    }`}
+                    aria-label={`Ir a slide ${index + 1}`}
+                    aria-current={index === currentSlide}
+                  />
+                ))}
+              </div>
             </div>
             <a
               href="#servicios"

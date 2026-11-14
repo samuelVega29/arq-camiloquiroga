@@ -3,6 +3,7 @@ export const projects = [
     id: 'casa-patio',
     title: 'Casa Patio',
     category: 'Vivienda',
+    service: 'Obras dirigidas',
     year: '2026',
     location: 'Colombia',
     description:
@@ -17,6 +18,7 @@ export const projects = [
     id: 'centro-cultural-la-quebrada',
     title: 'Centro Cultural La Quebrada',
     category: 'Cultural',
+    service: 'Obras diseñadas',
     year: '2025',
     location: 'Colombia',
     description:
@@ -31,6 +33,7 @@ export const projects = [
     id: 'pabellon-de-la-luz',
     title: 'Pabellón de la Luz',
     category: 'Espacio público',
+    service: 'Obras diseñadas',
     year: '2025',
     location: 'Colombia',
     description:
@@ -45,6 +48,7 @@ export const projects = [
     id: 'parque-de-borde',
     title: 'Parque de Borde',
     category: 'Espacio público',
+    service: 'Obras contratadas',
     year: '2024',
     location: 'Colombia',
     description:
@@ -59,6 +63,7 @@ export const projects = [
     id: 'vivienda-colectiva-alto',
     title: 'Vivienda Colectiva Alto',
     category: 'Vivienda',
+    service: 'Residencias',
     year: '2024',
     location: 'Colombia',
     description:
@@ -73,6 +78,7 @@ export const projects = [
     id: 'biblioteca-del-rio',
     title: 'Biblioteca del Río',
     category: 'Concursos',
+    service: 'Obras diseñadas',
     year: '2023',
     location: 'Colombia',
     description:
