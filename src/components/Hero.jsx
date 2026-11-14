@@ -9,47 +9,47 @@ const instagram = socials.find((social) => social.label === 'Instagram')
 const slides = [
   {
     id: 1,
-    src: '/construccion/construccion-01.jpg',
+    src: 'construccion/construccion-01.jpg',
     alt: 'Proyecto de construcción - estructura metálica',
   },
   {
     id: 2,
-    src: '/construccion/construccion-02.jpg',
+    src: 'construccion/construccion-02.jpg',
     alt: 'Proyecto de construcción - renovación',
   },
   {
     id: 3,
-    src: '/construccion/construccion-03.webp',
+    src: 'construccion/construccion-03.webp',
     alt: 'Proyecto de construcción - obra',
   },
   {
     id: 4,
-    src: '/construccion/construccion-04.webp',
+    src: 'construccion/construccion-04.webp',
     alt: 'Proyecto de construcción - avance de obra',
   },
   {
     id: 5,
-    src: '/construccion/construccion-05.webp',
+    src: 'construccion/construccion-05.webp',
     alt: 'Proyecto de construcción - detalle',
   },
   {
     id: 6,
-    src: '/construccion/construccion-06.webp',
+    src: 'construccion/construccion-06.webp',
     alt: 'Proyecto de construcción - proceso',
   },
   {
     id: 7,
-    src: '/construccion/construccion-07.jpeg',
+    src: 'construccion/construccion-07.jpeg',
     alt: 'Proyecto de construcción - obra en ejecución',
   },
   {
     id: 8,
-    src: '/construccion/construccion-08.jpg',
+    src: 'construccion/construccion-08.jpg',
     alt: 'Proyecto de construcción - remodelación de interiores',
   },
   {
     id: 9,
-    src: '/construccion/construccion-09.jpg',
+    src: 'construccion/construccion-09.jpg',
     alt: 'Proyecto de construcción - remodelación',
   },
 ]
@@ -163,3 +163,4 @@ export default function Hero() {
     </section>
   )
 }
+
