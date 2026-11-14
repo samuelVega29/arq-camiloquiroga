@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import { services, serviceCategories } from '../data/services'
 import Reveal from './Reveal'
-import SectionHeading from './SectionHeading'
 import ServiceCard from './ServiceCard'
 
 function getLayout(index, total) {
@@ -24,28 +23,33 @@ export default function Services() {
   }, [filter])
 
   return (
-    <section id="servicios" className="border-t border-line py-20 sm:py-28">
+    <section id="servicios" className="border-t border-[color:var(--color-line)] py-24 sm:py-36">
       <div className="section-shell">
         <Reveal>
-          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-            <SectionHeading
-              index="02"
-              label="Servicios"
-              title={
-                <>
-                  Experiencia <span className="italic text-blueprint">profesional</span>
-                </>
-              }
-              intro="Dirección, residencia, interventoría, contratación y formulación de proyectos para sector privado y público."
-            />
-            <p className="shrink-0 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-soft">
+          <div className="flex flex-col justify-between gap-10 lg:flex-row lg:items-end">
+            <div>
+              <p className="eyebrow flex items-center gap-3">
+                <span className="h-px w-6 bg-white" aria-hidden="true" />
+                Servicios
+              </p>
+              <h2 className="mt-6 display-title text-[clamp(3rem,9vw,7rem)]">Servicios</h2>
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-[color:var(--color-fg-soft)] sm:text-lg">
+                Obras dirigidas, contratadas y diseñadas, además de residencias de obra para
+                sector privado y público.
+              </p>
+            </div>
+            <p className="shrink-0 font-mono text-[9px] uppercase tracking-[0.26em] text-[color:var(--color-fg-muted)]">
               {String(filtered.length).padStart(2, '0')} servicios
             </p>
           </div>
         </Reveal>
 
         <Reveal delay={80}>
-          <nav className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3" role="tablist" aria-label="Filtrar servicios por tipo">
+          <nav
+            className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3"
+            role="tablist"
+            aria-label="Filtrar servicios por tipo"
+          >
             {serviceCategories.map((category) => {
               const isActive = filter === category
               return (
@@ -55,13 +59,15 @@ export default function Services() {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setFilter(category)}
-                  className={`group relative pb-1 font-mono text-[9px] uppercase tracking-[0.18em] transition-colors ${
-                    isActive ? 'text-ink' : 'text-ink-soft hover:text-ink'
+                  className={`group relative pb-1 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors ${
+                    isActive
+                      ? 'text-white'
+                      : 'text-[color:var(--color-fg-muted)] hover:text-white'
                   }`}
                 >
                   {category}
                   <span
-                    className={`absolute left-0 bottom-0 h-px w-full bg-ink transition-transform duration-300 ease-out origin-left ${
+                    className={`absolute left-0 bottom-0 h-px w-full bg-white transition-transform duration-500 ease-out origin-left ${
                       isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                     }`}
                   />
@@ -80,19 +86,24 @@ export default function Services() {
                 delay={(index % 3) * 70}
                 className={`${layout} ${filtered.length === 1 ? 'md:col-span-2' : ''}`}
               >
-                <ServiceCard service={service} index={index} wide={layout === 'lg:col-span-12'} />
+                <ServiceCard
+                  service={service}
+                  index={index}
+                  wide={layout === 'lg:col-span-12'}
+                />
               </Reveal>
             )
           })}
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-xl text-sm leading-relaxed text-ink-soft">
-            Servicios prestados a empresas privadas, entidades públicas y clientes particulares.
+        <div className="mt-12 flex flex-col gap-3 border-t border-[color:var(--color-line)] pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-xl text-sm leading-relaxed text-[color:var(--color-fg-soft)]">
+            Obras y servicios prestados a empresas privadas, entidades públicas y clientes
+            particulares.
           </p>
           <a
             href="#contacto"
-            className="font-mono text-[10px] uppercase tracking-[0.18em] text-blueprint underline decoration-line underline-offset-4 transition-colors hover:text-copper"
+            className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-soft)] underline decoration-[color:var(--color-line)] underline-offset-4 transition-colors hover:text-white"
           >
             Solicitar cotización
           </a>

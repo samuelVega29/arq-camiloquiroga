@@ -1,6 +1,5 @@
 ﻿import { useEffect, useState } from 'react'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
-import { profile } from '../data/profile'
 import { socials, whatsappHref } from '../data/socials'
 import InstagramIcon from './InstagramIcon'
 import WhatsAppIcon from './WhatsAppIcon'
@@ -101,8 +100,6 @@ export default function Hero() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const parallax = Math.min(scrollY * 0.3, 400)
-
   return (
     <section id="inicio" className="relative h-screen overflow-hidden">
       <div className="absolute inset-0">
@@ -128,13 +125,13 @@ export default function Hero() {
         <div className="flex-1">
           <div className="section-shell flex h-full items-center">
             <div className="max-w-4xl">
-              <div className="mt-10 h-20" />
+              <div className="mt-16 h-32" />
               <div className="mt-12 flex flex-wrap items-center gap-4 animate-fade-in">
                 <a
-                  href="#proyectos"
+                  href="#servicios"
                   className="group inline-flex items-center gap-3 bg-white px-8 py-4 font-mono text-[9px] uppercase tracking-[0.2em] text-black transition-all duration-500 hover:bg-[color:var(--color-fg-soft)]"
                 >
-                  Ver catálogo
+                  Ver servicios
                   <ArrowUpRight
                     className="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     aria-hidden="true"
@@ -181,7 +178,7 @@ export default function Hero() {
               ))}
             </div>
             <a
-              href="#proyectos"
+              href="#servicios"
               className="group flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
             >
               Scroll
