@@ -8,20 +8,18 @@ const images = [
   'proyectos/p07.jpg',
 ]
 
-export default function ServiceCard({ service, index, wide = false }) {
+export default function ServiceCard({ service, index }) {
   const image = images[index % images.length]
 
   return (
     <article className="group relative h-full">
-      <div className="relative overflow-hidden border border-[color:var(--color-line)] bg-[color:var(--color-surface)]">
+      <div className="relative h-full min-h-[340px] overflow-hidden border border-[color:var(--color-line)] bg-[color:var(--color-surface)] sm:min-h-[400px]">
         <img
           src={image}
           alt={service.title}
           loading={index < 2 ? 'eager' : 'lazy'}
           decoding="async"
-          className={`w-full object-cover transition duration-700 ease-out group-hover:scale-[1.025] ${
-            wide ? 'aspect-[16/10] lg:aspect-[21/8]' : 'aspect-[4/3]'
-          }`}
+          className="absolute inset-0 h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.025]"
         />
         <div
           className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100"

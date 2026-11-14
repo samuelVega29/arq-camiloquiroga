@@ -223,14 +223,14 @@ export default function Projects({ onOpenProject }) {
           <Reveal>
             <div className="mt-10 border border-dashed border-line px-6 py-16 text-center sm:py-24">
               <p className="font-display text-2xl tracking-[-0.02em] sm:text-3xl">Sin resultados</p>
-              <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-ink-soft">
+              <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-[color:var(--color-fg-soft)]">
                 No encontramos proyectos con esos criterios. Prueba otra palabra o vuelve al
                 catálogo completo.
               </p>
               <button
                 type="button"
                 onClick={resetFilters}
-                className="mt-6 border border-ink px-5 py-3 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors hover:bg-ink hover:text-paper"
+                className="mt-6 border border-white/60 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors hover:bg-white hover:text-black"
               >
                 Ver todo el catálogo
               </button>
@@ -250,7 +250,6 @@ export default function Projects({ onOpenProject }) {
                   <ProjectCard
                     project={project}
                     index={index}
-                    wide={wide}
                     onOpen={onOpenProject}
                   />
                 </Reveal>
@@ -279,7 +278,7 @@ export default function Projects({ onOpenProject }) {
                   className="group grid w-full grid-cols-12 items-center gap-x-4 gap-y-1 border-b border-[color:var(--color-line)] py-5 text-left transition-colors hover:bg-white/5"
                   aria-label={`Ver proyecto ${project.title}`}
                 >
-                      <span className="col-span-2 font-mono text-[9px] uppercase tracking-[0.16em] text-copper sm:col-span-1">
+                      <span className="col-span-2 font-mono text-[9px] uppercase tracking-[0.16em] text-[color:var(--color-fg-soft)] sm:col-span-1">
                         {project.code}
                       </span>
                       <span className="col-span-10 sm:col-span-4">

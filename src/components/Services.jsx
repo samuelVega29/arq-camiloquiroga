@@ -84,12 +84,11 @@ export default function Services() {
               <Reveal
                 key={service.id}
                 delay={(index % 3) * 70}
-                className={`${layout} ${filtered.length === 1 ? 'md:col-span-2' : ''}`}
+                className={`${layout} ${filtered.length === 1 ? 'md:col-span-2' : ''} h-full`}
               >
                 <ServiceCard
                   service={service}
                   index={index}
-                  wide={layout === 'lg:col-span-12'}
                 />
               </Reveal>
             )
