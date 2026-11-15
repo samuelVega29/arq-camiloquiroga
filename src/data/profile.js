@@ -6,7 +6,7 @@ export const profile = {
   availability: 'Disponible para proyectos y colaboraciones',
   email: 'contacto@ejemplo.com',
   whatsapp: {
-    number: '573000000000',
+    number: '573212243483',
     message: 'Hola Camilo, vi tu portafolio y me gustaría hablar sobre un proyecto.',
   },
   tagline: 'Espacio, materia y luz.',
