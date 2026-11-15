@@ -1,10 +1,9 @@
-﻿import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { LogIn, LogOut, Menu, Plus, X } from 'lucide-react'
 import { profile } from '../data/profile'
 
 const links = [
   { label: 'Inicio', href: '#inicio' },
-  { label: 'Proyectos', href: '#proyectos' },
   { label: 'Servicios', href: '#servicios' },
   { label: 'Enfoque', href: '#enfoque' },
   { label: 'Sobre mí', href: '#sobre-mi' },
@@ -20,12 +19,31 @@ export default function Navbar({
 }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [active, setActive] = useState('#inicio')
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40)
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const sections = links
+      .map((link) => document.querySelector(link.href))
+      .filter(Boolean)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(`#${entry.target.id}`)
+        })
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 },
+    )
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
@@ -46,18 +64,20 @@ export default function Navbar({
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ${
-        scrolled ? 'bg-black/80 backdrop-blur-xl' : 'bg-transparent'
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-700 ${
+        scrolled
+          ? 'border-white/10 bg-black/80 backdrop-blur-xl'
+          : 'border-transparent bg-transparent'
       }`}
     >
       <nav className="section-shell flex h-20 items-center justify-between gap-5">
         <a href="#inicio" className="group flex items-center gap-3" onClick={() => setOpen(false)}>
-          <div className="flex h-10 w-10 items-center justify-center border border-white/40">
+          <div className="flex h-10 w-10 items-center justify-center border border-white/40 transition-colors duration-300 group-hover:border-white group-hover:bg-white/10">
             <span className="font-display text-lg leading-none">CQ</span>
           </div>
           <div className="hidden sm:block">
             <span className="block text-sm tracking-[-0.01em]">{profile.name}</span>
-            <span className="block font-mono text-[8px] uppercase tracking-[0.24em] text-[color:var(--color-fg-muted)]">
+            <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">
               Arquitecto
             </span>
           </div>
@@ -65,15 +85,27 @@ export default function Navbar({
 
         <div className="hidden items-center gap-5 lg:flex xl:gap-7">
           <div className="flex items-center gap-5 xl:gap-7">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="relative font-mono text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
-              >
-                {link.label}
-              </a>
-            ))}
+            {links.map((link) => {
+              const isActive = active === link.href
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`group relative py-2 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors ${
+                    isActive ? 'text-white' : 'text-white/85 hover:text-white'
+                  }`}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute inset-x-0 -bottom-0.5 h-px origin-left bg-white transition-transform duration-500 ${
+                      isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                    }`}
+                    aria-hidden="true"
+                  />
+                </a>
+              )
+            })}
           </div>
 
           {isAdmin || !authLoading ? (
@@ -85,7 +117,7 @@ export default function Navbar({
                   <button
                     type="button"
                     onClick={onNewPublication}
-                    className="inline-flex items-center gap-2 border border-white/40 px-4 py-2.5 font-mono text-[8px] uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-black"
+                    className="inline-flex items-center gap-2 border border-white/40 px-3 py-2.5 font-mono text-[8px] uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-black"
                   >
                     <Plus className="h-3.5 w-3.5" aria-hidden="true" />
                     Nueva publicación
@@ -103,7 +135,7 @@ export default function Navbar({
                 <button
                   type="button"
                   onClick={onLogin}
-                  className="inline-flex items-center gap-2 border border-white/25 px-4 py-2.5 font-mono text-[8px] uppercase tracking-[0.16em] text-white/85 transition-colors hover:border-white hover:bg-white hover:text-black"
+                  className="inline-flex items-center gap-2 border border-white/25 px-3 py-2.5 font-mono text-[8px] uppercase tracking-[0.16em] text-white/85 transition-colors hover:border-white hover:bg-white hover:text-black"
                 >
                   <LogIn className="h-3.5 w-3.5" aria-hidden="true" />
                   ¿Eres administrador?
@@ -115,7 +147,7 @@ export default function Navbar({
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center border border-white/20 text-white/80 transition-colors duration-300 hover:border-white/60 hover:bg-white/10 hover:text-white lg:hidden"
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -147,7 +179,7 @@ export default function Navbar({
             </span>
             <button
               type="button"
-              className="inline-flex h-10 w-10 items-center justify-center"
+              className="inline-flex h-10 w-10 items-center justify-center border border-white/20 text-white/80 transition-colors duration-300 hover:border-white/60 hover:bg-white/10 hover:text-white"
               onClick={() => setOpen(false)}
               aria-label="Cerrar menú"
             >
@@ -155,17 +187,23 @@ export default function Navbar({
             </button>
           </div>
 
-          <nav className="flex flex-col px-6">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="border-b border-[color:var(--color-line)] py-5 text-3xl tracking-[-0.02em] transition-colors hover:text-[color:var(--color-fg-soft)]"
-              >
-                {link.label}
-              </a>
-            ))}
+          <nav className="flex flex-1 flex-col px-6">
+            {links.map((link) => {
+              const isActive = active === link.href
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`border-b border-[color:var(--color-line)] py-5 text-4xl tracking-[-0.02em] transition-colors ${
+                    isActive ? 'text-white' : 'text-white/80 hover:text-white'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              )
+            })}
           </nav>
 
           <div className="mt-auto px-6 py-8">

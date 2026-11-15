@@ -1,13 +1,11 @@
-﻿import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Projects from './components/Projects'
 import Services from './components/Services'
 import Approach from './components/Approach'
 import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import ProjectModal from './components/ProjectModal'
 import WhatsAppButton from './components/WhatsAppButton'
 import LoginModal from './components/LoginModal'
 import PublicationForm from './components/PublicationForm'
@@ -15,6 +13,7 @@ import useAdmin from './hooks/useAdmin'
 import usePublications from './hooks/usePublications'
 import { serviceCategories } from './data/services'
 
+const HOME_TITLE = 'Camilo Quiroga — Portafolio de Arquitectura'
 const CREATE_HASH = '#/admin/nueva'
 const EDIT_PREFIX = '#/admin/editar/'
 const publicationCategories = serviceCategories.filter((category) => category !== 'Todos')
@@ -35,7 +34,6 @@ function readRoute() {
 
 export default function App() {
   const [route, setRoute] = useState(readRoute)
-  const [activeProject, setActiveProject] = useState(null)
   const [loginOpen, setLoginOpen] = useState(false)
   const [pendingNewPublication, setPendingNewPublication] = useState(false)
 
@@ -57,15 +55,22 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    if (route.name === 'form') window.scrollTo({ top: 0, behavior: 'auto' })
-  }, [route])
+    if (route.name === 'form') {
+      document.title = route.id
+        ? 'Editar publicación — Camilo Quiroga'
+        : 'Nueva publicación — Camilo Quiroga'
+      window.scrollTo({ top: 0, behavior: 'auto' })
+      return
+    }
 
-  useEffect(() => {
-    if (route.name !== 'home') return
+    document.title = HOME_TITLE
+
     const id = window.location.hash.replace(/^#/, '')
     if (!id || id.startsWith('/')) return
-    document.getElementById(id)?.scrollIntoView({ behavior: 'auto', block: 'start' })
-  }, [route.name])
+    requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }, [route])
 
   useEffect(() => {
     if (route.name === 'form' && !adminLoading && !isAdmin) {
@@ -243,7 +248,6 @@ export default function App() {
       ) : (
         <main>
           <Hero />
-          <Projects onOpenProject={setActiveProject} />
           <Services
             publications={publications}
             loading={loading}
@@ -261,12 +265,7 @@ export default function App() {
       )}
 
       <Footer />
-      <WhatsAppButton hidden={Boolean(activeProject) || route.name === 'form'} />
-      <ProjectModal
-        project={activeProject}
-        onClose={() => setActiveProject(null)}
-        onNavigate={setActiveProject}
-      />
+      <WhatsAppButton hidden={route.name === 'form'} />
       <LoginModal
         open={loginOpen}
         onClose={closeLogin}

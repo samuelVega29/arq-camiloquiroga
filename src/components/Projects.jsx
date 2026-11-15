@@ -1,14 +1,14 @@
-﻿import { useMemo, useState } from 'react'
-import { ArrowUpDown, ArrowUpRight, LayoutGrid, List, Search, X } from 'lucide-react'
+import { useMemo, useState } from 'react'
+import { ArrowUpDown, ArrowUpRight, ChevronDown, LayoutGrid, List, Search, X } from 'lucide-react'
 import { projects } from '../data/projects'
+import { serviceCategories } from '../data/services'
 import ProjectCard from './ProjectCard'
 import Reveal from './Reveal'
-import SectionHeading from './SectionHeading'
 
-const categories = ['Todos', ...Array.from(new Set(projects.map((project) => project.category)))]
+const categories = ['Todos', ...serviceCategories.filter((category) => category !== 'Todos')]
 
 const categoryCounts = projects.reduce((counts, project) => {
-  counts[project.category] = (counts[project.category] ?? 0) + 1
+  counts[project.service] = (counts[project.service] ?? 0) + 1
   return counts
 }, {})
 
@@ -36,11 +36,11 @@ export default function Projects({ onOpenProject }) {
 
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase()
-    let list = projects.filter((project) => filter === 'Todos' || project.category === filter)
+    let list = projects.filter((project) => filter === 'Todos' || project.service === filter)
 
     if (term) {
       list = list.filter((project) =>
-        [project.title, project.category, project.location, project.concept, project.description, project.tools.join(' ')]
+        [project.title, project.category, project.service, project.location, project.concept, project.description, project.tools.join(' ')]
           .join(' ')
           .toLowerCase()
           .includes(term),
@@ -71,7 +71,7 @@ export default function Projects({ onOpenProject }) {
                 Proyectos
               </h2>
             </div>
-            <p className="shrink-0 font-mono text-[9px] uppercase tracking-[0.26em] text-[color:var(--color-fg-muted)]">
+            <p className="shrink-0 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">
               {String(filtered.length).padStart(2, '0')} proyectos
             </p>
           </div>
@@ -94,7 +94,7 @@ export default function Projects({ onOpenProject }) {
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="Buscar proyecto..."
-                  className="w-full border-b border-[color:var(--color-line)] bg-transparent py-2.5 pl-6 pr-8 font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg)] placeholder:text-[color:var(--color-fg-muted)] focus:border-white focus:outline-none [&::-webkit-search-cancel-button]:hidden"
+                  className="w-full border-b border-[color:var(--color-line)] bg-transparent py-2.5 pl-6 pr-8 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg)] placeholder:text-[color:var(--color-fg-muted)] focus:border-white focus:outline-none [&::-webkit-search-cancel-button]:hidden"
                 />
                 {query ? (
                   <button
@@ -109,8 +109,11 @@ export default function Projects({ onOpenProject }) {
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2">
-                  <ArrowUpDown className="h-3.5 w-3.5 text-[color:var(--color-fg-muted)]" aria-hidden="true" />
+                <div className="relative flex items-center">
+                  <ArrowUpDown
+                    className="pointer-events-none absolute left-3.5 h-3.5 w-3.5 text-[color:var(--color-fg-soft)]"
+                    aria-hidden="true"
+                  />
                   <label htmlFor="catalog-sort" className="sr-only">
                     Ordenar proyectos
                   </label>
@@ -118,12 +121,16 @@ export default function Projects({ onOpenProject }) {
                     id="catalog-sort"
                     value={sort}
                     onChange={(event) => setSort(event.target.value)}
-                    className="bg-transparent font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)] transition-colors hover:text-[color:var(--color-fg)] focus:text-[color:var(--color-fg)] focus:outline-none"
+                    className="cursor-pointer appearance-none border border-[color:var(--color-line)] bg-[color:var(--color-surface)] py-2.5 pl-10 pr-9 font-display text-base leading-none tracking-[-0.01em] text-[color:var(--color-fg)] transition-colors hover:border-white/40 focus:border-white focus:outline-none sm:text-lg [&>option]:bg-[color:var(--color-surface)] [&>option]:font-sans [&>option]:text-[color:var(--color-fg)]"
                   >
                     <option value="recent">Recientes</option>
                     <option value="oldest">Antiguos</option>
                     <option value="title">Título A–Z</option>
                   </select>
+                  <ChevronDown
+                    className="pointer-events-none absolute right-3 h-3.5 w-3.5 text-[color:var(--color-fg-soft)]"
+                    aria-hidden="true"
+                  />
                 </div>
 
                 <div className="flex items-center gap-1" role="group" aria-label="Vista del catálogo">
@@ -156,11 +163,11 @@ export default function Projects({ onOpenProject }) {
             <nav
               className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3"
               role="tablist"
-              aria-label="Filtrar proyectos por categoría"
+              aria-label="Filtrar proyectos por servicio"
             >
               {categories.map((category) => {
                 const isActive = filter === category
-                const count = category === 'Todos' ? projects.length : categoryCounts[category]
+                const count = category === 'Todos' ? projects.length : categoryCounts[category] ?? 0
                 return (
                   <button
                     key={category}
@@ -168,13 +175,13 @@ export default function Projects({ onOpenProject }) {
                     role="tab"
                     aria-selected={isActive}
                     onClick={() => setFilter(category)}
-                    className={`group relative pb-1 font-mono text-[9px] uppercase tracking-[0.18em] transition-colors ${
-                      isActive ? 'text-[color:var(--color-fg)]' : 'text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-fg)]'
+                    className={`group relative pb-2 font-mono text-[10px] uppercase tracking-[0.14em] transition-colors ${
+                      isActive ? 'text-[color:var(--color-fg)]' : 'text-[color:var(--color-fg-soft)] hover:text-[color:var(--color-fg)]'
                     }`}
                   >
                     {category}
                     <span
-                      className={`ml-2 text-[8px] ${isActive ? 'text-[color:var(--color-fg-soft)]' : 'text-[color:var(--color-fg-muted)]'}`}
+                      className={`ml-2 text-[10px] ${isActive ? 'text-[color:var(--color-fg)]' : 'text-[color:var(--color-fg-muted)]'}`}
                       aria-hidden="true"
                     >
                       {count}
@@ -189,26 +196,26 @@ export default function Projects({ onOpenProject }) {
               })}
             </nav>
 
-              <div className="mt-3 flex items-center justify-between gap-4 border-t border-[color:var(--color-line)] pt-3">
-                <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]" aria-live="polite">
-                  {String(filtered.length).padStart(2, '0')}{' '}
-                  {filtered.length === 1 ? 'proyecto' : 'proyectos'} / 2023—2026
-                </p>
-                {hasFilters ? (
-                  <button
-                    type="button"
-                    onClick={resetFilters}
-                    className="inline-flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
-                  >
-                    <X className="h-3 w-3" aria-hidden="true" />
-                    Limpiar filtros
-                  </button>
-                ) : (
-                  <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">
-                    Índice de obra
-                  </span>
-                )}
-              </div>
+            <div className="mt-3 flex items-center justify-between gap-4 border-t border-[color:var(--color-line)] pt-3">
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]" aria-live="polite">
+                {String(filtered.length).padStart(2, '0')}{' '}
+                {filtered.length === 1 ? 'proyecto' : 'proyectos'} / 2023—2026
+              </p>
+              {hasFilters ? (
+                <button
+                  type="button"
+                  onClick={resetFilters}
+                  className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
+                >
+                  <X className="h-3 w-3" aria-hidden="true" />
+                  Limpiar filtros
+                </button>
+              ) : (
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">
+                  Índice de obra
+                </span>
+              )}
+            </div>
           </div>
         </Reveal>
 
@@ -216,14 +223,14 @@ export default function Projects({ onOpenProject }) {
           <Reveal>
             <div className="mt-10 border border-dashed border-line px-6 py-16 text-center sm:py-24">
               <p className="font-display text-2xl tracking-[-0.02em] sm:text-3xl">Sin resultados</p>
-              <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-ink-soft">
+              <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-[color:var(--color-fg-soft)]">
                 No encontramos proyectos con esos criterios. Prueba otra palabra o vuelve al
                 catálogo completo.
               </p>
               <button
                 type="button"
                 onClick={resetFilters}
-                className="mt-6 border border-ink px-5 py-3 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors hover:bg-ink hover:text-paper"
+                className="mt-6 border border-white/60 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors hover:bg-white hover:text-black"
               >
                 Ver todo el catálogo
               </button>
@@ -238,12 +245,11 @@ export default function Projects({ onOpenProject }) {
                 <Reveal
                   key={project.id}
                   delay={(index % 3) * 70}
-                  className={`${span} ${wide ? 'md:col-span-2' : ''} ${filtered.length === 1 ? 'md:col-span-2' : ''}`}
+                  className={`${span} ${wide ? 'md:col-span-2' : ''} ${filtered.length === 1 ? 'md:col-span-2' : ''} h-full`}
                 >
                   <ProjectCard
                     project={project}
                     index={index}
-                    wide={wide}
                     onOpen={onOpenProject}
                   />
                 </Reveal>
@@ -272,7 +278,7 @@ export default function Projects({ onOpenProject }) {
                   className="group grid w-full grid-cols-12 items-center gap-x-4 gap-y-1 border-b border-[color:var(--color-line)] py-5 text-left transition-colors hover:bg-white/5"
                   aria-label={`Ver proyecto ${project.title}`}
                 >
-                      <span className="col-span-2 font-mono text-[9px] uppercase tracking-[0.16em] text-copper sm:col-span-1">
+                      <span className="col-span-2 font-mono text-[10px] uppercase tracking-[0.16em] text-[color:var(--color-fg-soft)] sm:col-span-1">
                         {project.code}
                       </span>
                       <span className="col-span-10 sm:col-span-4">
@@ -283,16 +289,16 @@ export default function Projects({ onOpenProject }) {
                           {project.concept}
                         </span>
                       </span>
-                      <span className="col-span-6 col-start-3 font-mono text-[9px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-2 sm:col-start-auto">
+                      <span className="col-span-6 col-start-3 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-2 sm:col-start-auto">
                         {project.category}
                       </span>
-                      <span className="col-span-2 font-mono text-[9px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-1">
+                      <span className="col-span-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-1">
                         {project.year}
                       </span>
-                      <span className="col-span-2 font-mono text-[9px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-2">
+                      <span className="col-span-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-2">
                         {project.area}
                       </span>
-                      <span className="hidden font-mono text-[9px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-1 sm:block">
+                      <span className="hidden font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-1 sm:block">
                         {project.location}
                       </span>
                       <span className="hidden justify-end sm:col-span-1 sm:flex">
@@ -314,7 +320,7 @@ export default function Projects({ onOpenProject }) {
           </p>
           <a
             href="#contacto"
-            className="group inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.22em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
+            className="group inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
           >
             Hablemos de un proyecto
             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />

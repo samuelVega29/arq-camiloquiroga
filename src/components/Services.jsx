@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { ArrowUpRight, Plus, Search, X } from 'lucide-react'
+import { ArrowUpDown, ArrowUpRight, ChevronDown, Plus, Search, X } from 'lucide-react'
 import PublicationCard from './PublicationCard'
 import PublicationModal from './PublicationModal'
 import Reveal from './Reveal'
@@ -25,6 +25,11 @@ function getLayout(index, total) {
   return MOSAIC[index % 5]
 }
 
+function latestYear(year) {
+  const matches = String(year ?? '').match(/\d{4}/g)
+  return matches ? Number(matches[matches.length - 1]) : 0
+}
+
 export default function Services({
   publications,
   loading,
@@ -37,6 +42,7 @@ export default function Services({
 }) {
   const [filter, setFilter] = useState('Todos')
   const [query, setQuery] = useState('')
+  const [sort, setSort] = useState('recientes')
   const [activePublication, setActivePublication] = useState(null)
   const [actionError, setActionError] = useState('')
 
@@ -61,7 +67,7 @@ export default function Services({
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase()
 
-    return publications.filter((publication) => {
+    const list = publications.filter((publication) => {
       const matchesCategory =
         activeFilter === 'Todos' || publication.category === activeFilter
       if (!matchesCategory) return false
@@ -80,7 +86,19 @@ export default function Services({
         .toLowerCase()
         .includes(term)
     })
-  }, [publications, activeFilter, query])
+
+    const sorted = [...list]
+
+    if (sort === 'recientes') {
+      sorted.sort((a, b) => latestYear(b.year) - latestYear(a.year))
+    } else if (sort === 'antiguos') {
+      sorted.sort((a, b) => latestYear(a.year) - latestYear(b.year))
+    } else if (sort === 'titulo') {
+      sorted.sort((a, b) => a.title.localeCompare(b.title, 'es'))
+    }
+
+    return sorted
+  }, [publications, activeFilter, query, sort])
 
   const hasFilters = activeFilter !== 'Todos' || query.trim() !== ''
 
@@ -112,21 +130,20 @@ export default function Services({
   }
 
   return (
-    <section id="servicios" className="border-t border-[color:var(--color-line)] py-24 sm:py-32">
+    <section id="servicios" className="border-t border-[color:var(--color-line)] py-24 sm:py-36">
       <div className="section-shell">
         <Reveal>
-          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-            <div className="max-w-3xl">
-              <p className="flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.26em] text-[color:var(--color-fg-muted)]">
-                <span className="h-px w-8 bg-white" aria-hidden="true" />
-                02 / Servicios
-              </p>
-              <h2 className="mt-6 font-display text-[clamp(3rem,9vw,7rem)] font-light leading-[0.9] tracking-[-0.06em]">
+          <div className="flex flex-col justify-between gap-10 lg:flex-row lg:items-end">
+            <div>
+              <p className="eyebrow flex items-center gap-3">
+                <span className="h-px w-6 bg-white" aria-hidden="true" />
                 Servicios
-              </h2>
+              </p>
+              <h2 className="mt-6 display-title text-[clamp(3rem,9vw,7rem)]">Servicios</h2>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-[color:var(--color-fg-soft)] sm:text-lg">
-                Dirección, residencia, interventoría, contratación y formulación de proyectos para
-                clientes privados y entidades públicas.
+                Obras dirigidas, contratadas y diseñadas, además de residencias de obra para
+                sector privado y público. Cada trabajo reúne planos, imágenes y la memoria del
+                proceso.
               </p>
             </div>
             <div className="flex shrink-0 items-center gap-4">
@@ -135,28 +152,30 @@ export default function Services({
                   Modo admin
                 </span>
               ) : null}
-              <p className="font-mono text-[9px] uppercase tracking-[0.26em] text-[color:var(--color-fg-muted)]">
-                {String(filtered.length).padStart(2, '0')} publicaciones
+              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)]">
+                {String(filtered.length).padStart(2, '0')} servicios
               </p>
             </div>
           </div>
         </Reveal>
 
-        <Reveal delay={60}>
-          <div className="mt-10 flex flex-col gap-5 border-y border-[color:var(--color-line)] py-5 lg:flex-row lg:items-center lg:justify-between">
+        <Reveal delay={80}>
+          <div className="mt-10 flex flex-col gap-5 border-y border-[color:var(--color-line)] py-5 xl:flex-row xl:items-center xl:justify-between">
             <nav
               className="flex flex-wrap items-center gap-x-6 gap-y-3"
+              role="tablist"
               aria-label="Filtrar servicios por categoría"
             >
               {categories.map((category) => {
                 const isActive = activeFilter === category
-                const count = category === 'Todos' ? publications.length : counts[category]
+                const count = category === 'Todos' ? publications.length : counts[category] ?? 0
                 return (
                   <button
                     key={category}
                     type="button"
+                    role="tab"
+                    aria-selected={isActive}
                     onClick={() => setFilter(category)}
-                    aria-pressed={isActive}
                     className={`group relative pb-1 font-mono text-[9px] uppercase tracking-[0.18em] transition-colors ${
                       isActive
                         ? 'text-white'
@@ -182,10 +201,10 @@ export default function Services({
               })}
             </nav>
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <div className="relative w-full sm:w-64">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <div className="relative w-full sm:w-56">
                 <label htmlFor="services-search" className="sr-only">
-                  Buscar publicaciones
+                  Buscar servicios
                 </label>
                 <Search
                   className="pointer-events-none absolute left-0 top-1/2 h-4 w-4 -translate-y-1/2 text-[color:var(--color-fg-muted)]"
@@ -210,6 +229,41 @@ export default function Services({
                   </button>
                 ) : null}
               </div>
+
+              <div className="relative w-full sm:w-auto">
+                <ArrowUpDown
+                  className="pointer-events-none absolute left-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[color:var(--color-fg-muted)]"
+                  aria-hidden="true"
+                />
+                <label htmlFor="services-sort" className="sr-only">
+                  Ordenar servicios
+                </label>
+                <select
+                  id="services-sort"
+                  value={sort}
+                  onChange={(event) => setSort(event.target.value)}
+                  className="h-11 w-full cursor-pointer appearance-none border border-[color:var(--color-line)] bg-[color:var(--color-surface)] pl-10 pr-9 font-display text-base leading-none tracking-[-0.01em] text-[color:var(--color-fg)] transition-colors hover:border-white/40 focus:border-white focus:outline-none sm:w-auto [&>option]:bg-[color:var(--color-surface)] [&>option]:font-sans [&>option]:text-[color:var(--color-fg)]"
+                >
+                  <option value="recientes">Recientes</option>
+                  <option value="antiguos">Antiguos</option>
+                  <option value="titulo">Título A–Z</option>
+                </select>
+                <ChevronDown
+                  className="pointer-events-none absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[color:var(--color-fg-muted)]"
+                  aria-hidden="true"
+                />
+              </div>
+
+              {hasFilters ? (
+                <button
+                  type="button"
+                  onClick={resetFilters}
+                  className="inline-flex items-center gap-1.5 self-start font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white sm:self-auto"
+                >
+                  <X className="h-3 w-3" aria-hidden="true" />
+                  Limpiar
+                </button>
+              ) : null}
 
               {isAdmin ? (
                 <button
@@ -317,31 +371,38 @@ export default function Services({
           </div>
         )}
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-[color:var(--color-line)] pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-xl text-sm leading-relaxed text-[color:var(--color-fg-soft)]">
-            Servicios prestados a empresas privadas, entidades públicas y clientes particulares.
-          </p>
-          {hasFilters ? (
-            <button
-              type="button"
-              onClick={resetFilters}
-              className="self-start font-mono text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white sm:self-auto"
-            >
-              Limpiar filtros
-            </button>
-          ) : (
-            <a
-              href="#contacto"
-              className="group inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.22em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
-            >
-              Hablemos de un proyecto
-              <ArrowUpRight
-                className="h-3.5 w-3.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                aria-hidden="true"
-              />
-            </a>
-          )}
-        </div>
+        <Reveal delay={120}>
+          <div className="group/cta relative mt-14 overflow-hidden border border-[color:var(--color-line)] bg-[color:var(--color-surface)]">
+            <div className="cta-pulse pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full bg-white/10 blur-3xl" aria-hidden="true" />
+            <div
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_140%_at_100%_0%,rgba(255,255,255,0.08),transparent_55%)]"
+              aria-hidden="true"
+            />
+
+            <div className="relative flex flex-col gap-8 px-6 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-10 sm:py-12">
+              <p className="max-w-xl text-base leading-relaxed text-[color:var(--color-fg-soft)] sm:text-lg">
+                Cada proyecto se acompaña de planos, imágenes y una descripción del proceso.
+              </p>
+
+              <a href="#contacto" className="group/link inline-flex items-center gap-4">
+                <span className="relative font-display text-2xl leading-none tracking-[-0.02em] text-white sm:text-3xl">
+                  Hablemos de un proyecto
+                  <span className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-white transition-transform duration-500 ease-out group-hover/link:scale-x-100" />
+                </span>
+                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/30 text-white transition-all duration-500 group-hover/link:border-white group-hover/link:bg-white group-hover/link:text-black">
+                  <ArrowUpRight
+                    className="h-5 w-5 transition-transform duration-500 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                    aria-hidden="true"
+                  />
+                </span>
+              </a>
+            </div>
+
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px overflow-hidden">
+              <span className="cta-shine block h-px w-1/2 bg-gradient-to-r from-transparent via-white to-transparent" />
+            </div>
+          </div>
+        </Reveal>
       </div>
 
       <PublicationModal
