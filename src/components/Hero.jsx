@@ -1,6 +1,5 @@
 ﻿import { useEffect, useState } from 'react'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
-import { profile } from '../data/profile'
 import { socials, whatsappHref } from '../data/socials'
 import InstagramIcon from './InstagramIcon'
 import WhatsAppIcon from './WhatsAppIcon'
@@ -100,8 +99,6 @@ export default function Hero() {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  const parallax = Math.min(scrollY * 0.3, 400)
 
   return (
     <section id="inicio" className="relative h-screen overflow-hidden">

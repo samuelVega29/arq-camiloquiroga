@@ -101,7 +101,7 @@ export default function Projects({ onOpenProject }) {
                     type="button"
                     onClick={() => setQuery('')}
                     className="absolute right-0 top-1/2 inline-flex h-6 w-6 -translate-y-1/2 items-center justify-center text-[color:var(--color-fg-muted)] transition-colors hover:text-[color:var(--color-fg)]"
-                    aria-label="Limpiar b├║squeda"
+                    aria-label="Limpiar búsqueda"
                   >
                     <X className="h-3.5 w-3.5" aria-hidden="true" />
                   </button>
@@ -122,11 +122,11 @@ export default function Projects({ onOpenProject }) {
                   >
                     <option value="recent">Recientes</option>
                     <option value="oldest">Antiguos</option>
-                    <option value="title">T├¡tulo AÔÇôZ</option>
+                    <option value="title">Título A–Z</option>
                   </select>
                 </div>
 
-                <div className="flex items-center gap-1" role="group" aria-label="Vista del cat├ílogo">
+                <div className="flex items-center gap-1" role="group" aria-label="Vista del catálogo">
                   <button
                     type="button"
                     onClick={() => setView('grid')}
@@ -134,7 +134,7 @@ export default function Projects({ onOpenProject }) {
                     className={`inline-flex h-9 w-9 items-center justify-center transition-colors ${
                       view === 'grid' ? 'text-[color:var(--color-fg)]' : 'text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-fg)]'
                     }`}
-                    aria-label="Vista de cuadr├¡cula"
+                    aria-label="Vista de cuadrícula"
                   >
                     <LayoutGrid className="h-4 w-4" aria-hidden="true" />
                   </button>
@@ -145,7 +145,7 @@ export default function Projects({ onOpenProject }) {
                     className={`inline-flex h-9 w-9 items-center justify-center transition-colors ${
                       view === 'index' ? 'text-[color:var(--color-fg)]' : 'text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-fg)]'
                     }`}
-                    aria-label="Vista de ├¡ndice"
+                    aria-label="Vista de índice"
                   >
                     <List className="h-4 w-4" aria-hidden="true" />
                   </button>
@@ -156,7 +156,7 @@ export default function Projects({ onOpenProject }) {
             <nav
               className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3"
               role="tablist"
-              aria-label="Filtrar proyectos por categor├¡a"
+              aria-label="Filtrar proyectos por categoría"
             >
               {categories.map((category) => {
                 const isActive = filter === category
@@ -218,14 +218,14 @@ export default function Projects({ onOpenProject }) {
               <p className="font-display text-2xl tracking-[-0.02em] sm:text-3xl">Sin resultados</p>
               <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-ink-soft">
                 No encontramos proyectos con esos criterios. Prueba otra palabra o vuelve al
-                cat├ílogo completo.
+                catálogo completo.
               </p>
               <button
                 type="button"
                 onClick={resetFilters}
                 className="mt-6 border border-ink px-5 py-3 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors hover:bg-ink hover:text-paper"
               >
-                Ver todo el cat├ílogo
+                Ver todo el catálogo
               </button>
             </div>
           </Reveal>
