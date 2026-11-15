@@ -119,10 +119,10 @@ export default function Hero() {
             <div className="max-w-4xl">
               <div className="flex flex-wrap items-center gap-4 animate-fade-in">
                 <a
-                  href="#proyectos"
+                  href="#servicios"
                   className="group inline-flex items-center gap-3 bg-white px-8 py-4 font-mono text-[9px] uppercase tracking-[0.2em] text-black transition-all duration-500 hover:bg-[color:var(--color-fg-soft)]"
                 >
-                  Ver catálogo
+                  Ver servicios
                   <ArrowUpRight
                     className="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     aria-hidden="true"
@@ -190,7 +190,7 @@ export default function Hero() {
               </div>
             </div>
             <a
-              href="#proyectos"
+              href="#servicios"
               className="group flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
             >
               Scroll

@@ -146,6 +146,35 @@ dialog[open] {
   animation: slide-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+@keyframes cta-shine {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(320%);
+  }
+}
+
+@keyframes cta-pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.08);
+  }
+}
+
+.cta-shine {
+  animation: cta-shine 5.5s linear infinite;
+}
+
+.cta-pulse {
+  animation: cta-pulse 7s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
