@@ -19,23 +19,23 @@ export default function ProjectCard({ project, index, onOpen }) {
           className="absolute inset-0 h-full w-full object-cover transition duration-[1600ms] ease-out group-hover:scale-[1.04]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" aria-hidden="true" />
-        <span className="absolute left-5 top-5 font-mono text-[8px] uppercase tracking-[0.24em] text-white/60">
+        <span className="absolute left-5 top-5 font-mono text-[10px] uppercase tracking-[0.18em] text-white/60">
           {project.code}
         </span>
-        <span className="absolute right-5 top-5 font-mono text-[8px] uppercase tracking-[0.24em] text-white/60">
+        <span className="absolute right-5 top-5 font-mono text-[10px] uppercase tracking-[0.18em] text-white/60">
           {project.year}
         </span>
         <div className="absolute inset-x-5 bottom-5">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <p className="font-mono text-[8px] uppercase tracking-[0.22em] text-white/60">
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/60">
                 {project.category} · {project.location}
               </p>
               <h3 className="mt-2 font-display text-2xl leading-tight tracking-[-0.01em] sm:text-3xl">
                 {project.title}
               </h3>
             </div>
-            <span className="inline-flex items-center gap-1.5 font-mono text-[8px] uppercase tracking-[0.2em] text-white/70 opacity-0 transition-all duration-700 group-hover:translate-x-1 group-hover:opacity-100">
+            <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-white/70 opacity-0 transition-all duration-700 group-hover:translate-x-1 group-hover:opacity-100">
               Ver
               <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
             </span>
@@ -46,7 +46,7 @@ export default function ProjectCard({ project, index, onOpen }) {
               {project.tools.map((tool) => (
                 <li
                   key={tool}
-                  className="border border-white/30 px-2 py-1 font-mono text-[7px] uppercase tracking-[0.2em] text-white/70"
+                  className="border border-white/30 px-2 py-1 font-mono text-[7px] uppercase tracking-[0.14em] text-white/70"
                 >
                   {tool}
                 </li>

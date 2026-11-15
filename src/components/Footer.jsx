@@ -20,20 +20,20 @@ export default function Footer() {
               <span className="font-display text-3xl font-medium tracking-tight">
                 CQ<span className="text-white">.</span>
               </span>
-              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/50">
+              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/50">
                 {profile.name}
               </span>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
               Portafolio de arquitectura. Espacio, materia y luz.
             </p>
-            <p className="mt-6 font-mono text-[9px] uppercase tracking-[0.18em] text-white/40">
+            <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-white/40">
               © {new Date().getFullYear()} Camilo Quiroga
             </p>
           </div>
 
           <nav aria-label="Navegación del pie de página" className="md:col-span-4">
-            <h2 className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/40">
+            <h2 className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/40">
               Navegación
             </h2>
             <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2">
@@ -51,7 +51,7 @@ export default function Footer() {
           </nav>
 
           <div className="md:col-span-3">
-            <h2 className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/40">
+            <h2 className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/40">
               Redes
             </h2>
             <ul className="mt-4 space-y-2">
@@ -82,12 +82,12 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex items-center justify-between border-t border-white/15 pt-6">
-          <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/40">
+          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/40">
             Hecho con intención / 2026
           </p>
           <a
             href="#inicio"
-            className="group inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.16em] text-white/60 transition-colors hover:text-white"
+            className="group inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/60 transition-colors hover:text-white"
           >
             Volver arriba
             <ArrowUp

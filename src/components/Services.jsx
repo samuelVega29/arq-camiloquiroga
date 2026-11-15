@@ -95,7 +95,7 @@ export default function Services() {
                 proceso.
               </p>
             </div>
-            <p className="shrink-0 font-mono text-[9px] uppercase tracking-[0.26em] text-[color:var(--color-fg-muted)]">
+            <p className="shrink-0 font-mono text-[11px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)]">
               {String(filtered.length).padStart(2, '0')} servicios
             </p>
           </div>
@@ -116,14 +116,14 @@ export default function Services() {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setFilter(category)}
-                  className={`group relative flex items-baseline gap-1.5 pb-1 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors ${
+                  className={`group relative flex items-baseline gap-1.5 pb-1 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
                     isActive
                       ? 'text-white'
                       : 'text-[color:var(--color-fg-muted)] hover:text-white'
                   }`}
                 >
                   {category}
-                  <sup className="text-[8px] tracking-normal opacity-60">
+                  <sup className="text-[10px] tracking-normal opacity-60">
                     {String(counts[category] ?? 0).padStart(2, '0')}
                   </sup>
                   <span
@@ -150,7 +150,7 @@ export default function Services() {
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Buscar servicio, cliente o lugar"
                 aria-label="Buscar servicios"
-                className="h-11 w-full appearance-none border border-[color:var(--color-line)] bg-[color:var(--color-surface)] pl-11 pr-10 font-mono text-[10px] uppercase tracking-[0.16em] text-white placeholder:text-[color:var(--color-fg-muted)] transition-colors focus:border-white/40 focus:outline-none [&::-webkit-search-cancel-button]:hidden"
+                className="h-11 w-full appearance-none border border-[color:var(--color-line)] bg-[color:var(--color-surface)] pl-11 pr-10 font-sans text-sm text-white placeholder:text-[color:var(--color-fg-muted)] transition-colors focus:border-white/40 focus:outline-none [&::-webkit-search-cancel-button]:hidden"
               />
               {query ? (
                 <button
@@ -169,7 +169,7 @@ export default function Services() {
                 <button
                   type="button"
                   onClick={resetFilters}
-                  className="font-mono text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)] underline decoration-[color:var(--color-line)] underline-offset-4 transition-colors hover:text-white"
+                  className="font-mono text-[11px] uppercase tracking-[0.12em] text-[color:var(--color-fg-muted)] underline decoration-[color:var(--color-line)] underline-offset-4 transition-colors hover:text-white"
                 >
                   Limpiar
                 </button>
@@ -217,7 +217,7 @@ export default function Services() {
         </div>
 
         {filtered.length === 0 ? (
-          <p className="mt-10 border border-dashed border-[color:var(--color-line)] px-6 py-14 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)]">
+          <p className="mt-10 border border-dashed border-[color:var(--color-line)] px-6 py-14 text-center font-sans text-sm text-[color:var(--color-fg-muted)]">
             Sin resultados. Prueba con otro término.
           </p>
         ) : null}

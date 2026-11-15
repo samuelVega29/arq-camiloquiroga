@@ -110,7 +110,7 @@ export default function Approach() {
                     {pillar.items.map((item) => (
                       <li
                         key={item}
-                        className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)] transition-colors duration-500 group-hover:text-[color:var(--color-fg-soft)]"
+                        className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)] transition-colors duration-500 group-hover:text-[color:var(--color-fg-soft)]"
                       >
                         <span
                           className="h-1 w-1 bg-white/40 transition-colors duration-500 group-hover:bg-white"
@@ -121,7 +121,7 @@ export default function Approach() {
                     ))}
                   </ul>
 
-                  <p className="mt-auto pt-5 font-mono text-[8px] uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)]/70">
+                  <p className="mt-auto pt-5 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)]/70">
                     {pillar.tools}
                   </p>
                 </article>
@@ -139,7 +139,7 @@ export default function Approach() {
                   index === 0 ? 'sm:pl-0' : ''
                 }`}
               >
-                <dt className="font-mono text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)]">
+                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)]">
                   {item.label}
                 </dt>
                 <dd className="font-display text-2xl leading-none tracking-[-0.03em] transition-colors duration-500 group-hover:text-[color:var(--color-fg-soft)] sm:text-3xl">
@@ -161,7 +161,7 @@ export default function Approach() {
             <p className="max-w-3xl font-display text-3xl font-light italic leading-tight tracking-[-0.03em] text-white sm:text-4xl lg:text-5xl">
               “La arquitectura empieza por mirar con atención.”
             </p>
-            <footer className="mt-4 flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)]">
+            <footer className="mt-4 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)]">
               <span className="h-px w-8 bg-white/40" aria-hidden="true" />
               Nota de proceso / CQ
             </footer>

@@ -71,7 +71,7 @@ export default function Projects({ onOpenProject }) {
                 Proyectos
               </h2>
             </div>
-            <p className="shrink-0 font-mono text-[9px] uppercase tracking-[0.26em] text-[color:var(--color-fg-muted)]">
+            <p className="shrink-0 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">
               {String(filtered.length).padStart(2, '0')} proyectos
             </p>
           </div>
@@ -94,7 +94,7 @@ export default function Projects({ onOpenProject }) {
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="Buscar proyecto..."
-                  className="w-full border-b border-[color:var(--color-line)] bg-transparent py-2.5 pl-6 pr-8 font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg)] placeholder:text-[color:var(--color-fg-muted)] focus:border-white focus:outline-none [&::-webkit-search-cancel-button]:hidden"
+                  className="w-full border-b border-[color:var(--color-line)] bg-transparent py-2.5 pl-6 pr-8 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg)] placeholder:text-[color:var(--color-fg-muted)] focus:border-white focus:outline-none [&::-webkit-search-cancel-button]:hidden"
                 />
                 {query ? (
                   <button
@@ -175,13 +175,13 @@ export default function Projects({ onOpenProject }) {
                     role="tab"
                     aria-selected={isActive}
                     onClick={() => setFilter(category)}
-                    className={`group relative pb-2 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors ${
+                    className={`group relative pb-2 font-mono text-[10px] uppercase tracking-[0.14em] transition-colors ${
                       isActive ? 'text-[color:var(--color-fg)]' : 'text-[color:var(--color-fg-soft)] hover:text-[color:var(--color-fg)]'
                     }`}
                   >
                     {category}
                     <span
-                      className={`ml-2 text-[9px] ${isActive ? 'text-[color:var(--color-fg)]' : 'text-[color:var(--color-fg-muted)]'}`}
+                      className={`ml-2 text-[10px] ${isActive ? 'text-[color:var(--color-fg)]' : 'text-[color:var(--color-fg-muted)]'}`}
                       aria-hidden="true"
                     >
                       {count}
@@ -197,7 +197,7 @@ export default function Projects({ onOpenProject }) {
             </nav>
 
             <div className="mt-3 flex items-center justify-between gap-4 border-t border-[color:var(--color-line)] pt-3">
-              <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]" aria-live="polite">
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]" aria-live="polite">
                 {String(filtered.length).padStart(2, '0')}{' '}
                 {filtered.length === 1 ? 'proyecto' : 'proyectos'} / 2023—2026
               </p>
@@ -205,13 +205,13 @@ export default function Projects({ onOpenProject }) {
                 <button
                   type="button"
                   onClick={resetFilters}
-                  className="inline-flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
+                  className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
                 >
                   <X className="h-3 w-3" aria-hidden="true" />
                   Limpiar filtros
                 </button>
               ) : (
-                <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">
                   Índice de obra
                 </span>
               )}
@@ -278,7 +278,7 @@ export default function Projects({ onOpenProject }) {
                   className="group grid w-full grid-cols-12 items-center gap-x-4 gap-y-1 border-b border-[color:var(--color-line)] py-5 text-left transition-colors hover:bg-white/5"
                   aria-label={`Ver proyecto ${project.title}`}
                 >
-                      <span className="col-span-2 font-mono text-[9px] uppercase tracking-[0.16em] text-[color:var(--color-fg-soft)] sm:col-span-1">
+                      <span className="col-span-2 font-mono text-[10px] uppercase tracking-[0.16em] text-[color:var(--color-fg-soft)] sm:col-span-1">
                         {project.code}
                       </span>
                       <span className="col-span-10 sm:col-span-4">
@@ -289,16 +289,16 @@ export default function Projects({ onOpenProject }) {
                           {project.concept}
                         </span>
                       </span>
-                      <span className="col-span-6 col-start-3 font-mono text-[9px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-2 sm:col-start-auto">
+                      <span className="col-span-6 col-start-3 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-2 sm:col-start-auto">
                         {project.category}
                       </span>
-                      <span className="col-span-2 font-mono text-[9px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-1">
+                      <span className="col-span-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-1">
                         {project.year}
                       </span>
-                      <span className="col-span-2 font-mono text-[9px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-2">
+                      <span className="col-span-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-2">
                         {project.area}
                       </span>
-                      <span className="hidden font-mono text-[9px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-1 sm:block">
+                      <span className="hidden font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-soft)] sm:col-span-1 sm:block">
                         {project.location}
                       </span>
                       <span className="hidden justify-end sm:col-span-1 sm:flex">
@@ -320,7 +320,7 @@ export default function Projects({ onOpenProject }) {
           </p>
           <a
             href="#contacto"
-            className="group inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.22em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
+            className="group inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
           >
             Hablemos de un proyecto
             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />

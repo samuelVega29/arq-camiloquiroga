@@ -120,7 +120,7 @@ export default function Hero() {
               <div className="flex flex-wrap items-center gap-4 animate-fade-in">
                 <a
                   href="#servicios"
-                  className="group inline-flex items-center gap-3 bg-white px-8 py-4 font-mono text-[9px] uppercase tracking-[0.2em] text-black transition-all duration-500 hover:bg-[color:var(--color-fg-soft)]"
+                  className="group inline-flex items-center gap-3 bg-white px-8 py-4 font-mono text-[10px] uppercase tracking-[0.14em] text-black transition-all duration-500 hover:bg-[color:var(--color-fg-soft)]"
                 >
                   Ver servicios
                   <ArrowUpRight
@@ -132,7 +132,7 @@ export default function Hero() {
                   href={whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-3 px-8 py-4 font-mono text-[9px] uppercase tracking-[0.2em] text-white transition-colors duration-500 hover:text-[color:var(--color-fg-soft)]"
+                  className="group inline-flex items-center gap-3 px-8 py-4 font-mono text-[10px] uppercase tracking-[0.14em] text-white transition-colors duration-500 hover:text-[color:var(--color-fg-soft)]"
                 >
                   <WhatsAppIcon className="h-4 w-4" />
                   Contactar
@@ -142,7 +142,7 @@ export default function Hero() {
                     href={instagram.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 px-4 py-4 font-mono text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)] transition-colors duration-500 hover:text-white"
+                    className="group inline-flex items-center gap-2 px-4 py-4 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)] transition-colors duration-500 hover:text-white"
                   >
                     <InstagramIcon className="h-4 w-4" />
                     {instagram.handle}
@@ -191,7 +191,7 @@ export default function Hero() {
             </div>
             <a
               href="#servicios"
-              className="group flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
+              className="group flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white"
             >
               Scroll
               <ArrowDown className="h-3 w-3 transition-transform duration-500 group-hover:translate-y-1" aria-hidden="true" />

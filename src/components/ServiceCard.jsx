@@ -19,17 +19,17 @@ export default function ServiceCard({ service, index, featured = false }) {
           aria-hidden="true"
         />
 
-        <span className="absolute left-5 top-5 border border-white/25 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-white/80 backdrop-blur-sm transition-colors duration-500 group-hover:border-white/60 group-hover:text-white">
+        <span className="absolute left-5 top-5 border border-white/25 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-white/85 backdrop-blur-sm transition-colors duration-500 group-hover:border-white/60 group-hover:text-white">
           S.{String(index + 1).padStart(2, '0')}
         </span>
 
-        <span className="absolute right-5 top-5 inline-flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-white/0 transition-all duration-500 group-hover:text-white/80">
+        <span className="absolute right-5 top-5 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-white/0 transition-all duration-500 group-hover:text-white/80">
           Ver ficha
           <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
         </span>
 
         <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-          <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/75">
+          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/85">
             {service.category}
           </p>
           <h3
@@ -45,8 +45,8 @@ export default function ServiceCard({ service, index, featured = false }) {
               featured ? 'max-h-52' : 'max-h-0 group-hover:max-h-52'
             }`}
           >
-            <p className="text-sm leading-relaxed text-white/85">{service.description}</p>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[9px] uppercase tracking-[0.14em] text-white/65">
+            <p className="text-[15px] leading-relaxed text-white/90">{service.description}</p>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[10px] uppercase tracking-[0.1em] text-white/75">
               {service.client ? <span>{service.client}</span> : null}
               {service.location ? <span>{service.location}</span> : null}
               {service.year && service.year !== '—' ? <span>{service.year}</span> : null}

@@ -4,9 +4,9 @@
   --color-bg: #000000;
   --color-surface: #050505;
   --color-fg: #ffffff;
-  --color-fg-soft: #b9b9b9;
-  --color-fg-muted: #6f6f6f;
-  --color-line: #1f1f1f;
+  --color-fg-soft: #c4c4c4;
+  --color-fg-muted: #9a9a9a;
+  --color-line: #2c2c2c;
   --color-accent: #ffffff;
   --color-accent-glow: #ffffff;
 
@@ -49,11 +49,11 @@
   }
 
   .eyebrow {
-    @apply font-mono text-[9px] uppercase tracking-[0.26em] text-[color:var(--color-fg-muted)] sm:text-[10px];
+    @apply font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)] sm:text-[11px];
   }
 
   .display-title {
-    @apply font-display font-light leading-[0.9] tracking-[-0.06em];
+    @apply font-display font-light leading-[0.9] tracking-[-0.05em];
   }
 
   .reveal {

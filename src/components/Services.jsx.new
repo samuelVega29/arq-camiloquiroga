@@ -43,7 +43,7 @@ export default function Services() {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setFilter(category)}
-                  className={`group relative pb-1 font-mono text-[9px] uppercase tracking-[0.18em] transition-colors ${
+                  className={`group relative pb-1 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors ${
                     isActive ? 'text-ink' : 'text-ink-soft hover:text-ink'
                   }`}
                 >
@@ -64,7 +64,7 @@ export default function Services() {
             <Reveal key={service.id} delay={(index % 4) * 50}>
               <article className="grid gap-4 py-7 sm:grid-cols-12 sm:gap-6">
                 <div className="sm:col-span-5 lg:col-span-4">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-copper">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-copper">
                     {service.category}
                   </p>
                   <h3 className="mt-2 text-lg leading-snug sm:text-xl">{service.title}</h3>
@@ -75,8 +75,8 @@ export default function Services() {
                 <div className="sm:col-span-3 lg:col-span-4 sm:text-right">
                   <p className="text-sm text-ink-soft">{service.client}</p>
                   {service.location ? <p className="mt-1 text-sm text-ink-soft">{service.location}</p> : null}
-                  {service.year ? <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-ink-soft">{service.year}</p> : null}
-                  {service.value && service.value !== '—' ? <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-ink-soft">{service.value}</p> : null}
+                  {service.year ? <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft">{service.year}</p> : null}
+                  {service.value && service.value !== '—' ? <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft">{service.value}</p> : null}
                 </div>
               </article>
             </Reveal>

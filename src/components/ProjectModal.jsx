@@ -76,7 +76,7 @@ export default function ProjectModal({ project, onClose }) {
                   {project.tools.map((tool) => (
                     <li
                       key={tool}
-                      className="border border-[color:var(--color-line)] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.12em] text-[color:var(--color-fg-soft)]"
+                      className="border border-[color:var(--color-line)] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-[color:var(--color-fg-soft)]"
                     >
                       {tool}
                     </li>

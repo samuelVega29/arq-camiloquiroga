@@ -36,10 +36,10 @@ export default function About() {
                   className="aspect-[4/5] w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.03]"
                 />
                 <figcaption className="flex items-center justify-between border-t border-white/10 px-4 py-3">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)]">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)]">
                     Retrato / 01
                   </span>
-                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)]">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)]">
                     {profile.initials}
                   </span>
                 </figcaption>
@@ -58,7 +58,7 @@ export default function About() {
               }
             />
 
-            <p className="mt-5 font-mono text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)]">
+            <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)]">
               {profile.role}
             </p>
 
@@ -79,7 +79,7 @@ export default function About() {
                   <dd className="font-display text-2xl leading-none tracking-[-0.03em] transition-transform duration-500 group-hover:-translate-y-0.5">
                     {stat.value}
                   </dd>
-                  <dt className="mt-2 font-mono text-[8px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">
+                  <dt className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">
                     {stat.label}
                   </dt>
                 </div>
@@ -98,10 +98,10 @@ export default function About() {
                 {areas.map((area) => (
                   <li
                     key={area.label}
-                    className="group inline-flex items-center gap-2 border border-white/10 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-[color:var(--color-fg-soft)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white hover:text-black"
+                    className="group inline-flex items-center gap-2 border border-white/10 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-[color:var(--color-fg-soft)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white hover:text-black"
                   >
                     {area.label}
-                    <span className="text-[8px] text-[color:var(--color-fg-muted)] transition-colors group-hover:text-black/60">
+                    <span className="text-[10px] text-[color:var(--color-fg-muted)] transition-colors group-hover:text-black/60">
                       {String(area.count).padStart(2, '0')}
                     </span>
                   </li>
@@ -115,7 +115,7 @@ export default function About() {
                 {profile.tools.map((tool) => (
                   <li
                     key={tool}
-                    className="border border-[color:var(--color-line)] px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-[color:var(--color-fg-muted)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:text-white"
+                    className="border border-[color:var(--color-line)] px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-[color:var(--color-fg-muted)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:text-white"
                   >
                     {tool}
                   </li>

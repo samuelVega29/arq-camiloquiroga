@@ -66,7 +66,7 @@ export default function Navbar() {
           </div>
           <div className="hidden sm:block">
             <span className="block text-sm tracking-[-0.01em]">{profile.name}</span>
-            <span className="block font-mono text-[8px] uppercase tracking-[0.24em] text-[color:var(--color-fg-muted)]">
+            <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">
               Arquitecto
             </span>
           </div>
@@ -127,7 +127,7 @@ export default function Navbar() {
           }`}
         >
           <div className="flex items-center justify-between px-6 py-6">
-            <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-[color:var(--color-fg-muted)]">
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">
               Menú
             </span>
             <button

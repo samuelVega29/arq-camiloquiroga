@@ -10,7 +10,7 @@ export default function Contact() {
       <div className="section-shell">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-7">
-            <p className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-white/60">
+            <p className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.16em] text-white/60">
               <span className="h-px w-8 bg-white" aria-hidden="true" />
               05 / Contacto
             </p>
@@ -47,7 +47,7 @@ export default function Contact() {
               </a>
             </div>
 
-            <p className="mt-8 flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.16em] text-white/50">
+            <p className="mt-8 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/50">
               <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
               {profile.location} · Respuesta en 24–48 h
             </p>
@@ -55,7 +55,7 @@ export default function Contact() {
 
           <Reveal delay={100} className="lg:col-span-5">
             <div className="border border-white/20 p-6 sm:p-8">
-              <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/50">
+              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/50">
                 Canales directos
               </p>
 
@@ -66,7 +66,7 @@ export default function Contact() {
                     className="group flex items-center justify-between gap-4 py-4"
                   >
                     <span>
-                      <span className="block font-mono text-[9px] uppercase tracking-[0.16em] text-white/50">
+                      <span className="block font-mono text-[10px] uppercase tracking-[0.16em] text-white/50">
                         Correo
                       </span>
                       <span className="mt-1 block text-sm text-white">{profile.email}</span>
@@ -87,7 +87,7 @@ export default function Contact() {
                       className="group flex items-center justify-between gap-4 py-4"
                     >
                       <span>
-                        <span className="block font-mono text-[9px] uppercase tracking-[0.16em] text-white/50">
+                        <span className="block font-mono text-[10px] uppercase tracking-[0.16em] text-white/50">
                           {social.label}
                         </span>
                         <span className="mt-1 block text-sm text-white">{social.handle}</span>
@@ -108,7 +108,7 @@ export default function Contact() {
                     className="group flex items-center justify-between gap-4 py-4"
                   >
                     <span>
-                      <span className="block font-mono text-[9px] uppercase tracking-[0.16em] text-white/50">
+                      <span className="block font-mono text-[10px] uppercase tracking-[0.16em] text-white/50">
                         WhatsApp
                       </span>
                       <span className="mt-1 block text-sm text-white">Mensaje directo</span>
@@ -120,7 +120,7 @@ export default function Contact() {
 
               <div className="mt-6 flex items-center gap-2 border-t border-white/15 pt-5">
                 <span className="h-2 w-2 rounded-full bg-white" aria-hidden="true" />
-                <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/60">
+                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/60">
                   {profile.availability}
                 </span>
               </div>
