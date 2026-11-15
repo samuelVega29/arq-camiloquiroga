@@ -1,15 +1,8 @@
-const images = [
-  'proyectos/p01.svg',
-  'proyectos/p02.svg',
-  'proyectos/p03.svg',
-  'proyectos/p04.svg',
-  'proyectos/p05.svg',
-  'proyectos/p06.svg',
-  'proyectos/p07.jpg',
-]
+import { ArrowUpRight } from 'lucide-react'
+import { imageForIndex } from '../data/serviceImages'
 
 export default function ServiceCard({ service, index, featured = false }) {
-  const image = images[index % images.length]
+  const image = imageForIndex(index)
 
   return (
     <article className="group relative h-full">
@@ -28,6 +21,11 @@ export default function ServiceCard({ service, index, featured = false }) {
 
         <span className="absolute left-5 top-5 border border-white/25 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-white/80 backdrop-blur-sm transition-colors duration-500 group-hover:border-white/60 group-hover:text-white">
           S.{String(index + 1).padStart(2, '0')}
+        </span>
+
+        <span className="absolute right-5 top-5 inline-flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-white/0 transition-all duration-500 group-hover:text-white/80">
+          Ver ficha
+          <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
         </span>
 
         <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
@@ -56,6 +54,12 @@ export default function ServiceCard({ service, index, featured = false }) {
             </div>
           </div>
         </div>
+
+        <a
+          href={`#/servicio/${service.id}`}
+          aria-label={`Ver ficha de ${service.title}`}
+          className="absolute inset-0 z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white"
+        />
       </div>
     </article>
   )
