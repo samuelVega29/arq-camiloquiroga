@@ -408,7 +408,8 @@ export default function Services({
                 <Reveal
                   key={publication.id}
                   delay={(index % 4) * 60}
-                  className={`${layout.span} h-full ${
+                  rangeEnd={100}
+                  className={`mosaic-reveal ${layout.span} h-full ${
                     filtered.length === 1 ? 'md:col-span-2' : ''
                   }`}
                 >
