@@ -139,7 +139,7 @@ export default function Hero() {
 
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex-1">
-          <div className="section-shell flex h-full items-end pb-20 sm:pb-28">
+          <div className="section-shell flex h-full items-end pb-5 sm:pb-6">
             <div className="max-w-4xl">
               <div className="flex flex-wrap items-center gap-4 animate-fade-in">
                 <a
