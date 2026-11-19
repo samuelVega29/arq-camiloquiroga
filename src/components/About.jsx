@@ -18,7 +18,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="sobre-mi" className="py-24 sm:py-32">
+    <section id="sobre-mi" className="py-16 sm:py-24">
       <div className="section-shell">
         <div>
           <Reveal delay={100}>

@@ -13,7 +13,7 @@ const links = [
 export default function Footer() {
   return (
     <footer className="border-t border-white/15 bg-black text-white">
-      <div className="section-shell py-12 sm:py-16">
+        <div className="section-shell py-10 sm:py-12">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
             <a href="#inicio" className="inline-flex items-baseline gap-2">

@@ -161,7 +161,7 @@ export default function Services({
   }
 
   return (
-    <section id="servicios" className="border-t border-white/10 py-24 sm:py-36">
+    <section id="servicios" className="border-t border-white/10 py-16 sm:py-24">
       <div className="section-shell">
         <Reveal>
           <div className="flex flex-col justify-between gap-10 lg:flex-row lg:items-end">
@@ -187,7 +187,7 @@ export default function Services({
         </Reveal>
 
         <Reveal delay={80}>
-          <search className="mt-10 flex flex-col gap-4 border-y border-[color:var(--color-line)] py-4 lg:flex-row lg:flex-nowrap lg:items-center lg:justify-between lg:gap-4 xl:gap-6">
+          <search className="mt-8 flex flex-col gap-4 border-y border-white/10 py-4 lg:flex-row lg:flex-nowrap lg:items-center lg:justify-between lg:gap-4 xl:gap-6">
             <div
               className="flex flex-wrap items-center gap-x-3 gap-y-2 lg:flex-nowrap lg:gap-x-3 xl:gap-x-5"
               role="group"
@@ -401,7 +401,7 @@ export default function Services({
             </div>
           </Reveal>
         ) : (
-          <div className="mt-10 grid grid-cols-1 gap-x-5 gap-y-5 md:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[230px]">
+          <div className="mt-8 grid grid-cols-1 gap-x-5 gap-y-5 md:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[230px]">
             {filtered.map((publication, index) => {
               const layout = getLayout(index, filtered.length)
               return (
@@ -427,7 +427,7 @@ export default function Services({
         )}
 
         <Reveal delay={120}>
-          <div className="group/cta relative mt-14 overflow-hidden border border-[color:var(--color-line)] bg-[color:var(--color-surface)]">
+          <div className="group/cta relative mt-10 overflow-hidden border border-white/10 bg-[color:var(--color-surface)]">
             <div className="cta-pulse pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full bg-white/10 blur-3xl" aria-hidden="true" />
             <div
               className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_140%_at_100%_0%,rgba(255,255,255,0.08),transparent_55%)]"

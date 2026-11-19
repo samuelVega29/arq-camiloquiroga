@@ -44,7 +44,7 @@ const trajectory = [
 
 export default function Approach() {
   return (
-    <section id="enfoque" className="relative py-24 sm:py-32">
+    <section id="enfoque" className="relative pb-16 pt-14 sm:pb-24 sm:pt-20">
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_45%_at_80%_0%,rgba(255,255,255,0.05),transparent_70%)]"
         aria-hidden="true"
@@ -70,16 +70,16 @@ export default function Approach() {
           </div>
         </Reveal>
 
-        <ol className="relative mt-16 max-w-4xl">
+        <ol className="relative mt-10 max-w-4xl">
           <span
-            className="absolute bottom-4 left-5 top-4 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent"
+            className="absolute bottom-2 left-[19px] top-2 w-[2px] rounded-full bg-white/25 shadow-[0_0_10px_rgba(255,255,255,0.2)]"
             aria-hidden="true"
           />
 
           {pillars.map((pillar, index) => {
             const Icon = pillar.icon
             return (
-              <li key={pillar.number} className="relative pb-8 pl-14 last:pb-0 sm:pl-16">
+              <li key={pillar.number} className="relative pb-6 pl-14 last:pb-0 sm:pl-16">
                 <span className="absolute left-0 top-2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-[#050505] font-mono text-xs text-white/80 shadow-[0_0_0_6px_rgba(0,0,0,0.35)]">
                   {pillar.number}
                 </span>
@@ -127,7 +127,7 @@ export default function Approach() {
         </ol>
 
         <Reveal delay={160}>
-          <div className="mt-16 grid gap-8 rounded-sm border border-white/10 bg-white/[0.02] p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-12">
+          <div className="mt-10 grid gap-8 rounded-sm border border-white/10 bg-white/[0.02] p-5 sm:p-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-12">
             <p className="max-w-prose font-display text-xl font-light italic leading-snug tracking-[-0.02em] text-balance text-white sm:text-2xl">
               “El buen diseño no tiene fecha de caducidad.”
               <span className="mt-3 block font-mono text-xs not-italic uppercase tracking-[0.12em] text-[color:var(--color-fg-muted)]">
