@@ -63,38 +63,38 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
+    @keyframes reveal-in {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes mosaic-in {
+      from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
     @supports ((animation-timeline: view()) and (animation-range: entry)) {
-      @keyframes reveal-in {
-        from {
-          opacity: 0;
-          transform: translateY(16px);
-        }
-        to {
-          opacity: 1;
-          transform: none;
-        }
-      }
-
-      @keyframes fade-in {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      @keyframes mosaic-in {
-        from {
-          opacity: 0;
-          transform: translateY(28px) scale(0.985);
-        }
-        to {
-          opacity: 1;
-          transform: none;
-        }
-      }
-
       .reveal {
         animation-name: reveal-in;
         animation-duration: auto;
@@ -116,6 +116,27 @@
         animation-fill-mode: both;
         animation-timeline: view();
         animation-range: entry 0% entry 45%;
+      }
+    }
+
+    @supports not ((animation-timeline: view()) and (animation-range: entry)) {
+      .reveal.is-revealed {
+        animation-name: reveal-in;
+        animation-duration: 700ms;
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+        animation-fill-mode: both;
+      }
+
+      .reveal.mosaic-reveal.is-revealed {
+        animation-name: mosaic-in;
+        animation-duration: 850ms;
+      }
+
+      .reveal-fade.is-revealed {
+        animation-name: fade-in;
+        animation-duration: 700ms;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
       }
     }
   }
