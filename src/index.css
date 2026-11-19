@@ -273,9 +273,15 @@
   }
 }
 
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
 dialog::backdrop {
   background: rgb(0 0 0 / 0.8);
   backdrop-filter: blur(10px);
+  overflow: hidden;
+  overscroll-behavior: contain;
 }
 
 dialog[open] {
@@ -396,12 +402,9 @@ dialog[open] {
     translate: none;
   }
 
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .cta-shine,
+  .cta-pulse,
+  .detail-zoom {
+    animation: none;
   }
 }

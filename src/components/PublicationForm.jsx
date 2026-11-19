@@ -105,13 +105,24 @@ export default function PublicationForm({ publication, categories, onSave, onCan
     return nextErrors
   }
 
+  const focusFirstError = (nextErrors) => {
+    const order = ['title', 'category', 'location', 'description', 'images']
+    const field = order.find((key) => nextErrors[key])
+    if (field) {
+      requestAnimationFrame(() => document.getElementById(`publication-${field}`)?.focus())
+    }
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault()
     if (saving || uploading) return
 
     const nextErrors = validate()
     setErrors(nextErrors)
-    if (Object.keys(nextErrors).length > 0) return
+    if (Object.keys(nextErrors).length > 0) {
+      focusFirstError(nextErrors)
+      return
+    }
 
     setSaving(true)
     setSaveError('')
@@ -134,6 +145,7 @@ export default function PublicationForm({ publication, categories, onSave, onCan
   }
 
   const cover = resolveImageUrl(values.images[0])
+  const errorCount = Object.values(errors).filter(Boolean).length
 
   return (
     <section className="min-h-screen pb-24 pt-28 sm:pt-32">
@@ -168,7 +180,15 @@ export default function PublicationForm({ publication, categories, onSave, onCan
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-12">
+        <form onSubmit={handleSubmit} noValidate className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-12">
+          {errorCount > 0 ? (
+            <p role="status" className="col-span-full border border-red-400/40 bg-red-400/10 px-4 py-3 text-sm text-red-200">
+              {errorCount === 1
+                ? 'Revisa el campo marcado antes de continuar.'
+                : `Revisa los ${errorCount} campos marcados antes de continuar.`}
+            </p>
+          ) : null}
+
           <div className="space-y-6 lg:col-span-7">
             <div>
               <label htmlFor="publication-title" className={labelClass}>
@@ -177,13 +197,20 @@ export default function PublicationForm({ publication, categories, onSave, onCan
               <input
                 id="publication-title"
                 type="text"
+                required
                 value={values.title}
                 onChange={updateField('title')}
                 maxLength={90}
                 placeholder="Ej. Construcción de vivienda campestre"
+                aria-invalid={errors.title ? 'true' : undefined}
+                aria-describedby={errors.title ? 'publication-title-error' : undefined}
                 className={`mt-2 ${inputClass}`}
               />
-              {errors.title ? <p className="mt-2 text-xs text-red-300">{errors.title}</p> : null}
+              {errors.title ? (
+                <p id="publication-title-error" className="mt-2 text-xs text-red-300">
+                  {errors.title}
+                </p>
+              ) : null}
             </div>
 
             <div className="grid gap-5 sm:grid-cols-2">
@@ -193,8 +220,11 @@ export default function PublicationForm({ publication, categories, onSave, onCan
                 </label>
                 <select
                   id="publication-category"
+                  required
                   value={values.category}
                   onChange={updateField('category')}
+                  aria-invalid={errors.category ? 'true' : undefined}
+                  aria-describedby={errors.category ? 'publication-category-error' : undefined}
                   className={`mt-2 ${inputClass}`}
                 >
                   {categories.map((category) => (
@@ -204,7 +234,9 @@ export default function PublicationForm({ publication, categories, onSave, onCan
                   ))}
                 </select>
                 {errors.category ? (
-                  <p className="mt-2 text-xs text-red-300">{errors.category}</p>
+                  <p id="publication-category-error" className="mt-2 text-xs text-red-300">
+                    {errors.category}
+                  </p>
                 ) : null}
               </div>
 
@@ -215,14 +247,19 @@ export default function PublicationForm({ publication, categories, onSave, onCan
                 <input
                   id="publication-location"
                   type="text"
+                  required
                   value={values.location}
                   onChange={updateField('location')}
                   maxLength={90}
                   placeholder="Ej. Boyacá, Colombia"
+                  aria-invalid={errors.location ? 'true' : undefined}
+                  aria-describedby={errors.location ? 'publication-location-error' : undefined}
                   className={`mt-2 ${inputClass}`}
                 />
                 {errors.location ? (
-                  <p className="mt-2 text-xs text-red-300">{errors.location}</p>
+                  <p id="publication-location-error" className="mt-2 text-xs text-red-300">
+                    {errors.location}
+                  </p>
                 ) : null}
               </div>
             </div>
@@ -285,15 +322,20 @@ export default function PublicationForm({ publication, categories, onSave, onCan
               </div>
               <textarea
                 id="publication-description"
+                required
                 value={values.description}
                 onChange={updateField('description')}
                 rows={7}
                 maxLength={2500}
                 placeholder="Describe el servicio, el proceso y el resultado..."
+                aria-invalid={errors.description ? 'true' : undefined}
+                aria-describedby={errors.description ? 'publication-description-error' : undefined}
                 className={`mt-2 resize-y ${inputClass}`}
               />
               {errors.description ? (
-                <p className="mt-2 text-xs text-red-300">{errors.description}</p>
+                <p id="publication-description-error" className="mt-2 text-xs text-red-300">
+                  {errors.description}
+                </p>
               ) : null}
             </div>
           </div>
@@ -358,8 +400,11 @@ export default function PublicationForm({ publication, categories, onSave, onCan
                   type="file"
                   accept="image/*"
                   multiple
+                  required
                   disabled={uploading}
                   onChange={(event) => handleFiles(event.target.files)}
+                  aria-invalid={errors.images ? 'true' : undefined}
+                  aria-describedby={errors.images ? 'publication-images-error' : undefined}
                   className="sr-only"
                 />
                 <label
@@ -387,7 +432,11 @@ export default function PublicationForm({ publication, categories, onSave, onCan
                   {imageError}
                 </p>
               ) : null}
-              {errors.images ? <p className="mt-3 text-xs text-red-300">{errors.images}</p> : null}
+              {errors.images ? (
+                <p id="publication-images-error" className="mt-3 text-xs text-red-300">
+                  {errors.images}
+                </p>
+              ) : null}
 
               {values.images.length > 0 ? (
                 <div className="mt-5">

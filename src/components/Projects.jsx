@@ -78,7 +78,7 @@ export default function Projects({ onOpenProject }) {
         </Reveal>
 
         <Reveal delay={60}>
-          <div className="mt-12">
+          <search className="mt-12">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               <div className="relative w-full sm:max-w-sm">
                 <label htmlFor="catalog-search" className="sr-only">
@@ -160,9 +160,9 @@ export default function Projects({ onOpenProject }) {
               </div>
             </div>
 
-            <nav
+            <div
               className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3"
-              role="tablist"
+              role="group"
               aria-label="Filtrar proyectos por servicio"
             >
               {categories.map((category) => {
@@ -172,8 +172,7 @@ export default function Projects({ onOpenProject }) {
                   <button
                     key={category}
                     type="button"
-                    role="tab"
-                    aria-selected={isActive}
+                    aria-pressed={isActive}
                     onClick={() => setFilter(category)}
                     className={`group relative pb-2 font-mono text-[10px] uppercase tracking-[0.14em] transition-colors ${
                       isActive ? 'text-[color:var(--color-fg)]' : 'text-[color:var(--color-fg-soft)] hover:text-[color:var(--color-fg)]'
@@ -194,7 +193,7 @@ export default function Projects({ onOpenProject }) {
                   </button>
                 )
               })}
-            </nav>
+            </div>
 
             <div className="mt-3 flex items-center justify-between gap-4 border-t border-[color:var(--color-line)] pt-3">
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]" aria-live="polite">
@@ -212,11 +211,11 @@ export default function Projects({ onOpenProject }) {
                 </button>
               ) : (
                 <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">
-                  Índice de obra
-                </span>
+                Índice de obra
+              </span>
               )}
             </div>
-          </div>
+          </search>
         </Reveal>
 
         {filtered.length === 0 ? (

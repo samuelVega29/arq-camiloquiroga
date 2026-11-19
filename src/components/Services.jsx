@@ -187,10 +187,10 @@ export default function Services({
         </Reveal>
 
         <Reveal delay={80}>
-          <div className="mt-10 flex flex-col gap-4 border-y border-[color:var(--color-line)] py-4 lg:flex-row lg:flex-nowrap lg:items-center lg:justify-between lg:gap-4 xl:gap-6">
-            <nav
+          <search className="mt-10 flex flex-col gap-4 border-y border-[color:var(--color-line)] py-4 lg:flex-row lg:flex-nowrap lg:items-center lg:justify-between lg:gap-4 xl:gap-6">
+            <div
               className="flex flex-wrap items-center gap-x-3 gap-y-2 lg:flex-nowrap lg:gap-x-3 xl:gap-x-5"
-              role="tablist"
+              role="group"
               aria-label="Filtrar servicios por categoría"
             >
               {FILTERS.map((item) => {
@@ -201,8 +201,7 @@ export default function Services({
                   <button
                     key={item.value}
                     type="button"
-                    role="tab"
-                    aria-selected={isActive}
+                    aria-pressed={isActive}
                     onClick={() => setFilter(item.value)}
                     className={`group relative pb-1 font-mono text-[8px] uppercase tracking-[0.18em] transition-colors xl:text-[9px] ${
                       isActive
@@ -227,7 +226,7 @@ export default function Services({
                   </button>
                 )
               })}
-            </nav>
+            </div>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-nowrap sm:items-center lg:gap-2 xl:gap-3">
               <div className="relative w-full sm:w-40 xl:w-48">
@@ -333,7 +332,7 @@ export default function Services({
                 ) : null}
               </div>
             </div>
-          </div>
+          </search>
         </Reveal>
 
         {actionError || error ? (
