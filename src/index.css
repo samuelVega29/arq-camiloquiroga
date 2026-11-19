@@ -111,6 +111,9 @@
       #050505 88%,
       #010101 100%
     );
+    background-size: 100% 190%;
+    background-position: 50% 0%;
+    animation: atmosphere-flow 24s ease-in-out infinite alternate;
   }
 
   .atmosphere::before {
@@ -141,7 +144,8 @@
       calc((var(--scroll) - 0.5) * -10vh),
       0
     ) scale(1.1);
-    will-change: transform;
+    animation: atmosphere-drift 16s ease-in-out infinite alternate;
+    will-change: transform, translate;
   }
 
   .atmosphere::after {
@@ -151,16 +155,19 @@
     z-index: 0;
     pointer-events: none;
     background: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.05) 22%,
-      rgba(255, 255, 255, 0.12) 50%,
-      rgba(255, 255, 255, 0.04) 78%,
-      transparent 100%
+      115deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.025) 42%,
+      rgba(255, 255, 255, 0.18) 50%,
+      rgba(255, 255, 255, 0.025) 58%,
+      transparent 70%
     );
+    background-size: 220% 220%;
+    background-position: 0% 50%;
     transform: translate3d(0, calc((var(--scroll) - 0.5) * -22vh), 0);
     mix-blend-mode: screen;
-    will-change: transform;
+    animation: atmosphere-sweep 10s linear infinite alternate;
+    will-change: transform, background-position;
   }
 
   .atmosphere-glow {
@@ -186,7 +193,9 @@
     );
     transform: translate3d(calc(var(--scroll) * 8vw), calc(var(--scroll) * 16vh), 0)
       scale(1.12);
-    animation: atmosphere-pulse 16s ease-in-out infinite alternate;
+    animation:
+      atmosphere-glow-a 14s ease-in-out infinite alternate,
+      atmosphere-pulse 8s ease-in-out infinite alternate;
   }
 
   .atmosphere-glow-b {
@@ -203,7 +212,54 @@
     );
     transform: translate3d(calc(var(--scroll) * -7vw), calc(var(--scroll) * -12vh), 0)
       scale(1.18);
-    animation: atmosphere-pulse 20s ease-in-out infinite alternate-reverse;
+    animation:
+      atmosphere-glow-b 18s ease-in-out infinite alternate,
+      atmosphere-pulse 11s ease-in-out infinite alternate-reverse;
+  }
+}
+
+@keyframes atmosphere-flow {
+  from {
+    background-position: 50% 0%;
+  }
+  to {
+    background-position: 50% 100%;
+  }
+}
+
+@keyframes atmosphere-drift {
+  from {
+    translate: -3% -2%;
+  }
+  to {
+    translate: 4% 5%;
+  }
+}
+
+@keyframes atmosphere-sweep {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes atmosphere-glow-a {
+  from {
+    translate: -8% -6%;
+  }
+  to {
+    translate: 10% 12%;
+  }
+}
+
+@keyframes atmosphere-glow-b {
+  from {
+    translate: 8% 6%;
+  }
+  to {
+    translate: -10% -12%;
   }
 }
 
@@ -327,11 +383,17 @@ dialog[open] {
     animation: none;
   }
 
+  .atmosphere {
+    animation: none;
+    background-position: 50% 50%;
+  }
+
   .atmosphere::before,
   .atmosphere::after,
   .atmosphere-glow {
     animation: none;
     transform: none;
+    translate: none;
   }
 
   *,
