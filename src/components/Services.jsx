@@ -407,6 +407,7 @@ export default function Services({
               return (
                 <Reveal
                   key={publication.id}
+                  forceFallback
                   delay={(index % 4) * 60}
                   rangeEnd={100}
                   className={`mosaic-reveal ${layout.span} h-full ${

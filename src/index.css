@@ -62,38 +62,38 @@
     transform: none;
   }
 
+  @keyframes reveal-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes mosaic-in {
+    from {
+      opacity: 0;
+      transform: translateY(28px) scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   @media (prefers-reduced-motion: no-preference) {
-    @keyframes reveal-in {
-      from {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    @keyframes fade-in {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes mosaic-in {
-      from {
-        opacity: 0;
-        transform: translateY(28px) scale(0.985);
-      }
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
     @supports ((animation-timeline: view()) and (animation-range: entry)) {
       .reveal {
         animation-name: reveal-in;
@@ -109,6 +109,11 @@
         animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
       }
 
+      .reveal.reveal-observer,
+      .reveal-fade.reveal-observer {
+        animation: none;
+      }
+
       .reveal-fade {
         animation-name: fade-in;
         animation-duration: auto;
@@ -119,25 +124,34 @@
       }
     }
 
-    @supports not ((animation-timeline: view()) and (animation-range: entry)) {
-      .reveal.is-revealed {
-        animation-name: reveal-in;
-        animation-duration: 700ms;
-        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-        animation-fill-mode: both;
-      }
+    .reveal.reveal-observer.is-revealed {
+      animation-name: reveal-in;
+      animation-duration: 700ms;
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      animation-fill-mode: both;
+    }
 
-      .reveal.mosaic-reveal.is-revealed {
-        animation-name: mosaic-in;
-        animation-duration: 850ms;
-      }
+    .reveal.reveal-observer.mosaic-reveal.is-revealed {
+      animation-name: mosaic-in;
+      animation-duration: 850ms;
+    }
 
-      .reveal-fade.is-revealed {
-        animation-name: fade-in;
-        animation-duration: 700ms;
-        animation-timing-function: linear;
-        animation-fill-mode: both;
-      }
+    .reveal-fade.reveal-observer.is-revealed {
+      animation-name: fade-in;
+      animation-duration: 700ms;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal.reveal-observer.is-revealed,
+    .reveal.reveal-observer.mosaic-reveal.is-revealed,
+    .reveal-fade.reveal-observer.is-revealed {
+      animation-name: fade-in;
+      animation-duration: 500ms;
+      animation-timing-function: ease-out;
+      animation-fill-mode: both;
     }
   }
 

@@ -5,23 +5,32 @@ const supportsScrollTimeline =
   typeof CSS.supports === 'function' &&
   CSS.supports('(animation-timeline: view()) and (animation-range: entry)')
 
-export default function Reveal({ children, className = '', delay = 0, rangeEnd = 45 }) {
+const prefersReducedMotion =
+  typeof window !== 'undefined' &&
+  typeof window.matchMedia === 'function' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+export default function Reveal({
+  children,
+  className = '',
+  delay = 0,
+  rangeEnd = 45,
+  forceFallback = false,
+}) {
   const elementRef = useRef(null)
   const [isRevealed, setIsRevealed] = useState(false)
 
+  const useObserver = forceFallback || !supportsScrollTimeline || prefersReducedMotion
   const start = Math.min(delay / 8, 20)
   const end = Math.max(start + 15, rangeEnd)
 
   useEffect(() => {
-    if (supportsScrollTimeline) return
+    if (!useObserver) return
 
     const element = elementRef.current
     if (!element) return
 
-    if (
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-      !('IntersectionObserver' in window)
-    ) {
+    if (!('IntersectionObserver' in window)) {
       setIsRevealed(true)
       return
     }
@@ -38,15 +47,22 @@ export default function Reveal({ children, className = '', delay = 0, rangeEnd =
 
     observer.observe(element)
     return () => observer.disconnect()
-  }, [])
+  }, [useObserver])
 
   return (
     <div
       ref={elementRef}
-      className={['reveal', isRevealed && 'is-revealed', className].filter(Boolean).join(' ')}
+      className={[
+        'reveal',
+        useObserver && 'reveal-observer',
+        isRevealed && 'is-revealed',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
       style={{
         '--reveal-range': `entry ${start}% entry ${end}%`,
-        ...(supportsScrollTimeline ? {} : { animationDelay: `${delay}ms` }),
+        ...(useObserver ? { animationDelay: `${delay}ms` } : {}),
       }}
     >
       {children}
