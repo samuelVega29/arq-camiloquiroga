@@ -161,13 +161,13 @@ export default function Services({
   }
 
   return (
-    <section id="servicios" className="border-t border-white/10 py-16 sm:py-24">
+    <section id="servicios" className="border-t border-white/10 py-12 sm:py-16">
       <div className="section-shell">
         <Reveal>
           <div className="flex flex-col justify-between gap-10 lg:flex-row lg:items-end">
             <div>
-              <h2 className="display-title text-[clamp(3rem,9vw,7rem)]">Servicios</h2>
-              <p className="mt-6 max-w-2xl text-base leading-relaxed text-[color:var(--color-fg-soft)] sm:text-lg">
+              <h2 className="display-title text-[clamp(2.5rem,1.5rem+4vw,5rem)]">Servicios</h2>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[color:var(--color-fg-soft)] sm:text-base">
                 Obras dirigidas, contratadas y diseñadas, además de residencias de obra y
                 remodelaciones para sector privado y público. Cada trabajo reúne planos, imágenes
                 y la memoria del proceso.
@@ -187,7 +187,7 @@ export default function Services({
         </Reveal>
 
         <Reveal delay={80}>
-          <search className="mt-8 flex flex-col gap-4 border-y border-white/10 py-4 lg:flex-row lg:flex-nowrap lg:items-center lg:justify-between lg:gap-4 xl:gap-6">
+          <search className="mt-6 flex flex-col gap-3 border-y border-white/10 py-3 lg:flex-row lg:flex-nowrap lg:items-center lg:justify-between lg:gap-3 xl:gap-5">
             <div
               className="flex flex-wrap items-center gap-x-3 gap-y-2 lg:flex-nowrap lg:gap-x-3 xl:gap-x-5"
               role="group"
@@ -356,7 +356,7 @@ export default function Services({
 
         {loading ? (
           <div
-            className="mt-10 grid grid-cols-1 gap-x-5 gap-y-5 md:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[230px]"
+            className="mt-6 grid grid-cols-1 gap-x-4 gap-y-4 md:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[170px]"
             aria-hidden="true"
           >
             {[0, 1, 2, 3, 4, 5].map((index) => {
@@ -364,14 +364,14 @@ export default function Services({
               return (
                 <div
                   key={index}
-                  className={`${layout.span} min-h-[320px] animate-pulse border border-[color:var(--color-line)] bg-[color:var(--color-surface)] lg:min-h-0`}
+                  className={`${layout.span} aspect-[4/3] animate-pulse border border-[color:var(--color-line)] bg-[color:var(--color-surface)] lg:aspect-auto lg:min-h-0`}
                 />
               )
             })}
           </div>
         ) : error && publications.length === 0 ? null : filtered.length === 0 ? (
           <Reveal>
-            <div className="mt-10 border border-dashed border-[color:var(--color-line)] px-6 py-16 text-center sm:py-24">
+            <div className="mt-6 border border-dashed border-[color:var(--color-line)] px-6 py-12 text-center sm:py-16">
               <p className="font-display text-2xl tracking-[-0.02em] sm:text-3xl">
                 {publications.length === 0 ? 'Aún no hay publicaciones' : 'Sin resultados'}
               </p>
@@ -401,7 +401,7 @@ export default function Services({
             </div>
           </Reveal>
         ) : (
-          <div className="mt-8 grid grid-cols-1 gap-x-5 gap-y-5 md:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[230px]">
+          <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-4 md:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[170px]">
             {filtered.map((publication, index) => {
               const layout = getLayout(index, filtered.length)
               return (
@@ -427,24 +427,24 @@ export default function Services({
         )}
 
         <Reveal delay={120}>
-          <div className="group/cta relative mt-10 overflow-hidden border border-white/10 bg-[color:var(--color-surface)]">
+          <div className="group/cta relative mt-8 overflow-hidden border border-white/10 bg-[color:var(--color-surface)]">
             <div className="cta-pulse pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full bg-white/10 blur-3xl" aria-hidden="true" />
             <div
               className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_140%_at_100%_0%,rgba(255,255,255,0.08),transparent_55%)]"
               aria-hidden="true"
             />
 
-            <div className="relative flex flex-col gap-8 px-6 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-10 sm:py-12">
-              <p className="max-w-xl text-base leading-relaxed text-[color:var(--color-fg-soft)] sm:text-lg">
+            <div className="relative flex flex-col gap-5 px-6 py-7 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-8">
+              <p className="max-w-xl text-sm leading-relaxed text-[color:var(--color-fg-soft)] sm:text-base">
                 Cada proyecto se acompaña de planos, imágenes y una descripción del proceso.
               </p>
 
               <a href="#contacto" className="group/link inline-flex items-center gap-4">
-                <span className="relative font-display text-2xl leading-none tracking-[-0.02em] text-white sm:text-3xl">
+                <span className="relative font-display text-xl leading-none tracking-[-0.02em] text-white sm:text-2xl">
                   Hablemos de un proyecto
                   <span className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-white transition-transform duration-500 ease-out group-hover/link:scale-x-100" />
                 </span>
-                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/30 text-white transition-all duration-500 group-hover/link:border-white group-hover/link:bg-white group-hover/link:text-black">
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/30 text-white transition-all duration-500 group-hover/link:border-white group-hover/link:bg-white group-hover/link:text-black">
                   <ArrowUpRight
                     className="h-5 w-5 transition-transform duration-500 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
                     aria-hidden="true"

@@ -42,7 +42,7 @@ export default function ScrollAtmosphere({ children }) {
   }, [])
 
   return (
-    <div ref={ref} className="atmosphere relative overflow-hidden">
+    <div ref={ref} className="atmosphere relative overflow-clip">
       <div className="atmosphere-glow atmosphere-glow-a" aria-hidden="true" />
       <div className="atmosphere-glow atmosphere-glow-b" aria-hidden="true" />
       <div className="relative z-10">{children}</div>

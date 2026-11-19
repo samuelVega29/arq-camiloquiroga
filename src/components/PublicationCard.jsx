@@ -19,7 +19,7 @@ export default function PublicationCard({
         aria-label={`Ver publicación ${publication.title}`}
       />
 
-      <div className="relative h-full min-h-[320px] w-full sm:min-h-[380px] lg:min-h-0">
+      <div className="relative aspect-[4/3] w-full lg:aspect-auto lg:h-full">
         {cover ? (
           <img
             src={cover}
@@ -39,7 +39,7 @@ export default function PublicationCard({
           aria-hidden="true"
         />
 
-        <span className="absolute left-5 top-5 font-mono text-[8px] uppercase tracking-[0.24em] text-white/65">
+        <span className="absolute left-4 top-4 font-mono text-[8px] uppercase tracking-[0.24em] text-white/65">
           S.{String(index + 1).padStart(2, '0')}
         </span>
 
@@ -64,19 +64,19 @@ export default function PublicationCard({
           </div>
         ) : null}
 
-        <div className="absolute inset-x-5 bottom-5">
+        <div className="absolute inset-x-4 bottom-4">
           <div className="flex items-end justify-between gap-4">
             <div className="min-w-0">
               <h3
                 className={`font-display leading-tight tracking-[-0.01em] text-white ${
-                  featured ? 'text-3xl sm:text-4xl' : 'text-2xl sm:text-3xl'
+                  featured ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl'
                 }`}
               >
                 {publication.title}
               </h3>
 
               {publication.client || publication.location ? (
-                <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[8px] uppercase tracking-[0.18em] text-white/65 transition-all duration-500 lg:translate-y-1 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
+                <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[8px] uppercase tracking-[0.18em] text-white/65 transition-all duration-500 lg:translate-y-1 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
                   {publication.client ? <span>{publication.client}</span> : null}
                   {publication.client && publication.location ? (
                     <span className="h-1 w-1 bg-white/40" aria-hidden="true" />

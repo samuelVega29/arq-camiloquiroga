@@ -6,30 +6,30 @@ import WhatsAppIcon from './WhatsAppIcon'
 
 export default function Contact() {
   return (
-    <section id="contacto" className="pb-12 pt-16 text-white sm:pb-16 sm:pt-24">
+    <section id="contacto" className="pb-8 pt-10 text-white sm:pb-12 sm:pt-14">
       <div className="section-shell">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+        <div className="grid gap-6 lg:grid-cols-12 lg:gap-8">
           <Reveal className="lg:col-span-7">
             <p className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.12em] text-white/60">
               <span className="h-px w-8 bg-white" aria-hidden="true" />
               Contacto
             </p>
 
-            <h2 className="mt-7 font-display text-[clamp(2.25rem,1.5rem+4vw,5.5rem)] font-light leading-[0.94] tracking-[-0.04em] text-balance">
+            <h2 className="mt-4 font-display text-[clamp(2rem,1.25rem+3vw,3.75rem)] font-light leading-[0.94] tracking-[-0.04em] text-balance">
               ¿Hablamos de tu próximo <span className="italic text-white">proyecto</span>?
             </h2>
 
-            <p className="mt-6 max-w-prose text-pretty text-base leading-relaxed text-white/70 sm:text-lg">
+            <p className="mt-4 max-w-prose text-pretty text-sm leading-relaxed text-white/70 sm:text-base">
               Estoy abierto a proyectos de diseño, colaboraciones y oportunidades para seguir
               construyendo experiencias desde la arquitectura.
             </p>
 
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               <a
                 href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 bg-white px-6 py-4 font-mono text-xs uppercase tracking-[0.12em] text-black transition-colors hover:bg-[color:var(--color-fg-soft)]"
+                className="group inline-flex items-center gap-3 bg-white px-5 py-3 font-mono text-xs uppercase tracking-[0.12em] text-black transition-colors hover:bg-[color:var(--color-fg-soft)]"
               >
                 <WhatsAppIcon className="h-4 w-4" />
                 Escríbeme por WhatsApp
@@ -40,30 +40,30 @@ export default function Contact() {
               </a>
               <a
                 href={`mailto:${profile.email}`}
-                className="group inline-flex items-center gap-3 border border-white/30 px-6 py-4 font-mono text-xs uppercase tracking-[0.12em] transition-colors hover:border-white hover:bg-white hover:text-black"
+                className="group inline-flex items-center gap-3 border border-white/30 px-5 py-3 font-mono text-xs uppercase tracking-[0.12em] transition-colors hover:border-white hover:bg-white hover:text-black"
               >
                 <Mail className="h-4 w-4" aria-hidden="true" />
                 Correo
               </a>
             </div>
 
-            <p className="mt-8 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-white/50">
+            <p className="mt-5 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-white/50">
               <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
               {profile.location} · Respuesta en 24–48 h
             </p>
           </Reveal>
 
           <Reveal delay={100} className="lg:col-span-5">
-            <div className="rounded-sm border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+            <div className="rounded-sm border border-white/10 bg-white/[0.02] p-5 sm:p-6">
               <p className="font-mono text-xs uppercase tracking-[0.12em] text-white/50">
                 Canales directos
               </p>
 
-              <ul className="mt-6 divide-y divide-white/10 border-t border-white/10">
+              <ul className="mt-4 divide-y divide-white/10 border-t border-white/10">
                 <li>
                   <a
                     href={`mailto:${profile.email}`}
-                    className="group flex items-center justify-between gap-4 py-4"
+                    className="group flex items-center justify-between gap-4 py-3"
                   >
                     <span>
                       <span className="block font-mono text-xs uppercase tracking-[0.12em] text-white/50">
@@ -84,7 +84,7 @@ export default function Contact() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center justify-between gap-4 py-4"
+                      className="group flex items-center justify-between gap-4 py-3"
                     >
                       <span>
                         <span className="block font-mono text-xs uppercase tracking-[0.12em] text-white/50">
@@ -105,7 +105,7 @@ export default function Contact() {
                     href={whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between gap-4 py-4"
+                    className="group flex items-center justify-between gap-4 py-3"
                   >
                     <span>
                       <span className="block font-mono text-xs uppercase tracking-[0.12em] text-white/50">
@@ -118,7 +118,7 @@ export default function Contact() {
                 </li>
               </ul>
 
-              <div className="mt-6 flex items-center gap-2 border-t border-white/10 pt-5">
+              <div className="mt-4 flex items-center gap-2 border-t border-white/10 pt-4">
                 <span className="h-2 w-2 rounded-full bg-white" aria-hidden="true" />
                 <span className="font-mono text-xs uppercase tracking-[0.12em] text-white/60">
                   {profile.availability}

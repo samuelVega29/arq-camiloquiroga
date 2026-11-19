@@ -56,27 +56,52 @@
     @apply font-display font-light leading-[0.9] tracking-[-0.05em];
   }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(16px);
-    transition:
-      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: opacity, transform;
-  }
-
-  .reveal.is-visible {
+  .reveal,
+  .reveal-fade {
     opacity: 1;
     transform: none;
   }
 
-  .reveal-fade {
-    opacity: 0;
-    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  }
+  @media (prefers-reduced-motion: no-preference) {
+    @supports ((animation-timeline: view()) and (animation-range: entry)) {
+      @keyframes reveal-in {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
 
-  .reveal-fade.is-visible {
-    opacity: 1;
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .reveal {
+        animation-name: reveal-in;
+        animation-duration: auto;
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+        animation-fill-mode: both;
+        animation-timeline: view();
+        animation-range: var(--reveal-range, entry 0% entry 45%);
+      }
+
+      .reveal-fade {
+        animation-name: fade-in;
+        animation-duration: auto;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 45%;
+      }
+    }
   }
 
   .grain::after {
@@ -376,6 +401,7 @@ dialog[open] {
   .reveal-fade {
     opacity: 1;
     transform: none;
+    animation: none;
     filter: none;
     transition: none;
   }

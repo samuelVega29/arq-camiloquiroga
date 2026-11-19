@@ -13,8 +13,8 @@ const links = [
 export default function Footer() {
   return (
     <footer className="border-t border-white/15 bg-black text-white">
-        <div className="section-shell py-10 sm:py-12">
-        <div className="grid gap-10 md:grid-cols-12">
+      <div className="section-shell py-8 sm:py-10">
+        <div className="grid gap-6 md:grid-cols-12">
           <div className="md:col-span-5">
             <a href="#inicio" className="inline-flex items-baseline gap-2">
               <span className="font-display text-3xl font-medium tracking-tight">
@@ -24,10 +24,10 @@ export default function Footer() {
                 {profile.name}
               </span>
             </a>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/60">
               Portafolio de arquitectura. Espacio, materia y luz.
             </p>
-            <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-white/40">
+            <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-white/40">
               © {new Date().getFullYear()} Camilo Quiroga
             </p>
           </div>
@@ -81,7 +81,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex items-center justify-between border-t border-white/15 pt-6">
+        <div className="mt-8 flex items-center justify-between border-t border-white/15 pt-5">
           <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/40">
             Hecho con intención / 2026
           </p>
