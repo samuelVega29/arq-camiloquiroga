@@ -14,7 +14,9 @@ import {
 } from 'lucide-react'
 import { profile } from '../data/profile'
 import { resolveImageUrl } from '../lib/images'
+import BeforeAfterCompare from './BeforeAfterCompare'
 import Reveal from './Reveal'
+import ServiceGallery from './ServiceGallery'
 import WhatsAppIcon from './WhatsAppIcon'
 
 const scopeByCategory = {
@@ -67,6 +69,9 @@ export default function ServiceDetail({ service, items = [] }) {
     .slice(0, 3)
 
   const scope = scopeByCategory[service.category] ?? []
+  const isRemodelacion = /remodel|adecuaci|correctiva|reforma/i.test(
+    `${service.category} ${service.title}`,
+  )
   const meta = [
     { icon: User, label: 'Cliente', value: service.client },
     { icon: MapPin, label: 'Ubicación', value: service.location },
@@ -334,6 +339,9 @@ export default function ServiceDetail({ service, items = [] }) {
               </div>
             </Reveal>
           </div>
+
+          <ServiceGallery service={service} />
+          {isRemodelacion ? <BeforeAfterCompare service={service} /> : null}
 
           {related.length > 0 ? (
             <Reveal delay={80}>
