@@ -62,52 +62,38 @@ export default function PublicationCard({
               <Trash2 className="h-3.5 w-3.5" aria-hidden="true" />
             </button>
           </div>
-        ) : publication.year ? (
-          <span className="absolute right-5 top-5 font-mono text-[8px] uppercase tracking-[0.24em] text-white/65">
-            {publication.year}
-          </span>
         ) : null}
 
         <div className="absolute inset-x-5 bottom-5">
           <div className="flex items-end justify-between gap-4">
             <div className="min-w-0">
-              <p className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[8px] uppercase tracking-[0.2em] text-white/65">
-                <span>{publication.category}</span>
-                {publication.location ? (
-                  <span className="inline-flex items-center gap-1">
-                    <MapPin className="h-3 w-3" aria-hidden="true" />
-                    {publication.location}
-                  </span>
-                ) : null}
-              </p>
               <h3
-                className={`mt-2 font-display leading-tight tracking-[-0.01em] text-white ${
+                className={`font-display leading-tight tracking-[-0.01em] text-white ${
                   featured ? 'text-3xl sm:text-4xl' : 'text-2xl sm:text-3xl'
                 }`}
               >
                 {publication.title}
               </h3>
+
+              {publication.client || publication.location ? (
+                <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[8px] uppercase tracking-[0.18em] text-white/65 transition-all duration-500 lg:translate-y-1 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
+                  {publication.client ? <span>{publication.client}</span> : null}
+                  {publication.client && publication.location ? (
+                    <span className="h-1 w-1 bg-white/40" aria-hidden="true" />
+                  ) : null}
+                  {publication.location ? (
+                    <span className="inline-flex items-center gap-1">
+                      <MapPin className="h-3 w-3" aria-hidden="true" />
+                      {publication.location}
+                    </span>
+                  ) : null}
+                </div>
+              ) : null}
             </div>
             <span className="mb-1 inline-flex shrink-0 items-center gap-1.5 font-mono text-[8px] uppercase tracking-[0.2em] text-white/70 opacity-0 transition-all duration-500 group-hover:translate-x-1 group-hover:opacity-100">
               Ver
               <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
             </span>
-          </div>
-
-          <div
-            className={`overflow-hidden transition-all duration-500 ease-out ${
-              featured ? 'max-h-52' : 'max-h-52 lg:max-h-0 lg:group-hover:max-h-52'
-            }`}
-          >
-            <p className="mt-3 line-clamp-2 max-w-xl text-sm leading-relaxed text-white/75 transition-colors duration-500 group-hover:text-white/90">
-              {publication.description}
-            </p>
-
-            {publication.client ? (
-              <p className="mt-3 font-mono text-[8px] uppercase tracking-[0.18em] text-white/50">
-                {publication.client}
-              </p>
-            ) : null}
           </div>
         </div>
       </div>

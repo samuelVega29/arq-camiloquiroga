@@ -66,7 +66,7 @@ export default function Approach() {
           <div className="max-w-3xl">
             <p className="eyebrow flex items-center gap-3">
               <span className="h-px w-8 bg-white/50" aria-hidden="true" />
-              03 / Enfoque
+              Enfoque
             </p>
             <h2 className="display-title mt-6 text-4xl sm:text-5xl lg:text-6xl">
               Del lugar a la <span className="italic text-[color:var(--color-fg-soft)]">experiencia</span>
@@ -159,11 +159,11 @@ export default function Approach() {
               “
             </span>
             <p className="max-w-3xl font-display text-3xl font-light italic leading-tight tracking-[-0.03em] text-white sm:text-4xl lg:text-5xl">
-              “La arquitectura empieza por mirar con atención.”
+              “El buen diseño no tiene fecha de caducidad.”
             </p>
             <footer className="mt-4 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)]">
               <span className="h-px w-8 bg-white/40" aria-hidden="true" />
-              Nota de proceso / CQ
+              Harry Seidler
             </footer>
           </blockquote>
         </Reveal>

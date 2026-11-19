@@ -1,5 +1,13 @@
 import { useMemo, useState } from 'react'
-import { ArrowUpDown, ArrowUpRight, ChevronDown, Plus, Search, X } from 'lucide-react'
+import {
+  ArrowUpDown,
+  ArrowUpRight,
+  ChevronDown,
+  MapPin,
+  Plus,
+  Search,
+  X,
+} from 'lucide-react'
 import PublicationCard from './PublicationCard'
 import Reveal from './Reveal'
 
@@ -9,6 +17,27 @@ const FILTERS = [
   { label: 'Diseñadas', value: 'Obras diseñadas' },
   { label: 'Contratadas', value: 'Obras contratadas' },
 ]
+
+const MAIN_LOCATIONS = ['villa de leyva', 'sogamoso', 'tunja']
+
+const LOCATION_FILTERS = [
+  { label: 'Todas', value: 'todas' },
+  { label: 'Villa de Leyva', value: 'villa de leyva' },
+  { label: 'Sogamoso', value: 'sogamoso' },
+  { label: 'Tunja', value: 'tunja' },
+  { label: 'Otras', value: 'otras' },
+]
+
+function matchesLocation(publication, locationFilter) {
+  const location = (publication.location ?? '').toLowerCase()
+
+  if (locationFilter === 'todas') return true
+  if (locationFilter === 'otras') {
+    return !MAIN_LOCATIONS.some((city) => location.includes(city))
+  }
+
+  return location.includes(locationFilter)
+}
 
 const MOSAIC = [
   { span: 'lg:col-span-8 lg:row-span-2', tall: true },
@@ -47,6 +76,7 @@ export default function Services({
   onRetry,
 }) {
   const [filter, setFilter] = useState('Todos')
+  const [locationFilter, setLocationFilter] = useState('todas')
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState('recientes')
   const [actionError, setActionError] = useState('')
@@ -71,6 +101,7 @@ export default function Services({
       const matchesCategory =
         activeFilter === 'Todos' || publication.category === activeFilter
       if (!matchesCategory) return false
+      if (!matchesLocation(publication, locationFilter)) return false
       if (!term) return true
 
       return [
@@ -98,12 +129,14 @@ export default function Services({
     }
 
     return sorted
-  }, [publications, activeFilter, query, sort])
+  }, [publications, activeFilter, locationFilter, query, sort])
 
-  const hasFilters = activeFilter !== 'Todos' || query.trim() !== ''
+  const hasFilters =
+    activeFilter !== 'Todos' || locationFilter !== 'todas' || query.trim() !== ''
 
   const resetFilters = () => {
     setFilter('Todos')
+    setLocationFilter('todas')
     setQuery('')
   }
 
@@ -133,11 +166,7 @@ export default function Services({
         <Reveal>
           <div className="flex flex-col justify-between gap-10 lg:flex-row lg:items-end">
             <div>
-              <p className="eyebrow flex items-center gap-3">
-                <span className="h-px w-6 bg-white" aria-hidden="true" />
-                Servicios
-              </p>
-              <h2 className="mt-6 display-title text-[clamp(3rem,9vw,7rem)]">Servicios</h2>
+              <h2 className="display-title text-[clamp(3rem,9vw,7rem)]">Servicios</h2>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-[color:var(--color-fg-soft)] sm:text-lg">
                 Obras dirigidas, contratadas y diseñadas, además de residencias de obra y
                 remodelaciones para sector privado y público. Cada trabajo reúne planos, imágenes
@@ -229,6 +258,32 @@ export default function Services({
                 ) : null}
               </div>
 
+              <div className="relative w-full sm:w-36 xl:w-40">
+                <MapPin
+                  className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[color:var(--color-fg-muted)]"
+                  aria-hidden="true"
+                />
+                <label htmlFor="services-location" className="sr-only">
+                  Filtrar por ubicación
+                </label>
+                <select
+                  id="services-location"
+                  value={locationFilter}
+                  onChange={(event) => setLocationFilter(event.target.value)}
+                  className="h-10 w-full cursor-pointer appearance-none border border-[color:var(--color-line)] bg-[color:var(--color-surface)] pl-9 pr-8 font-mono text-[8px] uppercase tracking-[0.14em] text-[color:var(--color-fg)] transition-colors hover:border-white/40 focus:border-white focus:outline-none xl:h-11 xl:pl-10 xl:pr-9 xl:text-[9px] [&>option]:bg-[color:var(--color-surface)] [&>option]:font-sans [&>option]:text-[color:var(--color-fg)]"
+                >
+                  {LOCATION_FILTERS.map((location) => (
+                    <option key={location.value} value={location.value}>
+                      {location.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown
+                  className="pointer-events-none absolute right-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[color:var(--color-fg-muted)] xl:right-3"
+                  aria-hidden="true"
+                />
+              </div>
+
               <div className="flex flex-col gap-3 sm:flex-row sm:flex-nowrap sm:items-center lg:gap-2 xl:gap-3">
                 <div className="relative w-full sm:w-auto">
                   <ArrowUpDown
@@ -261,7 +316,8 @@ export default function Services({
                     className="inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap bg-white px-3 font-mono text-[8px] uppercase tracking-[0.18em] text-black transition-colors hover:bg-[color:var(--color-fg-soft)] xl:h-11 xl:px-5 xl:text-[9px]"
                   >
                     <Plus className="h-3.5 w-3.5" aria-hidden="true" />
-                    Agregar publicación
+                    <span className="xl:hidden">Agregar</span>
+                    <span className="hidden xl:inline">Agregar publicación</span>
                   </button>
                 ) : null}
 

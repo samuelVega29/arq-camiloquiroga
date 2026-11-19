@@ -23,7 +23,6 @@ export default function About() {
         <div>
           <Reveal delay={100}>
             <SectionHeading
-              index="04"
               label="Perfil"
               title={
                 <>

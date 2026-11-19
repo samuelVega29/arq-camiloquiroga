@@ -12,7 +12,7 @@ export default function Contact() {
           <Reveal className="lg:col-span-7">
             <p className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.16em] text-white/60">
               <span className="h-px w-8 bg-white" aria-hidden="true" />
-              05 / Contacto
+              Contacto
             </p>
 
             <h2 className="mt-7 font-display text-[clamp(2.6rem,7vw,5.5rem)] font-light leading-[0.94] tracking-[-0.04em]">
