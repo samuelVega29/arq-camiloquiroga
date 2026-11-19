@@ -161,7 +161,7 @@ export default function Services({
   }
 
   return (
-    <section id="servicios" className="border-t border-[color:var(--color-line)] py-24 sm:py-36">
+    <section id="servicios" className="border-t border-white/10 py-24 sm:py-36">
       <div className="section-shell">
         <Reveal>
           <div className="flex flex-col justify-between gap-10 lg:flex-row lg:items-end">

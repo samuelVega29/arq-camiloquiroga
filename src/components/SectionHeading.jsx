@@ -5,9 +5,9 @@ export default function SectionHeading({ label, title, intro, className = '' }) 
         <span className="h-px w-8 bg-white/50" aria-hidden="true" />
         {label}
       </p>
-      <h2 className="display-title mt-6 text-4xl sm:text-5xl lg:text-6xl">{title}</h2>
+      <h2 className="display-title mt-6 text-balance text-4xl sm:text-5xl lg:text-6xl">{title}</h2>
       {intro ? (
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-[color:var(--color-fg-soft)] sm:text-lg">
+        <p className="mt-6 max-w-prose text-pretty text-base leading-relaxed text-[color:var(--color-fg-soft)] sm:text-lg">
           {intro}
         </p>
       ) : null}

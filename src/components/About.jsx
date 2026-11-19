@@ -31,13 +31,13 @@ export default function About() {
               }
             />
 
-            <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)]">
+            <p className="mt-5 font-mono text-xs uppercase tracking-[0.12em] text-[color:var(--color-fg-muted)]">
               {profile.role}
             </p>
 
             <div className="mt-6 grid gap-5 lg:grid-cols-2 lg:gap-8">
               {profile.bio.map((paragraph) => (
-                <p key={paragraph} className="text-base leading-relaxed text-[color:var(--color-fg-soft)]">
+                <p key={paragraph} className="max-w-prose text-pretty text-base leading-relaxed text-[color:var(--color-fg-soft)]">
                   {paragraph}
                 </p>
               ))}
@@ -52,7 +52,7 @@ export default function About() {
                   <dd className="font-display text-2xl leading-none tracking-[-0.03em] transition-transform duration-500 group-hover:-translate-y-0.5">
                     {stat.value}
                   </dd>
-                  <dt className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)]">
+                  <dt className="mt-2 font-mono text-xs uppercase tracking-[0.1em] text-[color:var(--color-fg-muted)]">
                     {stat.label}
                   </dt>
                 </div>
@@ -61,7 +61,7 @@ export default function About() {
 
             <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-10">
               <div>
-                <h3 className="eyebrow flex items-center justify-between border-b border-[color:var(--color-line)] pb-3">
+                <h3 className="eyebrow flex items-center justify-between gap-3 border-b border-white/10 pb-3">
                   <span>Áreas de trabajo</span>
                   <span className="flex items-center gap-2 normal-case tracking-normal">
                     <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
@@ -72,10 +72,10 @@ export default function About() {
                   {areas.map((area) => (
                     <li
                       key={area.label}
-                      className="group inline-flex items-center gap-2 border border-white/10 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-[color:var(--color-fg-soft)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white hover:text-black"
+                      className="group inline-flex items-center gap-2 border border-white/10 px-2.5 py-1.5 font-mono text-xs text-[color:var(--color-fg-soft)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white hover:text-black"
                     >
                       {area.label}
-                      <span className="text-[10px] text-[color:var(--color-fg-muted)] transition-colors group-hover:text-black/60">
+                      <span className="text-xs text-[color:var(--color-fg-muted)] transition-colors group-hover:text-black/60">
                         {String(area.count).padStart(2, '0')}
                       </span>
                     </li>
@@ -84,12 +84,12 @@ export default function About() {
               </div>
 
               <div>
-                <h3 className="eyebrow border-b border-[color:var(--color-line)] pb-3">Herramientas</h3>
+                <h3 className="eyebrow border-b border-white/10 pb-3">Herramientas</h3>
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {profile.tools.map((tool) => (
                     <li
                       key={tool}
-                      className="border border-[color:var(--color-line)] px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-[color:var(--color-fg-muted)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:text-white"
+                      className="border border-white/10 px-2.5 py-1.5 font-mono text-xs text-[color:var(--color-fg-muted)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:text-white"
                     >
                       {tool}
                     </li>
@@ -100,7 +100,7 @@ export default function About() {
 
             <a
               href="#contacto"
-              className="group mt-10 inline-flex items-center gap-2 border-b border-white/40 pb-1 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors hover:border-white hover:text-white"
+              className="group mt-10 inline-flex items-center gap-2 border-b border-white/40 pb-1 font-mono text-xs uppercase tracking-[0.12em] transition-colors hover:border-white hover:text-white"
             >
               Hablemos
               <ArrowUpRight

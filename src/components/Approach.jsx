@@ -7,36 +7,32 @@ const pillars = [
     icon: Ruler,
     title: 'Diseño arquitectónico',
     description:
-      'Del análisis del lugar al proyecto construido. Trabajo la planta, la sección y la materialidad como herramientas para tomar decisiones coherentes.',
-    items: ['Estudio del lugar', 'Anteproyecto', 'Desarrollo de detalle'],
-    tools: 'Planta · Sección · Materialidad',
+      'Definimos la forma, la estructura y los detalles constructivos antes de llegar a obra.',
+    items: ['Estudio del lugar', 'Anteproyecto', 'Detalle constructivo'],
   },
   {
     number: '02',
     icon: Boxes,
     title: 'Modelado BIM / 3D',
     description:
-      'Construyo modelos coordinados que permiten verificar el proyecto, coordinar disciplinas y anticipar soluciones antes de la obra.',
-    items: ['Modelado Revit', 'Documentación técnica', 'Coordinación'],
-    tools: 'Revit · AutoCAD · Coordinación',
+      'Coordinamos disciplinas en un modelo compartido para anticipar decisiones y reducir reprocesos.',
+    items: ['Modelo Revit', 'Documentación técnica', 'Coordinación'],
   },
   {
     number: '03',
     icon: SunMedium,
     title: 'Visualización',
     description:
-      'Imágenes y recorridos que comunican la atmósfera del espacio: luz, textura y escala al servicio de la idea arquitectónica.',
-    items: ['Renders', 'Recorridos', 'Láminas de presentación'],
-    tools: 'Lumion · V-Ray · Photoshop',
+      'Traducimos el proyecto en imágenes y recorridos que revelan escala, luz y materiales.',
+    items: ['Renders', 'Recorridos', 'Láminas'],
   },
   {
     number: '04',
     icon: HardHat,
     title: 'Dirección de obra',
     description:
-      'Residencia, interventoría y control de la ejecución: presupuesto, cronograma, contratistas y calidad en obra privada y pública.',
-    items: ['Residencia e interventoría', 'Control de costos y plazos', 'Gestión de contratistas'],
-    tools: 'Obra privada · Sector público',
+      'Acompañamos la ejecución para que cada decisión en obra conserve la intención del diseño.',
+    items: ['Residencia', 'Costos y plazos', 'Contratistas'],
   },
 ]
 
@@ -50,7 +46,7 @@ export default function Approach() {
   return (
     <section
       id="enfoque"
-      className="relative overflow-hidden border-y border-[color:var(--color-line)] py-20 sm:py-28"
+      className="relative overflow-hidden py-20 sm:py-28"
     >
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_85%_0%,rgba(255,255,255,0.06),transparent_70%)]"
@@ -68,62 +64,51 @@ export default function Approach() {
               <span className="h-px w-8 bg-white/50" aria-hidden="true" />
               Enfoque
             </p>
-            <h2 className="display-title mt-6 text-4xl sm:text-5xl lg:text-6xl">
+            <h2 className="display-title mt-6 text-balance text-4xl sm:text-5xl lg:text-6xl">
               Del lugar a la <span className="italic text-[color:var(--color-fg-soft)]">experiencia</span>
             </h2>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-[color:var(--color-fg-soft)] sm:text-lg">
+            <p className="mt-6 max-w-prose text-pretty text-base leading-relaxed text-[color:var(--color-fg-soft)] sm:text-lg">
               Un proceso riguroso y sensible, donde cada decisión responde al contexto, al
               programa y a la forma en que las personas habitan el espacio.
             </p>
           </div>
         </Reveal>
 
-        <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((pillar, index) => {
             const Icon = pillar.icon
             return (
-              <Reveal key={pillar.number} delay={index * 90} className="h-full">
-                <article className="group relative flex h-full flex-col border-t border-white/15 pt-6 transition-colors duration-500 hover:border-white/50">
-                  <span
-                    className="absolute -top-px left-0 h-px w-full origin-left scale-x-0 bg-white transition-transform duration-700 ease-out group-hover:scale-x-100"
-                    aria-hidden="true"
-                  />
-
-                  <div className="flex items-start justify-between">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)] transition-colors duration-500 group-hover:text-white">
+              <Reveal key={pillar.number} delay={index * 90} className="h-full min-w-0">
+                <article className="group flex h-full min-w-0 flex-col rounded-sm border border-white/10 bg-white/[0.02] p-5 transition-colors duration-500 hover:border-white/25 hover:bg-white/[0.04]">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/20 font-mono text-xs text-white/80 transition-colors duration-500 group-hover:border-white/50 group-hover:text-white">
                       {pillar.number}
                     </span>
-                    <span className="inline-flex h-9 w-9 items-center justify-center border border-white/15 text-white/75 transition-all duration-500 group-hover:-translate-y-0.5 group-hover:rotate-6 group-hover:border-white/50 group-hover:text-white">
-                      <Icon className="h-5 w-5" strokeWidth={1.4} aria-hidden="true" />
-                    </span>
+                    <Icon
+                      className="h-5 w-5 shrink-0 text-white/70 transition-transform duration-500 group-hover:-translate-y-0.5"
+                      strokeWidth={1.4}
+                      aria-hidden="true"
+                    />
                   </div>
 
-                  <h3 className="mt-8 font-display text-2xl leading-tight tracking-[-0.02em] transition-transform duration-500 group-hover:-translate-y-0.5">
+                  <h3 className="mt-7 font-display text-2xl leading-snug tracking-[-0.03em] text-balance">
                     {pillar.title}
                   </h3>
 
-                  <p className="mt-4 text-sm leading-relaxed text-[color:var(--color-fg-soft)]">
+                  <p className="mt-3 text-pretty text-sm leading-relaxed text-[color:var(--color-fg-soft)]">
                     {pillar.description}
                   </p>
 
-                  <ul className="mt-6 space-y-2 border-t border-white/10 pt-4">
+                  <ul className="mt-auto flex flex-wrap gap-1.5 pt-6">
                     {pillar.items.map((item) => (
                       <li
                         key={item}
-                        className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)] transition-colors duration-500 group-hover:text-[color:var(--color-fg-soft)]"
+                        className="border border-white/10 px-2 py-1 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-[color:var(--color-fg-muted)] transition-colors duration-500 group-hover:text-[color:var(--color-fg-soft)]"
                       >
-                        <span
-                          className="h-1 w-1 bg-white/40 transition-colors duration-500 group-hover:bg-white"
-                          aria-hidden="true"
-                        />
                         {item}
                       </li>
                     ))}
                   </ul>
-
-                  <p className="mt-auto pt-5 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)]/70">
-                    {pillar.tools}
-                  </p>
                 </article>
               </Reveal>
             )
@@ -131,15 +116,10 @@ export default function Approach() {
         </div>
 
         <Reveal delay={140}>
-          <dl className="mt-12 grid divide-y divide-white/10 border-y border-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-            {trajectory.map((item, index) => (
-              <div
-                key={item.label}
-                className={`group flex items-baseline justify-between gap-4 px-1 py-5 sm:px-6 ${
-                  index === 0 ? 'sm:pl-0' : ''
-                }`}
-              >
-                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)]">
+          <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3">
+            {trajectory.map((item) => (
+              <div key={item.label} className="group flex min-w-0 flex-col-reverse gap-3">
+                <dt className="font-mono text-xs leading-relaxed text-pretty text-[color:var(--color-fg-muted)]">
                   {item.label}
                 </dt>
                 <dd className="font-display text-2xl leading-none tracking-[-0.03em] transition-colors duration-500 group-hover:text-[color:var(--color-fg-soft)] sm:text-3xl">
@@ -151,17 +131,17 @@ export default function Approach() {
         </Reveal>
 
         <Reveal delay={180}>
-          <blockquote className="relative mt-16 overflow-hidden border-t border-white/15 pt-10 sm:mt-20">
+          <blockquote className="relative mt-16 overflow-hidden pt-10 sm:mt-20">
             <span
               className="pointer-events-none absolute -top-6 right-0 select-none font-display text-[10rem] leading-none text-white/[0.04]"
               aria-hidden="true"
             >
               “
             </span>
-            <p className="max-w-3xl font-display text-3xl font-light italic leading-tight tracking-[-0.03em] text-white sm:text-4xl lg:text-5xl">
+            <p className="max-w-3xl font-display text-2xl font-light italic leading-snug tracking-[-0.03em] text-balance text-white sm:text-4xl">
               “El buen diseño no tiene fecha de caducidad.”
             </p>
-            <footer className="mt-4 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)]">
+            <footer className="mt-4 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.12em] text-[color:var(--color-fg-muted)]">
               <span className="h-px w-8 bg-white/40" aria-hidden="true" />
               Harry Seidler
             </footer>
