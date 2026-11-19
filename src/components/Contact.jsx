@@ -6,7 +6,7 @@ import WhatsAppIcon from './WhatsAppIcon'
 
 export default function Contact() {
   return (
-    <section id="contacto" className="border-t border-white/10 bg-black py-20 text-white sm:py-28">
+    <section id="contacto" className="border-t border-white/10 py-20 text-white sm:py-28">
       <div className="section-shell">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-7">

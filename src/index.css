@@ -96,6 +96,123 @@
     mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   }
+
+  .atmosphere {
+    --scroll: 0;
+    position: relative;
+    isolation: isolate;
+    background:
+      radial-gradient(130% 90% at 50% 0%, #111111 0%, #060606 48%, #020202 100%),
+      linear-gradient(180deg, #020202 0%, #0d0d0d 24%, #151515 52%, #080808 78%, #020202 100%);
+  }
+
+  .atmosphere::before {
+    content: "";
+    position: absolute;
+    inset: -25%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        ellipse at 18% calc(12% + var(--scroll) * 55%),
+        rgba(255, 255, 255, 0.11),
+        transparent 42%
+      ),
+      radial-gradient(
+        ellipse at 82% calc(88% - var(--scroll) * 45%),
+        rgba(255, 255, 255, 0.075),
+        transparent 38%
+      ),
+      radial-gradient(
+        ellipse at 50% calc(45% + var(--scroll) * 20%),
+        rgba(255, 255, 255, 0.05),
+        transparent 55%
+      );
+    filter: blur(55px);
+    transform: translate3d(
+      calc((var(--scroll) - 0.5) * -3vw),
+      calc(var(--scroll) * -5vh),
+      0
+    ) scale(1.08);
+    opacity: 0.9;
+    will-change: transform;
+  }
+
+  .atmosphere::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 120px 120px;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 18%,
+      black 82%,
+      transparent 100%
+    );
+    transform: translate3d(0, calc(var(--scroll) * -90px), 0);
+    opacity: 0.55;
+    will-change: transform;
+  }
+
+  .atmosphere-glow {
+    position: absolute;
+    z-index: 0;
+    border-radius: 9999px;
+    pointer-events: none;
+    filter: blur(90px);
+    will-change: transform, opacity;
+  }
+
+  .atmosphere-glow-a {
+    left: -12%;
+    top: 10%;
+    width: 46vw;
+    height: 46vw;
+    min-width: 320px;
+    min-height: 320px;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0) 70%
+    );
+    transform: translate3d(calc(var(--scroll) * 8vw), calc(var(--scroll) * 16vh), 0)
+      scale(1.12);
+    animation: atmosphere-pulse 16s ease-in-out infinite alternate;
+  }
+
+  .atmosphere-glow-b {
+    right: -14%;
+    top: 44%;
+    width: 44vw;
+    height: 44vw;
+    min-width: 300px;
+    min-height: 300px;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0) 72%
+    );
+    transform: translate3d(calc(var(--scroll) * -7vw), calc(var(--scroll) * -12vh), 0)
+      scale(1.18);
+    animation: atmosphere-pulse 20s ease-in-out infinite alternate-reverse;
+  }
+}
+
+@keyframes atmosphere-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.58;
+  }
 }
 
 dialog::backdrop {
@@ -206,6 +323,13 @@ dialog[open] {
   .animate-fade-in,
   .animate-slide-up {
     animation: none;
+  }
+
+  .atmosphere::before,
+  .atmosphere::after,
+  .atmosphere-glow {
+    animation: none;
+    transform: none;
   }
 
   *,

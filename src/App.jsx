@@ -6,6 +6,7 @@ import ServiceDetail from './components/ServiceDetail'
 import Approach from './components/Approach'
 import About from './components/About'
 import Contact from './components/Contact'
+import ScrollAtmosphere from './components/ScrollAtmosphere'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import LoginModal from './components/LoginModal'
@@ -327,9 +328,11 @@ export default function App() {
             onDeletePublication={remove}
             onRetry={refresh}
           />
-          <Approach />
-          <About />
-          <Contact />
+          <ScrollAtmosphere>
+            <Approach />
+            <About />
+            <Contact />
+          </ScrollAtmosphere>
         </main>
       )}
 
