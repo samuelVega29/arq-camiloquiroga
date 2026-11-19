@@ -230,51 +230,53 @@ export default function Services({
                 ) : null}
               </div>
 
-              <div className="relative w-full sm:w-auto">
-                <ArrowUpDown
-                  className="pointer-events-none absolute left-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[color:var(--color-fg-muted)]"
-                  aria-hidden="true"
-                />
-                <label htmlFor="services-sort" className="sr-only">
-                  Ordenar servicios
-                </label>
-                <select
-                  id="services-sort"
-                  value={sort}
-                  onChange={(event) => setSort(event.target.value)}
-                  className="h-11 w-full cursor-pointer appearance-none border border-[color:var(--color-line)] bg-[color:var(--color-surface)] pl-10 pr-9 font-display text-base leading-none tracking-[-0.01em] text-[color:var(--color-fg)] transition-colors hover:border-white/40 focus:border-white focus:outline-none sm:w-auto [&>option]:bg-[color:var(--color-surface)] [&>option]:font-sans [&>option]:text-[color:var(--color-fg)]"
-                >
-                  <option value="recientes">Recientes</option>
-                  <option value="antiguos">Antiguos</option>
-                  <option value="titulo">Título A–Z</option>
-                </select>
-                <ChevronDown
-                  className="pointer-events-none absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[color:var(--color-fg-muted)]"
-                  aria-hidden="true"
-                />
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                <div className="relative w-full sm:w-auto">
+                  <ArrowUpDown
+                    className="pointer-events-none absolute left-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[color:var(--color-fg-muted)]"
+                    aria-hidden="true"
+                  />
+                  <label htmlFor="services-sort" className="sr-only">
+                    Ordenar servicios
+                  </label>
+                  <select
+                    id="services-sort"
+                    value={sort}
+                    onChange={(event) => setSort(event.target.value)}
+                    className="h-11 w-full cursor-pointer appearance-none border border-[color:var(--color-line)] bg-[color:var(--color-surface)] pl-10 pr-9 font-display text-base leading-none tracking-[-0.01em] text-[color:var(--color-fg)] transition-colors hover:border-white/40 focus:border-white focus:outline-none sm:w-auto [&>option]:bg-[color:var(--color-surface)] [&>option]:font-sans [&>option]:text-[color:var(--color-fg)]"
+                  >
+                    <option value="recientes">Recientes</option>
+                    <option value="antiguos">Antiguos</option>
+                    <option value="titulo">Título A–Z</option>
+                  </select>
+                  <ChevronDown
+                    className="pointer-events-none absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[color:var(--color-fg-muted)]"
+                    aria-hidden="true"
+                  />
+                </div>
+
+                {isAdmin ? (
+                  <button
+                    type="button"
+                    onClick={onNewPublication}
+                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap bg-white px-5 py-3 font-mono text-[9px] uppercase tracking-[0.18em] text-black transition-colors hover:bg-[color:var(--color-fg-soft)]"
+                  >
+                    <Plus className="h-3.5 w-3.5" aria-hidden="true" />
+                    Agregar publicación
+                  </button>
+                ) : null}
+
+                {hasFilters ? (
+                  <button
+                    type="button"
+                    onClick={resetFilters}
+                    className="inline-flex items-center gap-1.5 self-start font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white sm:self-auto"
+                  >
+                    <X className="h-3 w-3" aria-hidden="true" />
+                    Limpiar
+                  </button>
+                ) : null}
               </div>
-
-              {hasFilters ? (
-                <button
-                  type="button"
-                  onClick={resetFilters}
-                  className="inline-flex items-center gap-1.5 self-start font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white sm:self-auto"
-                >
-                  <X className="h-3 w-3" aria-hidden="true" />
-                  Limpiar
-                </button>
-              ) : null}
-
-              {isAdmin ? (
-                <button
-                  type="button"
-                  onClick={onNewPublication}
-                  className="inline-flex items-center justify-center gap-2 bg-white px-5 py-3 font-mono text-[9px] uppercase tracking-[0.18em] text-black transition-colors hover:bg-[color:var(--color-fg-soft)]"
-                >
-                  <Plus className="h-3.5 w-3.5" aria-hidden="true" />
-                  Agregar publicación
-                </button>
-              ) : null}
             </div>
           </div>
         </Reveal>
