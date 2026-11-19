@@ -6,7 +6,7 @@ import WhatsAppIcon from './WhatsAppIcon'
 
 export default function Contact() {
   return (
-    <section id="contacto" className="py-20 text-white sm:py-28">
+    <section id="contacto" className="py-24 text-white sm:py-32">
       <div className="section-shell">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-7">
@@ -54,12 +54,12 @@ export default function Contact() {
           </Reveal>
 
           <Reveal delay={100} className="lg:col-span-5">
-            <div className="border border-white/20 p-6 sm:p-8">
+            <div className="rounded-sm border border-white/10 bg-white/[0.02] p-6 sm:p-8">
               <p className="font-mono text-xs uppercase tracking-[0.12em] text-white/50">
                 Canales directos
               </p>
 
-              <ul className="mt-6 divide-y divide-white/15 border-t border-white/15">
+              <ul className="mt-6 divide-y divide-white/10 border-t border-white/10">
                 <li>
                   <a
                     href={`mailto:${profile.email}`}
@@ -118,7 +118,7 @@ export default function Contact() {
                 </li>
               </ul>
 
-              <div className="mt-6 flex items-center gap-2 border-t border-white/15 pt-5">
+              <div className="mt-6 flex items-center gap-2 border-t border-white/10 pt-5">
                 <span className="h-2 w-2 rounded-full bg-white" aria-hidden="true" />
                 <span className="font-mono text-xs uppercase tracking-[0.12em] text-white/60">
                   {profile.availability}

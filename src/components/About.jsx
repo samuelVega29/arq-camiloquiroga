@@ -18,7 +18,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="sobre-mi" className="py-20 sm:py-28">
+    <section id="sobre-mi" className="py-24 sm:py-32">
       <div className="section-shell">
         <div>
           <Reveal delay={100}>
@@ -43,16 +43,16 @@ export default function About() {
               ))}
             </div>
 
-            <dl className="mt-10 grid grid-cols-2 gap-px border border-white/10 bg-white/10 sm:grid-cols-4">
+            <dl className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="group bg-[color:var(--color-bg)] px-4 py-4 transition-colors duration-500 hover:bg-[color:var(--color-surface)]"
+                  className="min-w-0 rounded-sm border border-white/10 bg-white/[0.02] p-4 transition-colors duration-500 hover:border-white/25 hover:bg-white/[0.04]"
                 >
-                  <dd className="font-display text-2xl leading-none tracking-[-0.03em] transition-transform duration-500 group-hover:-translate-y-0.5">
+                  <dd className="font-display text-2xl leading-none tracking-[-0.03em]">
                     {stat.value}
                   </dd>
-                  <dt className="mt-2 font-mono text-xs uppercase tracking-[0.1em] text-[color:var(--color-fg-muted)]">
+                  <dt className="mt-2 font-mono text-xs leading-relaxed text-[color:var(--color-fg-muted)]">
                     {stat.label}
                   </dt>
                 </div>
@@ -68,14 +68,15 @@ export default function About() {
                     {profile.location}
                   </span>
                 </h3>
-                <ul className="mt-4 flex flex-wrap gap-2">
+                <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
                   {areas.map((area) => (
                     <li
                       key={area.label}
-                      className="group inline-flex items-center gap-2 border border-white/10 px-2.5 py-1.5 font-mono text-xs text-[color:var(--color-fg-soft)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white hover:text-black"
+                      className="flex items-center gap-2 text-sm text-[color:var(--color-fg-soft)]"
                     >
+                      <span className="h-1 w-1 shrink-0 rounded-full bg-white/40" aria-hidden="true" />
                       {area.label}
-                      <span className="text-xs text-[color:var(--color-fg-muted)] transition-colors group-hover:text-black/60">
+                      <span className="font-mono text-xs text-[color:var(--color-fg-muted)]">
                         {String(area.count).padStart(2, '0')}
                       </span>
                     </li>
@@ -85,12 +86,13 @@ export default function About() {
 
               <div>
                 <h3 className="eyebrow border-b border-white/10 pb-3">Herramientas</h3>
-                <ul className="mt-4 flex flex-wrap gap-2">
+                <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
                   {profile.tools.map((tool) => (
                     <li
                       key={tool}
-                      className="border border-white/10 px-2.5 py-1.5 font-mono text-xs text-[color:var(--color-fg-muted)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:text-white"
+                      className="flex items-center gap-2 text-sm text-[color:var(--color-fg-muted)]"
                     >
+                      <span className="h-1 w-1 shrink-0 rounded-full bg-white/25" aria-hidden="true" />
                       {tool}
                     </li>
                   ))}
