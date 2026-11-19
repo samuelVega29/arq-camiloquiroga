@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from 'react'
-import { ArrowDown, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { ArrowDown, ArrowUpRight, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react'
 import { socials, whatsappHref } from '../data/socials'
 import InstagramIcon from './InstagramIcon'
 import WhatsAppIcon from './WhatsAppIcon'
@@ -56,7 +56,9 @@ const slides = [
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [scrollY, setScrollY] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const [reducedMotion, setReducedMotion] = useState(false)
+  const parallaxRef = useRef(null)
 
   const goToSlide = useCallback((index) => {
     setCurrentSlide((index + slides.length) % slides.length)
@@ -71,30 +73,49 @@ export default function Hero() {
   }, [])
 
   useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const update = () => setReducedMotion(media.matches)
+    update()
+    media.addEventListener('change', update)
+    return () => media.removeEventListener('change', update)
+  }, [])
+
+  useEffect(() => {
+    if (paused || reducedMotion) return undefined
     const interval = setInterval(nextSlide, 6000)
     return () => clearInterval(interval)
-  }, [nextSlide])
+  }, [nextSlide, paused, reducedMotion])
 
   useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'ArrowRight') nextSlide()
-      if (event.key === 'ArrowLeft') prevSlide()
+    if (reducedMotion) return undefined
+    let frame = 0
+
+    const update = () => {
+      frame = 0
+      parallaxRef.current?.style.setProperty(
+        '--hero-parallax',
+        String(1 + window.scrollY * 0.0002),
+      )
     }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [nextSlide, prevSlide])
 
-  useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY)
+      if (!frame) frame = requestAnimationFrame(update)
     }
+
+    update()
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (frame) cancelAnimationFrame(frame)
+    }
+  }, [reducedMotion])
 
   return (
     <section id="inicio" className="relative h-screen overflow-hidden">
-      <div className="absolute inset-0">
+      <span className="sr-only" aria-live="polite">
+        Slide {currentSlide + 1} de {slides.length}
+      </span>
+      <div ref={parallaxRef} className="absolute inset-0">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
@@ -105,8 +126,11 @@ export default function Hero() {
             <img
               src={slide.src}
               alt={slide.alt}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+              fetchPriority={index === currentSlide ? 'high' : 'low'}
               className="h-full w-full object-cover"
-              style={{ transform: `scale(${1 + scrollY * 0.0002})` }}
+              style={{ transform: 'scale(var(--hero-parallax, 1))' }}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black" />
           </div>
@@ -172,6 +196,19 @@ export default function Hero() {
                   aria-label="Siguiente slide"
                 >
                   <ChevronRight className="h-4 w-4" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPaused((value) => !value)}
+                  className="inline-flex h-10 w-10 items-center justify-center border border-white/30 text-white transition-colors hover:border-white hover:bg-white hover:text-black"
+                  aria-label={paused ? 'Reanudar carrusel' : 'Pausar carrusel'}
+                  aria-pressed={paused}
+                >
+                  {paused ? (
+                    <Play className="h-4 w-4" aria-hidden="true" />
+                  ) : (
+                    <Pause className="h-4 w-4" aria-hidden="true" />
+                  )}
                 </button>
               </div>
               <div className="flex items-center gap-2">

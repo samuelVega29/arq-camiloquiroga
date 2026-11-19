@@ -18,18 +18,8 @@ export default function PublicationModal({ publication, isAdmin, onClose, onEdit
     const dialog = dialogRef.current
     if (!dialog) return
 
-    if (publication && !dialog.open) {
-      dialog.showModal()
-      document.body.style.overflow = 'hidden'
-    }
-
-    if (!publication && dialog.open) {
-      dialog.close()
-    }
-
-    return () => {
-      document.body.style.overflow = ''
-    }
+    if (publication && !dialog.open) dialog.showModal()
+    if (!publication && dialog.open) dialog.close()
   }, [publication])
 
   useEffect(() => {
@@ -91,6 +81,7 @@ export default function PublicationModal({ publication, isAdmin, onClose, onEdit
   return (
     <dialog
       ref={dialogRef}
+      closedby="any"
       onClose={onClose}
       onClick={handleBackdrop}
       aria-labelledby="publication-modal-title"

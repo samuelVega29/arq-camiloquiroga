@@ -16,18 +16,8 @@ export default function LoginModal({ open, onClose, onLogin, configError }) {
     const dialog = dialogRef.current
     if (!dialog) return
 
-    if (open && !dialog.open) {
-      dialog.showModal()
-      document.body.style.overflow = 'hidden'
-    }
-
-    if (!open && dialog.open) {
-      dialog.close()
-    }
-
-    return () => {
-      document.body.style.overflow = ''
-    }
+    if (open && !dialog.open) dialog.showModal()
+    if (!open && dialog.open) dialog.close()
   }, [open])
 
   useEffect(() => {
@@ -69,6 +59,7 @@ export default function LoginModal({ open, onClose, onLogin, configError }) {
   return (
     <dialog
       ref={dialogRef}
+      closedby="any"
       onClose={onClose}
       onClick={handleBackdrop}
       aria-labelledby="login-title"

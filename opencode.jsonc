@@ -1,0 +1,8 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permissions": [
+    { "action": "shell", "resource": "npx.cmd -y modern-web-guidance@latest *", "effect": "allow" },
+    { "action": "shell", "resource": "npx.cmd modern-web-guidance@latest *", "effect": "allow" },
+    { "action": "shell", "resource": "npx modern-web-guidance@latest *", "effect": "allow" }
+  ]
+}

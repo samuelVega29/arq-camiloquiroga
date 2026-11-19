@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { LogIn, LogOut, Menu, Plus, X } from 'lucide-react'
 import { profile } from '../data/profile'
 
@@ -20,6 +20,7 @@ export default function Navbar({
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState('#inicio')
+  const dialogRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40)
@@ -47,19 +48,20 @@ export default function Navbar({
   }, [])
 
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => {
-      document.body.style.overflow = ''
-    }
+    const dialog = dialogRef.current
+    if (!dialog) return
+
+    if (open && !dialog.open) dialog.showModal()
+    if (!open && dialog.open) dialog.close()
   }, [open])
 
   const closeAnd = (action) => {
     setOpen(false)
     if (action) action()
+  }
+
+  const handleBackdrop = (event) => {
+    if (event.target === dialogRef.current) setOpen(false)
   }
 
   return (
@@ -157,37 +159,32 @@ export default function Navbar({
         </button>
       </nav>
 
-      <div
+      <dialog
+        ref={dialogRef}
         id="mobile-menu"
-        className={`lg:hidden ${open ? 'pointer-events-auto' : 'pointer-events-none'}`}
+        aria-label="Menú de navegación"
+        closedby="any"
+        onClose={() => setOpen(false)}
+        onClick={handleBackdrop}
+        className="fixed inset-y-0 right-0 m-0 h-dvh w-full max-w-sm border-0 bg-black p-0 text-white shadow-2xl backdrop:bg-black/80 backdrop:backdrop-blur-sm"
       >
-        <div
-          className={`fixed inset-0 bg-black/95 transition-opacity duration-700 ${
-            open ? 'opacity-100' : 'opacity-0'
-          }`}
-          onClick={() => setOpen(false)}
-          aria-hidden="true"
-        />
-        <div
-          className={`fixed inset-y-0 right-0 flex w-full max-w-sm flex-col overflow-y-auto bg-black transition-transform duration-700 ${
-            open ? 'translate-x-0' : 'translate-x-full'
-          }`}
-        >
+        <div className="flex h-full flex-col overflow-y-auto">
           <div className="flex items-center justify-between px-6 py-6">
             <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-[color:var(--color-fg-muted)]">
               Menú
             </span>
             <button
               type="button"
+              autoFocus
               className="inline-flex h-10 w-10 items-center justify-center border border-white/20 text-white/80 transition-colors duration-300 hover:border-white/60 hover:bg-white/10 hover:text-white"
               onClick={() => setOpen(false)}
               aria-label="Cerrar menú"
             >
-              <X className="h-5 w-5" />
+              <X className="h-5 w-5" aria-hidden="true" />
             </button>
           </div>
 
-          <nav className="flex flex-1 flex-col px-6">
+          <nav aria-label="Navegación móvil" className="flex flex-1 flex-col px-6">
             {links.map((link) => {
               const isActive = active === link.href
               return (
@@ -243,7 +240,7 @@ export default function Navbar({
             )}
           </div>
         </div>
-      </div>
+      </dialog>
     </header>
   )
 }
