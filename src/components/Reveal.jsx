@@ -15,12 +15,14 @@ export default function Reveal({
   className = '',
   delay = 0,
   rangeEnd = 45,
-  forceFallback = false,
+  scrollLinked = false,
 }) {
   const elementRef = useRef(null)
   const [isRevealed, setIsRevealed] = useState(false)
+  const [progress, setProgress] = useState(scrollLinked && !prefersReducedMotion ? 0 : 1)
 
-  const useObserver = forceFallback || !supportsScrollTimeline || prefersReducedMotion
+  const useObserver = scrollLinked || !supportsScrollTimeline || prefersReducedMotion
+  const useScrollProgress = scrollLinked && !prefersReducedMotion
   const start = Math.min(delay / 8, 20)
   const end = Math.max(start + 15, rangeEnd)
 
@@ -31,8 +33,21 @@ export default function Reveal({
     if (!element) return
 
     if (!('IntersectionObserver' in window)) {
-      setIsRevealed(true)
+      if (useScrollProgress) setProgress(1)
+      else setIsRevealed(true)
       return
+    }
+
+    if (useScrollProgress) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setProgress(Math.min(1, entry.intersectionRatio / 0.45))
+        },
+        { threshold: Array.from({ length: 101 }, (_, index) => index / 100) },
+      )
+
+      observer.observe(element)
+      return () => observer.disconnect()
     }
 
     const observer = new IntersectionObserver(
@@ -47,7 +62,7 @@ export default function Reveal({
 
     observer.observe(element)
     return () => observer.disconnect()
-  }, [useObserver])
+  }, [useObserver, useScrollProgress])
 
   return (
     <div
@@ -55,6 +70,7 @@ export default function Reveal({
       className={[
         'reveal',
         useObserver && 'reveal-observer',
+        useScrollProgress && 'reveal-scroll',
         isRevealed && 'is-revealed',
         className,
       ]
@@ -62,7 +78,8 @@ export default function Reveal({
         .join(' ')}
       style={{
         '--reveal-range': `entry ${start}% entry ${end}%`,
-        ...(useObserver ? { animationDelay: `${delay}ms` } : {}),
+        ...(useScrollProgress ? { '--reveal-progress': progress } : {}),
+        ...(useObserver && !useScrollProgress ? { animationDelay: `${delay}ms` } : {}),
       }}
     >
       {children}

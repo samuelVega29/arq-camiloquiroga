@@ -124,6 +124,15 @@
       }
     }
 
+    .reveal.reveal-scroll {
+      opacity: var(--reveal-progress, 0);
+      transform: translateY(calc((1 - var(--reveal-progress, 0)) * 32px))
+        scale(calc(0.98 + var(--reveal-progress, 0) * 0.02));
+      transition:
+        opacity 140ms linear,
+        transform 140ms linear;
+    }
+
     .reveal.reveal-observer.is-revealed {
       animation-name: reveal-in;
       animation-duration: 700ms;
