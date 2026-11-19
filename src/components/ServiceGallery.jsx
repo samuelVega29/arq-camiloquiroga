@@ -67,10 +67,6 @@ export default function ServiceGallery({ service }) {
               <ImageIcon className="h-4 w-4" aria-hidden="true" />
               Catálogo visual
             </h2>
-            <p className="mt-3 max-w-2xl text-base leading-relaxed text-[color:var(--color-fg-soft)]">
-              Fotos, referencias y videos del proceso. Las imágenes de referencia se reemplazarán
-              con el material final del servicio.
-            </p>
           </div>
           <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[color:var(--color-fg-muted)]">
             {String(media.length).padStart(2, '0')} archivos
