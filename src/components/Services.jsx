@@ -160,9 +160,9 @@ export default function Services({
         </Reveal>
 
         <Reveal delay={80}>
-          <div className="mt-10 flex flex-col gap-5 border-y border-[color:var(--color-line)] py-5 xl:flex-row xl:items-center xl:justify-between">
+          <div className="mt-10 flex flex-col gap-4 border-y border-[color:var(--color-line)] py-4 lg:flex-row lg:flex-nowrap lg:items-center lg:justify-between lg:gap-4 xl:gap-6">
             <nav
-              className="flex flex-wrap items-center gap-x-6 gap-y-3"
+              className="flex flex-wrap items-center gap-x-3 gap-y-2 lg:flex-nowrap lg:gap-x-3 xl:gap-x-5"
               role="tablist"
               aria-label="Filtrar servicios por categoría"
             >
@@ -176,7 +176,7 @@ export default function Services({
                     role="tab"
                     aria-selected={isActive}
                     onClick={() => setFilter(category)}
-                    className={`group relative pb-1 font-mono text-[9px] uppercase tracking-[0.18em] transition-colors ${
+                    className={`group relative pb-1 font-mono text-[8px] uppercase tracking-[0.18em] transition-colors xl:text-[9px] ${
                       isActive
                         ? 'text-white'
                         : 'text-[color:var(--color-fg-muted)] hover:text-white'
@@ -184,7 +184,7 @@ export default function Services({
                   >
                     {category}
                     <span
-                      className={`ml-2 text-[8px] ${
+                      className={`ml-1.5 text-[7px] xl:ml-2 xl:text-[8px] ${
                         isActive ? 'text-white/70' : 'text-[color:var(--color-fg-muted)]'
                       }`}
                       aria-hidden="true"
@@ -201,8 +201,8 @@ export default function Services({
               })}
             </nav>
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <div className="relative w-full sm:w-56">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-nowrap sm:items-center lg:gap-2 xl:gap-3">
+              <div className="relative w-full sm:w-40 xl:w-48">
                 <label htmlFor="services-search" className="sr-only">
                   Buscar servicios
                 </label>
@@ -230,10 +230,10 @@ export default function Services({
                 ) : null}
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-nowrap sm:items-center lg:gap-2 xl:gap-3">
                 <div className="relative w-full sm:w-auto">
                   <ArrowUpDown
-                    className="pointer-events-none absolute left-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[color:var(--color-fg-muted)]"
+                    className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[color:var(--color-fg-muted)]"
                     aria-hidden="true"
                   />
                   <label htmlFor="services-sort" className="sr-only">
@@ -243,14 +243,14 @@ export default function Services({
                     id="services-sort"
                     value={sort}
                     onChange={(event) => setSort(event.target.value)}
-                    className="h-11 w-full cursor-pointer appearance-none border border-[color:var(--color-line)] bg-[color:var(--color-surface)] pl-10 pr-9 font-display text-base leading-none tracking-[-0.01em] text-[color:var(--color-fg)] transition-colors hover:border-white/40 focus:border-white focus:outline-none sm:w-auto [&>option]:bg-[color:var(--color-surface)] [&>option]:font-sans [&>option]:text-[color:var(--color-fg)]"
+                    className="h-10 w-full cursor-pointer appearance-none border border-[color:var(--color-line)] bg-[color:var(--color-surface)] pl-9 pr-8 font-display text-sm leading-none tracking-[-0.01em] text-[color:var(--color-fg)] transition-colors hover:border-white/40 focus:border-white focus:outline-none sm:w-auto xl:h-11 xl:pl-10 xl:pr-9 xl:text-base [&>option]:bg-[color:var(--color-surface)] [&>option]:font-sans [&>option]:text-[color:var(--color-fg)]"
                   >
                     <option value="recientes">Recientes</option>
                     <option value="antiguos">Antiguos</option>
                     <option value="titulo">Título A–Z</option>
                   </select>
                   <ChevronDown
-                    className="pointer-events-none absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[color:var(--color-fg-muted)]"
+                    className="pointer-events-none absolute right-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[color:var(--color-fg-muted)] xl:right-3"
                     aria-hidden="true"
                   />
                 </div>
@@ -259,7 +259,7 @@ export default function Services({
                   <button
                     type="button"
                     onClick={onNewPublication}
-                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap bg-white px-5 py-3 font-mono text-[9px] uppercase tracking-[0.18em] text-black transition-colors hover:bg-[color:var(--color-fg-soft)]"
+                    className="inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap bg-white px-3 font-mono text-[8px] uppercase tracking-[0.18em] text-black transition-colors hover:bg-[color:var(--color-fg-soft)] xl:h-11 xl:px-5 xl:text-[9px]"
                   >
                     <Plus className="h-3.5 w-3.5" aria-hidden="true" />
                     Agregar publicación
@@ -270,7 +270,7 @@ export default function Services({
                   <button
                     type="button"
                     onClick={resetFilters}
-                    className="inline-flex items-center gap-1.5 self-start font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white sm:self-auto"
+                    className="inline-flex items-center gap-1.5 self-start font-mono text-[8px] uppercase tracking-[0.18em] text-[color:var(--color-fg-muted)] transition-colors hover:text-white sm:self-auto xl:text-[9px]"
                   >
                     <X className="h-3 w-3" aria-hidden="true" />
                     Limpiar
