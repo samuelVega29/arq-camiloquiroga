@@ -101,40 +101,46 @@
     --scroll: 0;
     position: relative;
     isolation: isolate;
-    background:
-      radial-gradient(130% 90% at 50% 0%, #111111 0%, #060606 48%, #020202 100%),
-      linear-gradient(180deg, #020202 0%, #0d0d0d 24%, #151515 52%, #080808 78%, #020202 100%);
+    background: linear-gradient(
+      180deg,
+      #010101 0%,
+      #0b0b0b 12%,
+      #242424 34%,
+      #323232 50%,
+      #171717 68%,
+      #050505 88%,
+      #010101 100%
+    );
   }
 
   .atmosphere::before {
     content: "";
     position: absolute;
-    inset: -25%;
+    inset: -20% 0;
     z-index: 0;
     pointer-events: none;
     background:
       radial-gradient(
-        ellipse at 18% calc(12% + var(--scroll) * 55%),
-        rgba(255, 255, 255, 0.11),
+        ellipse at 18% calc(10% + var(--scroll) * 60%),
+        rgba(255, 255, 255, 0.2),
+        transparent 44%
+      ),
+      radial-gradient(
+        ellipse at 82% calc(90% - var(--scroll) * 55%),
+        rgba(255, 255, 255, 0.14),
         transparent 42%
       ),
       radial-gradient(
-        ellipse at 82% calc(88% - var(--scroll) * 45%),
-        rgba(255, 255, 255, 0.075),
-        transparent 38%
-      ),
-      radial-gradient(
-        ellipse at 50% calc(45% + var(--scroll) * 20%),
-        rgba(255, 255, 255, 0.05),
+        ellipse at 50% calc(50% + (var(--scroll) - 0.5) * 40%),
+        rgba(255, 255, 255, 0.1),
         transparent 55%
       );
-    filter: blur(55px);
+    filter: blur(42px);
     transform: translate3d(
-      calc((var(--scroll) - 0.5) * -3vw),
-      calc(var(--scroll) * -5vh),
+      calc((var(--scroll) - 0.5) * -4vw),
+      calc((var(--scroll) - 0.5) * -10vh),
       0
-    ) scale(1.08);
-    opacity: 0.9;
+    ) scale(1.1);
     will-change: transform;
   }
 
@@ -144,20 +150,16 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-    background-size: 120px 120px;
-    mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
-    -webkit-mask-image: linear-gradient(
-      to bottom,
+    background: linear-gradient(
+      180deg,
       transparent 0%,
-      black 18%,
-      black 82%,
+      rgba(255, 255, 255, 0.05) 22%,
+      rgba(255, 255, 255, 0.12) 50%,
+      rgba(255, 255, 255, 0.04) 78%,
       transparent 100%
     );
-    transform: translate3d(0, calc(var(--scroll) * -90px), 0);
-    opacity: 0.55;
+    transform: translate3d(0, calc((var(--scroll) - 0.5) * -22vh), 0);
+    mix-blend-mode: screen;
     will-change: transform;
   }
 
@@ -179,7 +181,7 @@
     min-height: 320px;
     background: radial-gradient(
       circle,
-      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0.18),
       rgba(255, 255, 255, 0) 70%
     );
     transform: translate3d(calc(var(--scroll) * 8vw), calc(var(--scroll) * 16vh), 0)
@@ -196,7 +198,7 @@
     min-height: 300px;
     background: radial-gradient(
       circle,
-      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.12),
       rgba(255, 255, 255, 0) 72%
     );
     transform: translate3d(calc(var(--scroll) * -7vw), calc(var(--scroll) * -12vh), 0)
