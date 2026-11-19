@@ -20,34 +20,8 @@ export default function About() {
   return (
     <section id="sobre-mi" className="py-20 sm:py-28">
       <div className="section-shell">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <Reveal className="lg:col-span-5">
-            <div className="group relative">
-              <div
-                className="absolute -inset-3 border border-[color:var(--color-line)] transition-colors duration-500 group-hover:border-white/30"
-                aria-hidden="true"
-              />
-              <figure className="relative overflow-hidden border border-white/10 bg-[color:var(--color-surface)]">
-                <img
-                  src="retrato.svg"
-                  alt="Retrato abstracto tipo plano arquitectónico de Camilo Quiroga"
-                  loading="lazy"
-                  decoding="async"
-                  className="aspect-[4/5] w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.03]"
-                />
-                <figcaption className="flex items-center justify-between border-t border-white/10 px-4 py-3">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)]">
-                    Retrato / 01
-                  </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[color:var(--color-fg-muted)]">
-                    {profile.initials}
-                  </span>
-                </figcaption>
-              </figure>
-            </div>
-          </Reveal>
-
-          <Reveal delay={100} className="lg:col-span-7">
+        <div>
+          <Reveal delay={100}>
             <SectionHeading
               index="04"
               label="Perfil"
@@ -62,7 +36,7 @@ export default function About() {
               {profile.role}
             </p>
 
-            <div className="mt-6 space-y-5">
+            <div className="mt-6 grid gap-5 lg:grid-cols-2 lg:gap-8">
               {profile.bio.map((paragraph) => (
                 <p key={paragraph} className="text-base leading-relaxed text-[color:var(--color-fg-soft)]">
                   {paragraph}
@@ -86,41 +60,43 @@ export default function About() {
               ))}
             </dl>
 
-            <div className="mt-10">
-              <h3 className="eyebrow flex items-center justify-between border-b border-[color:var(--color-line)] pb-3">
-                <span>Áreas de trabajo</span>
-                <span className="flex items-center gap-2 normal-case tracking-normal">
-                  <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-                  {profile.location}
-                </span>
-              </h3>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {areas.map((area) => (
-                  <li
-                    key={area.label}
-                    className="group inline-flex items-center gap-2 border border-white/10 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-[color:var(--color-fg-soft)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white hover:text-black"
-                  >
-                    {area.label}
-                    <span className="text-[10px] text-[color:var(--color-fg-muted)] transition-colors group-hover:text-black/60">
-                      {String(area.count).padStart(2, '0')}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-10">
+              <div>
+                <h3 className="eyebrow flex items-center justify-between border-b border-[color:var(--color-line)] pb-3">
+                  <span>Áreas de trabajo</span>
+                  <span className="flex items-center gap-2 normal-case tracking-normal">
+                    <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+                    {profile.location}
+                  </span>
+                </h3>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {areas.map((area) => (
+                    <li
+                      key={area.label}
+                      className="group inline-flex items-center gap-2 border border-white/10 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-[color:var(--color-fg-soft)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white hover:text-black"
+                    >
+                      {area.label}
+                      <span className="text-[10px] text-[color:var(--color-fg-muted)] transition-colors group-hover:text-black/60">
+                        {String(area.count).padStart(2, '0')}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            <div className="mt-8">
-              <h3 className="eyebrow border-b border-[color:var(--color-line)] pb-3">Herramientas</h3>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {profile.tools.map((tool) => (
-                  <li
-                    key={tool}
-                    className="border border-[color:var(--color-line)] px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-[color:var(--color-fg-muted)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:text-white"
-                  >
-                    {tool}
-                  </li>
-                ))}
-              </ul>
+              <div>
+                <h3 className="eyebrow border-b border-[color:var(--color-line)] pb-3">Herramientas</h3>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {profile.tools.map((tool) => (
+                    <li
+                      key={tool}
+                      className="border border-[color:var(--color-line)] px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-[color:var(--color-fg-muted)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:text-white"
+                    >
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             <a
