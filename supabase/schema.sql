@@ -31,7 +31,13 @@ create table if not exists public.publications (
   updated_at timestamptz not null default now(),
   constraint publications_title_length check (char_length(title) between 1 and 90),
   constraint publications_category_check check (
-    category in ('Obras dirigidas', 'Obras contratadas', 'Obras diseñadas', 'Residencias')
+    category in (
+      'Obras dirigidas',
+      'Obras contratadas',
+      'Obras diseñadas',
+      'Residencias',
+      'Remodelación'
+    )
   ),
   constraint publications_description_length check (char_length(description) <= 2500),
   constraint publications_location_length check (char_length(location) <= 90),
@@ -40,6 +46,20 @@ create table if not exists public.publications (
   constraint publications_value_length check (char_length(value) <= 60),
   constraint publications_images_count check (
     coalesce(array_length(images, 1), 0) between 1 and 6
+  )
+);
+
+alter table public.publications
+drop constraint if exists publications_category_check;
+
+alter table public.publications
+add constraint publications_category_check check (
+  category in (
+    'Obras dirigidas',
+    'Obras contratadas',
+    'Obras diseñadas',
+    'Residencias',
+    'Remodelación'
   )
 );
 

@@ -1,5 +1,9 @@
 export const serviceCategories = ['Todos', 'Obras dirigidas', 'Obras contratadas', 'Obras diseñadas', 'Residencias']
 
+export const REMODELACION_CATEGORY = 'Remodelación'
+
+export const publicationCategories = [...serviceCategories.slice(1), REMODELACION_CATEGORY]
+
 export const services = [
   {
     id: 'srv-01',

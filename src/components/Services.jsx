@@ -3,6 +3,13 @@ import { ArrowUpDown, ArrowUpRight, ChevronDown, Plus, Search, X } from 'lucide-
 import PublicationCard from './PublicationCard'
 import Reveal from './Reveal'
 
+const FILTERS = [
+  { label: 'Todas', value: 'Todos' },
+  { label: 'Dirigidas', value: 'Obras dirigidas' },
+  { label: 'Diseñadas', value: 'Obras diseñadas' },
+  { label: 'Contratadas', value: 'Obras contratadas' },
+]
+
 const MOSAIC = [
   { span: 'lg:col-span-8 lg:row-span-2', tall: true },
   { span: 'lg:col-span-4 lg:row-span-1', tall: false },
@@ -44,11 +51,6 @@ export default function Services({
   const [sort, setSort] = useState('recientes')
   const [actionError, setActionError] = useState('')
 
-  const categories = useMemo(() => {
-    const values = new Set(publications.map((publication) => publication.category).filter(Boolean))
-    return ['Todos', ...values]
-  }, [publications])
-
   const counts = useMemo(
     () =>
       publications.reduce((accumulator, publication) => {
@@ -60,7 +62,7 @@ export default function Services({
     [publications],
   )
 
-  const activeFilter = categories.includes(filter) ? filter : 'Todos'
+  const activeFilter = FILTERS.some((item) => item.value === filter) ? filter : 'Todos'
 
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase()
@@ -137,9 +139,9 @@ export default function Services({
               </p>
               <h2 className="mt-6 display-title text-[clamp(3rem,9vw,7rem)]">Servicios</h2>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-[color:var(--color-fg-soft)] sm:text-lg">
-                Obras dirigidas, contratadas y diseñadas, además de residencias de obra para
-                sector privado y público. Cada trabajo reúne planos, imágenes y la memoria del
-                proceso.
+                Obras dirigidas, contratadas y diseñadas, además de residencias de obra y
+                remodelaciones para sector privado y público. Cada trabajo reúne planos, imágenes
+                y la memoria del proceso.
               </p>
             </div>
             <div className="flex shrink-0 items-center gap-4">
@@ -162,23 +164,24 @@ export default function Services({
               role="tablist"
               aria-label="Filtrar servicios por categoría"
             >
-              {categories.map((category) => {
-                const isActive = activeFilter === category
-                const count = category === 'Todos' ? publications.length : counts[category] ?? 0
+              {FILTERS.map((item) => {
+                const isActive = activeFilter === item.value
+                const count =
+                  item.value === 'Todos' ? publications.length : counts[item.value] ?? 0
                 return (
                   <button
-                    key={category}
+                    key={item.value}
                     type="button"
                     role="tab"
                     aria-selected={isActive}
-                    onClick={() => setFilter(category)}
+                    onClick={() => setFilter(item.value)}
                     className={`group relative pb-1 font-mono text-[8px] uppercase tracking-[0.18em] transition-colors xl:text-[9px] ${
                       isActive
                         ? 'text-white'
                         : 'text-[color:var(--color-fg-muted)] hover:text-white'
                     }`}
                   >
-                    {category}
+                    {item.label}
                     <span
                       className={`ml-1.5 text-[7px] xl:ml-2 xl:text-[8px] ${
                         isActive ? 'text-white/70' : 'text-[color:var(--color-fg-muted)]'

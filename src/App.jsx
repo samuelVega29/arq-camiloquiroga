@@ -12,13 +12,12 @@ import LoginModal from './components/LoginModal'
 import PublicationForm from './components/PublicationForm'
 import useAdmin from './hooks/useAdmin'
 import usePublications from './hooks/usePublications'
-import { serviceCategories } from './data/services'
+import { publicationCategories } from './data/services'
 
 const HOME_TITLE = 'Camilo Quiroga — Portafolio de Arquitectura'
 const CREATE_HASH = '#/admin/nueva'
 const EDIT_PREFIX = '#/admin/editar/'
 const SERVICE_PREFIX = '#/servicio/'
-const publicationCategories = serviceCategories.filter((category) => category !== 'Todos')
 
 function readRoute() {
   try {

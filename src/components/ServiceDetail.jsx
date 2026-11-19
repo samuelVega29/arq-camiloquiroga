@@ -13,6 +13,7 @@ import {
   Wallet,
 } from 'lucide-react'
 import { profile } from '../data/profile'
+import { REMODELACION_CATEGORY } from '../data/services'
 import { resolveImageUrl } from '../lib/images'
 import BeforeAfterCompare from './BeforeAfterCompare'
 import Reveal from './Reveal'
@@ -44,6 +45,12 @@ const scopeByCategory = {
     'Control de calidad, plazos y costos',
     'Coordinación con la interventoría',
   ],
+  [REMODELACION_CATEGORY]: [
+    'Diagnóstico del estado actual',
+    'Propuesta de intervención y acabados',
+    'Ejecución de la remodelación',
+    'Entrega y seguimiento de obra',
+  ],
 }
 
 function buildInquiry(service, form) {
@@ -69,9 +76,9 @@ export default function ServiceDetail({ service, items = [] }) {
     .slice(0, 3)
 
   const scope = scopeByCategory[service.category] ?? []
-  const isRemodelacion = /remodel|adecuaci|correctiva|reforma/i.test(
-    `${service.category} ${service.title}`,
-  )
+  const isRemodelacion =
+    service.category === REMODELACION_CATEGORY ||
+    /remodel|adecuaci|correctiva|reforma/i.test(`${service.category} ${service.title}`)
   const meta = [
     { icon: User, label: 'Cliente', value: service.client },
     { icon: MapPin, label: 'Ubicación', value: service.location },
