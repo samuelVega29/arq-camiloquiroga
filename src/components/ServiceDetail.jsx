@@ -13,12 +13,8 @@ import {
   Wallet,
 } from 'lucide-react'
 import { profile } from '../data/profile'
-import { services } from '../data/services'
-import { imageForIndex } from '../data/serviceImages'
-import Footer from './Footer'
-import Navbar from './Navbar'
+import { resolveImageUrl } from '../lib/images'
 import Reveal from './Reveal'
-import WhatsAppButton from './WhatsAppButton'
 import WhatsAppIcon from './WhatsAppIcon'
 
 const scopeByCategory = {
@@ -60,12 +56,13 @@ function buildInquiry(service, form) {
     .join('\n')
 }
 
-export default function ServiceDetail({ service }) {
-  const index = services.findIndex((item) => item.id === service.id)
-  const image = imageForIndex(index < 0 ? 0 : index)
-  const prev = services[(index - 1 + services.length) % services.length]
-  const next = services[(index + 1) % services.length]
-  const related = services
+export default function ServiceDetail({ service, items = [] }) {
+  const index = items.findIndex((item) => item.id === service.id)
+  const safeIndex = index < 0 ? 0 : index
+  const image = resolveImageUrl(service.images?.[0])
+  const prev = items.length > 1 ? items[(safeIndex - 1 + items.length) % items.length] : service
+  const next = items.length > 1 ? items[(safeIndex + 1) % items.length] : service
+  const related = items
     .filter((item) => item.category === service.category && item.id !== service.id)
     .slice(0, 3)
 
@@ -106,19 +103,22 @@ export default function ServiceDetail({ service }) {
   }
 
   return (
-    <div className="min-h-screen bg-[color:var(--color-bg)]">
-      <Navbar />
-
-      <main className="pt-20">
-        <section className="relative overflow-hidden border-b border-[color:var(--color-line)]">
-          <div className="relative min-h-[62vh] sm:min-h-[70vh]">
+    <main className="min-h-screen bg-[color:var(--color-bg)] pt-20">
+      <section className="relative overflow-hidden border-b border-[color:var(--color-line)]">
+        <div className="relative min-h-[62vh] sm:min-h-[70vh]">
+          {image ? (
             <img
               key={service.id}
               src={image}
               alt={service.title}
               className="detail-zoom absolute inset-0 h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/25" />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center bg-[color:var(--color-surface)]">
+              <span className="font-display text-6xl text-[color:var(--color-fg-muted)]">CQ</span>
+            </div>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/25" />
 
             <div className="section-shell relative flex min-h-[62vh] flex-col justify-between pb-10 pt-8 sm:min-h-[70vh] sm:pb-14">
               <a
@@ -356,19 +356,27 @@ export default function ServiceDetail({ service }) {
 
                 <div className="mt-6 grid gap-4 sm:grid-cols-3">
                   {related.map((item) => {
-                    const relatedIndex = services.findIndex((entry) => entry.id === item.id)
+                    const relatedImage = resolveImageUrl(item.images?.[0])
                     return (
                       <a
                         key={item.id}
-                        href={`#/servicio/${item.id}`}
+                        href={`#/servicio/${encodeURIComponent(item.id)}`}
                         className="group relative overflow-hidden border border-[color:var(--color-line)]"
                       >
-                        <img
-                          src={imageForIndex(relatedIndex)}
-                          alt={item.title}
-                          loading="lazy"
-                          className="h-40 w-full object-cover opacity-80 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
-                        />
+                        {relatedImage ? (
+                          <img
+                            src={relatedImage}
+                            alt={item.title}
+                            loading="lazy"
+                            className="h-40 w-full object-cover opacity-80 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+                          />
+                        ) : (
+                          <div className="flex h-40 w-full items-center justify-center bg-[color:var(--color-surface)]">
+                            <span className="font-display text-4xl text-[color:var(--color-fg-muted)]">
+                              CQ
+                            </span>
+                          </div>
+                        )}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
                         <div className="absolute inset-x-0 bottom-0 p-4">
                           <p className="text-xs text-white/75">
@@ -388,7 +396,7 @@ export default function ServiceDetail({ service }) {
 
           <div className="mt-14 flex flex-col gap-4 border-t border-[color:var(--color-line)] pt-8 sm:flex-row sm:items-center sm:justify-between">
             <a
-              href={`#/servicio/${prev.id}`}
+              href={`#/servicio/${encodeURIComponent(prev.id)}`}
               className="group inline-flex items-center gap-3 text-left"
             >
               <ArrowLeft
@@ -406,7 +414,7 @@ export default function ServiceDetail({ service }) {
             </a>
 
             <a
-              href={`#/servicio/${next.id}`}
+              href={`#/servicio/${encodeURIComponent(next.id)}`}
               className="group inline-flex items-center justify-end gap-3 text-right"
             >
               <span>
@@ -423,11 +431,7 @@ export default function ServiceDetail({ service }) {
               />
             </a>
           </div>
-        </section>
-      </main>
-
-      <Footer />
-      <WhatsAppButton />
-    </div>
+      </section>
+    </main>
   )
 }

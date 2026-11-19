@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import { ArrowUpDown, ArrowUpRight, ChevronDown, Plus, Search, X } from 'lucide-react'
 import PublicationCard from './PublicationCard'
-import PublicationModal from './PublicationModal'
 import Reveal from './Reveal'
 
 const MOSAIC = [
@@ -43,7 +42,6 @@ export default function Services({
   const [filter, setFilter] = useState('Todos')
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState('recientes')
-  const [activePublication, setActivePublication] = useState(null)
   const [actionError, setActionError] = useState('')
 
   const categories = useMemo(() => {
@@ -116,7 +114,6 @@ export default function Services({
     setActionError('')
     try {
       await onDeletePublication(publication.id)
-      if (activePublication?.id === publication.id) setActivePublication(null)
       return true
     } catch {
       setActionError('No pudimos eliminar la publicación. Inténtalo de nuevo.')
@@ -125,7 +122,6 @@ export default function Services({
   }
 
   const handleEdit = (publication) => {
-    setActivePublication(null)
     onEditPublication(publication.id)
   }
 
@@ -363,7 +359,6 @@ export default function Services({
                     index={index}
                     featured={layout.tall}
                     isAdmin={isAdmin}
-                    onOpen={setActivePublication}
                     onEdit={handleEdit}
                     onDelete={handleDelete}
                   />
@@ -406,14 +401,6 @@ export default function Services({
           </div>
         </Reveal>
       </div>
-
-      <PublicationModal
-        publication={activePublication}
-        isAdmin={isAdmin}
-        onClose={() => setActivePublication(null)}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-      />
     </section>
   )
 }

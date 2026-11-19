@@ -6,7 +6,6 @@ export default function PublicationCard({
   index,
   featured = false,
   isAdmin,
-  onOpen,
   onEdit,
   onDelete,
 }) {
@@ -14,9 +13,8 @@ export default function PublicationCard({
 
   return (
     <article className="group relative h-full overflow-hidden border border-[color:var(--color-line)] bg-[color:var(--color-surface)]">
-      <button
-        type="button"
-        onClick={() => onOpen(publication)}
+      <a
+        href={`#/servicio/${encodeURIComponent(publication.id)}`}
         className="absolute inset-0 z-10"
         aria-label={`Ver publicación ${publication.title}`}
       />
